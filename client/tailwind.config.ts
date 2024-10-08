@@ -26,9 +26,12 @@ export default {
         accent: {
           1: "#024959",
           2: "#026773",
+          3: "#013245",
         },
         link: "#3b82f6",
         warn: "#EF6A00",
+        green: "#5FA052",
+        red: "#CB4C4E",
       },
       screens: {
         "-2xl": { max: "1535px" },

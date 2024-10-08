@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
 from poe_profit_calc.sources import SOURCE_TO_FIELDS, PoeNinjaSource
+from poe_profit_calc.utils import nested_get
+import logging
 
 
 @dataclass
@@ -19,7 +21,7 @@ class PoeNinjaMatcher:
                         Must not match any key-value pairs.
                         If the value is an empty set, the key must not exist in the item.
         name_field_key: Key to match the name of the item against.
-        price_field_key: Key to get the price of the item from.
+        price_field_keys: A list of keys to navigate through the item dictionary to get the price.
     """
 
     source: PoeNinjaSource
@@ -27,7 +29,7 @@ class PoeNinjaMatcher:
     match_fields: dict = field(default_factory=dict)
     exclude_fields: dict[str, set] = field(default_factory=dict)
     name_field_key: str = ""
-    price_field_key: str = ""
+    price_field_keys: list[str] = field(default_factory=list)
 
     def try_match(self, item: dict) -> MatchResult | None:
         if item.get(self.name_field_key) != self.name:
@@ -44,7 +46,16 @@ class PoeNinjaMatcher:
             for exclude_value in exclude_values:
                 if field_value == exclude_value:
                     return None
-        return MatchResult(item.get(self.price_field_key, -1), item.get("icon", ""))
+        try:
+            price = nested_get(item, self.price_field_keys)
+            if not isinstance(price, (float, int)):
+                logging.warning(
+                    f"Price for {self.name} is not a number: {price}. Defaulting to -1."
+                )
+                price = -1
+        except KeyError:
+            price = -1
+        return MatchResult(price, item.get("icon", ""))
 
     def try_match_currency_details(self, item: dict) -> str | None:
         if item.get("name") == self.name:
@@ -55,8 +66,8 @@ class PoeNinjaMatcher:
         if not self.name_field_key:
             self.name_field_key = SOURCE_TO_FIELDS[self.source]["name"]
 
-        if not self.price_field_key:
-            self.price_field_key = SOURCE_TO_FIELDS[self.source]["price"]
+        if not self.price_field_keys:
+            self.price_field_keys = [SOURCE_TO_FIELDS[self.source]["price"]]
 
         if self.source == PoeNinjaSource.SKILL_GEM:
             self.match_fields["variant"] = "1"

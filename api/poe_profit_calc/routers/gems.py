@@ -1,6 +1,6 @@
 from cachetools import TTLCache, cached
 from fastapi import APIRouter
-from poe_profit_calc.gemlevelling.gems import GemProfit, GemType, create_profitability_report, parse
+from poe_profit_calc.gemlevelling import GemProfit, GemType, create_profitability_report, parse
 from poe_profit_calc.setup.setup import App
 from poe_profit_calc.sources import PoeNinjaSource
 from pydantic import BaseModel
