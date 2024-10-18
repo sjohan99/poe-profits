@@ -9,6 +9,8 @@ const routeTitles: Record<string, string> = {
   "/gems": "Gem Levelling",
   "/faq": "Frequency Asked Questions",
   "/about": "About",
+  "/harvest": "Harvest Rerolling",
+  "/harvest/delirium_orbs": "Delirium Orbs",
 };
 
 /**

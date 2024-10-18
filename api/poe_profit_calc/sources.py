@@ -14,6 +14,7 @@ class PoeNinjaSource(Enum):
     DIVINATION_CARD = "DivinationCard"
     SKILL_GEM = "SkillGem"
     UNIQUE_MAP = "UniqueMap"
+    DELIRIUM_ORB = "DeliriumOrb"
 
 
 SOURCE_TO_FIELDS = {
@@ -28,6 +29,7 @@ SOURCE_TO_FIELDS = {
     PoeNinjaSource.DIVINATION_CARD: {"name": "name", "price": "chaosValue"},
     PoeNinjaSource.SKILL_GEM: {"name": "name", "price": "chaosValue"},
     PoeNinjaSource.UNIQUE_MAP: {"name": "name", "price": "chaosValue"},
+    PoeNinjaSource.DELIRIUM_ORB: {"name": "name", "price": "chaosValue"},
 }
 
 ENDPOINT_MAPPING = {
@@ -42,6 +44,7 @@ ENDPOINT_MAPPING = {
     PoeNinjaSource.DIVINATION_CARD: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=DivinationCard",
     PoeNinjaSource.SKILL_GEM: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=SkillGem",
     PoeNinjaSource.UNIQUE_MAP: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=UniqueMap",
+    PoeNinjaSource.DELIRIUM_ORB: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=DeliriumOrb",
 }
 
 FILE_PATH_MAPPING = {
@@ -56,4 +59,5 @@ FILE_PATH_MAPPING = {
     PoeNinjaSource.DIVINATION_CARD: "static/itemoverview_divinationcard.json",
     PoeNinjaSource.SKILL_GEM: "static/itemoverview_skillgem.json",
     PoeNinjaSource.UNIQUE_MAP: "static/itemoverview_uniquemap.json",
+    PoeNinjaSource.DELIRIUM_ORB: "static/itemoverview_deliriumorb.json",
 }
