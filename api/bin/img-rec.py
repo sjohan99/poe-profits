@@ -8,10 +8,17 @@ from mss import mss
 from time import sleep
 import pathlib
 import pprint
+import sys
+
+if len(sys.argv) != 2:
+    print("Usage: python bin/img-rec.py <data folder name (e.g. 'orbs')>")
+    exit(1)
+
+ITEMS_FOLDER = sys.argv[1]
 
 BASE_PATH = "bin/data/img-rec/"
-OUTPUT_PATH = pathlib.Path(BASE_PATH, "output.json")
-IMAGE_PATHS = list(pathlib.Path(BASE_PATH, "orbs").glob("*.png"))
+OUTPUT_PATH = pathlib.Path(BASE_PATH, f"output-{ITEMS_FOLDER}.json")
+IMAGE_PATHS = list(pathlib.Path(BASE_PATH, ITEMS_FOLDER).glob("*.png"))
 CLICK_PATH = pathlib.Path(BASE_PATH, "clicks", "click.png")
 NOCLICK_PATH = pathlib.Path(BASE_PATH, "clicks", "noclick.png")
 HOVER_PATH = pathlib.Path(BASE_PATH, "clicks", "hoverclick.png")

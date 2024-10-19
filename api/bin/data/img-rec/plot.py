@@ -1,7 +1,14 @@
 import json
 import matplotlib.pyplot as plt
+import sys
 
-with open("bin/img-rec/output.json", "r") as file:
+if len(sys.argv) != 2:
+    print("Usage: python bin/data/img-rec/plot.py <output-{data}.json>")
+    exit(1)
+
+data = sys.argv[1]
+
+with open(f"bin/data/img-rec/{data}", "r") as file:
     data = json.load(file)
 
 items = list(data.keys())
