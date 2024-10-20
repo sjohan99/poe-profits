@@ -11,6 +11,7 @@ const routeTitles: Record<string, string> = {
   "/about": "About",
   "/harvest": "Harvest Rerolling",
   "/harvest/delirium_orbs": "Delirium Orbs",
+  "/table": "Table",
 };
 
 /**
