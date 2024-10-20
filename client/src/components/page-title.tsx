@@ -4,13 +4,14 @@ import { usePathname } from "next/navigation";
 import { CenterContent } from "./center-content";
 
 const routeTitles: Record<string, string> = {
-  "/": "Summary",
+  "/": "Welcome",
   "/boss": "Bossing",
   "/gems": "Gem Levelling",
   "/faq": "Frequency Asked Questions",
   "/about": "About",
   "/harvest": "Harvest Rerolling",
   "/harvest/delirium_orbs": "Delirium Orbs",
+  "/table": "Table",
 };
 
 /**

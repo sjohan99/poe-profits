@@ -1,13 +1,13 @@
-import { type GemData } from "./types";
+import { type Gem } from "./types";
 import { fetchData } from "@services/fetcher";
-import GemTable from "./table";
+import GemTable from "./gem-datatable";
 
 export default async function Page() {
-  const gemData = await fetchData<GemData>("gems/summary");
+  const gemData = await fetchData<Gem[]>("gems/summary");
 
   return (
     <>
-      <GemTable gems={gemData}></GemTable>
+      <GemTable gemData={gemData}></GemTable>
     </>
   );
 }

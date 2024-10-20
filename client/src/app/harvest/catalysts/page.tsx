@@ -1,14 +1,19 @@
 import { fetchData } from "@services/fetcher";
-import { type TableProps, FullTable } from "../table";
 import ProfitInfo from "../profit-info";
+import type { RerollData } from "../types";
+import { RerollDataTable } from "../datatable";
 
 export default async function Page() {
-  const data = await fetchData<TableProps>("harvest/catalysts");
+  const rerollData = await fetchData<RerollData>("harvest/catalysts");
 
   return (
     <>
       <ProfitInfo></ProfitInfo>
-      <FullTable {...data}></FullTable>
+      <RerollDataTable
+        rerollData={rerollData}
+        itemType="Catalyst"
+        isOverview={false}
+      ></RerollDataTable>
     </>
   );
 }

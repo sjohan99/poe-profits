@@ -7,7 +7,7 @@ body {
 }
 
 .tooltip {
-  @apply invisible absolute;
+  @apply invisible;
 }
 
 .has-tooltip:hover .tooltip {
@@ -15,7 +15,7 @@ body {
 }
 
 .has-tooltip:not(:hover) .tooltip {
-  @apply invisible delay-75;
+  @apply invisible;
 }
 
 h1 {
@@ -30,14 +30,10 @@ h3 {
   @apply text-xl font-bold;
 }
 
-.responsive-text-small {
-  @apply text-sm sm:text-base;
+.responsive-text-s {
+  @apply text-base sm:text-base xl:text-lg;
 }
 
-.responsive-text-medium {
-  @apply text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl;
-}
-
-.responsive-text-large {
-  @apply text-base sm:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl;
+.responsive-text-m {
+  @apply text-lg sm:text-lg xl:text-xl;
 }
