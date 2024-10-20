@@ -14,9 +14,17 @@ type EntranceItem = {
   img: string | null;
 };
 
-export type BossInfo = {
+export type DetailedBossInfo = {
   id: string;
   name: string;
   drops: Drop[];
   entrance_items: EntranceItem[];
+};
+
+export type Boss = {
+  name: string;
+  id: string;
+  value: number;
+  reliable: boolean;
+  img: string | null;
 };

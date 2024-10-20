@@ -3,17 +3,26 @@ export type CenterContentProps = {
   background?: string;
   className?: string;
   childrenContainerClassName?: string;
+  skipPadX?: boolean;
+  skipPadY?: boolean;
 };
 
-export function CenterContent(props: CenterContentProps) {
-  const extra_styling = props.className ?? "";
-  const childrenContainerClassName = props.childrenContainerClassName ?? "";
+export function CenterContent({
+  children,
+  background,
+  className,
+  childrenContainerClassName,
+  skipPadX,
+  skipPadY,
+}: CenterContentProps) {
   return (
     <div className="flex justify-center">
-      <div className={`w-full max-w-screen-2xl ${extra_styling}`.trim()}>
-        <div className={`rounded-sm ${props.background ?? ""}`.trim()}>
-          <div className={`px-3 py-3  ${childrenContainerClassName}`}>
-            {props.children}
+      <div className={`w-full max-w-screen-2xl ${className}`}>
+        <div className={`rounded-sm ${background ?? ""}`}>
+          <div
+            className={`${skipPadX ? "" : "px-3"} ${skipPadY ? "" : "py-3"} ${childrenContainerClassName}`}
+          >
+            {children}
           </div>
         </div>
       </div>

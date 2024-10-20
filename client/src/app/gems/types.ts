@@ -12,5 +12,3 @@ export type Gem = {
   gem_type: "normal" | "vaal" | "awakened" | "exceptional" | "transfigured";
   img: string | null;
 };
-
-export type GemData = Gem[];

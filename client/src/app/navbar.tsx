@@ -11,7 +11,7 @@ type NavLinkProps = {
 };
 
 const navLinks: NavLinkProps[] = [
-  { href: "/", text: "Bosses" },
+  { href: "/boss", text: "Bosses" },
   { href: "/gems", text: "Gems" },
   { href: "/harvest", text: "Harvest" },
   { href: "/faq", text: "FAQ" },

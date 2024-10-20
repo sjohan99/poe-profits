@@ -38,9 +38,11 @@ export default function RootLayout({
           <CenterContent background="bg-primary">{children}</CenterContent>
         </div>
         <div>
-          <CenterContent>
+          <CenterContent skipPadX={true}>
             <div className="border-t border-accent-1 pb-3"></div>
-            <Footer></Footer>
+            <div className="px-3">
+              <Footer></Footer>
+            </div>
           </CenterContent>
         </div>
         <Analytics></Analytics>
