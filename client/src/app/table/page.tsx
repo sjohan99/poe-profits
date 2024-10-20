@@ -12,36 +12,80 @@ type Column<T> = {
   accessor: keyof T;
   key: React.Key;
   sortable?: boolean;
+  editHandler?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+    data: Row<T>[],
+  ) => Row<T>[];
+  extras?: React.ReactNode;
+  formatter?: (value: T[keyof T]) => React.ReactNode;
 };
 
 type ExampleT = {
   name: string | React.ReactNode;
   age: number;
   email: string;
+  share: number;
 };
 
 const exampleData: ExampleT[] = [
-  { name: "John Doe", age: 28, email: "john@example.com" },
-  { name: "Jane Smith", age: 34, email: "jane@example.com" },
   {
-    name: "Mike Johnsonaaaaaa",
+    name: "John Doe",
+    age: 28,
+    email: "john@example.com",
+    share: 28 / (28 + 34 + 45),
+  },
+  {
+    name: "Jane Smith",
+    age: 34,
+    email: "jane@example.com",
+    share: 34 / (28 + 34 + 45),
+  },
+  {
+    name: "Mike Johnson",
     age: 45,
     email: "mike@example.com",
+    share: 45 / (28 + 34 + 45),
   },
-  { name: "John Doe", age: 28, email: "john@example.com" },
-  { name: "John Doe", age: 24, email: "john@example.com" },
-  { name: "John Doe", age: 84, email: "john@example.com" },
-  { name: "John Doe", age: 8, email: "john@example.com" },
 ];
 
 export default function Page() {
+  function myEditHandler(
+    event: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+    data: Row<ExampleT>[],
+  ) {
+    const v = event.target.value;
+    const customPrice = v === "" ? 0 : parseFloat(v);
+    if (isNaN(customPrice)) {
+      return data;
+    }
+
+    const newData = data.slice();
+    if (newData[index] === undefined) {
+      return data;
+    }
+    newData[index].age = customPrice;
+    const sum = data.reduce((acc, row) => acc + row.age, 0);
+    for (const row of data) {
+      row.share = row.age / sum;
+    }
+    return newData;
+  }
+
   const columns: Column<ExampleT>[] = [
-    { header: <HeaderComponent />, accessor: "name", key: "name" },
+    {
+      header: <HeaderComponent />,
+      accessor: "name",
+      key: "name",
+      extras: <ChaosOrb />,
+    },
     {
       header: <HeaderComponent />,
       accessor: "age",
       key: "age",
       sortable: true,
+      editHandler: myEditHandler,
     },
     {
       header: <HeaderComponent />,
@@ -49,16 +93,33 @@ export default function Page() {
       key: "email",
       sortable: true,
     },
+    {
+      header: <HeaderComponent />,
+      accessor: "share",
+      key: "share",
+      sortable: true,
+      formatter: (value) => `${(value as number).toFixed(2)}`,
+    },
   ];
 
-  return <Table columns={columns} rows={exampleData} />;
+  function total(rows: Row<ExampleT>[]) {
+    return {
+      name: "Total",
+      age: rows.reduce((acc, row) => acc + (row.age as number), 0),
+      email: "",
+      share: "",
+    };
+  }
+
+  return <Table columns={columns} rows={exampleData} footer={total} />;
 }
 
-type Row<T> = { [K in keyof T]: React.ReactNode };
+type Row<T> = T & { [K in keyof T]: React.ReactNode };
 
 type TableProps<T> = {
   columns: Column<T>[];
   rows: Row<T>[];
+  footer?: (rows: Row<T>[]) => { [K in keyof T]: React.ReactNode };
   initialSort?: Sorting<T>;
 };
 
@@ -70,7 +131,7 @@ type Sorting<T> = {
 };
 
 function Table<T>(props: TableProps<T>) {
-  const { columns, rows, initialSort } = props;
+  const { columns, rows, footer, initialSort } = props;
 
   const [data, setData] = React.useState(rows);
   const [sort, setSort] = React.useState<Sorting<T> | null>(
@@ -78,8 +139,6 @@ function Table<T>(props: TableProps<T>) {
   );
 
   function changeSort(column: Column<T>) {
-    console.log("changeSort", column);
-
     if (!sort) {
       setSort({ column, direction: "asc" });
       return;
@@ -163,15 +222,54 @@ function Table<T>(props: TableProps<T>) {
           {data.map((row, rowIndex) => (
             <tr key={rowIndex} className="odd:bg-accent-3">
               {columns.map((column) => (
-                <td key={column.key} className="text-nowrap px-4 py-2">
-                  <p className="inline-flex min-w-max items-center gap-2">
-                    {row[column.accessor]} <ChaosOrb />
-                  </p>
+                <td key={column.key} className="h-12 text-nowrap px-4 py-2">
+                  {column.editHandler ? (
+                    <input
+                      title=""
+                      type="text"
+                      pattern=""
+                      value={String(row[column.accessor])}
+                      className="h-full rounded border border-accent-2 border-opacity-10 bg-transparent pl-1"
+                      onChange={(event) => {
+                        const newData = column.editHandler!(
+                          event,
+                          rowIndex,
+                          data,
+                        );
+                        setData(newData);
+                      }}
+                    />
+                  ) : (
+                    <div className="inline-flex min-w-max items-center gap-2">
+                      {column.formatter
+                        ? column.formatter(row[column.accessor])
+                        : row[column.accessor]}{" "}
+                      {column.extras}
+                    </div>
+                  )}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
+        {footer ? (
+          <>
+            <tfoot>
+              <tr>
+                {columns.map((column) => (
+                  <td
+                    key={column.key}
+                    className="my-2 text-nowrap border-t border-accent-2 px-4 py-2 text-left"
+                  >
+                    <p className="inline-flex min-w-max items-center gap-2">
+                      {footer(data)[column.accessor]}
+                    </p>
+                  </td>
+                ))}
+              </tr>
+            </tfoot>
+          </>
+        ) : null}
       </table>
     </div>
   );
@@ -191,7 +289,7 @@ function SortingIndicator({ direction }: { direction?: Direction | null }) {
   return (
     <svg
       width="64px"
-      height="64"
+      height="64px"
       viewBox="-96 0 512 512"
       xmlns="http://www.w3.org/2000/svg"
       className="h-4 w-4 fill-secondary-1"
