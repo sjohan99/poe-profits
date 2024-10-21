@@ -1,9 +1,10 @@
 # poe-profits
 
-PoE Profit Calculator is a Path of Exile tool which helps you calculate the profitability of:
+poe-profits is a Path of Exile tool which helps you calculate and understand the profitability of:
 
 - bossing
 - levelling gems
+- harvest rerolling
 
 Visit the website [here!](https://poe-profits.com/)
 
