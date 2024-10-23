@@ -12,3 +12,14 @@ export type Lifeforce = {
   chaos_value: number;
   icon: string | null;
 };
+
+export type RerollData = {
+  items: Item[];
+  lifeforce: Lifeforce[];
+  total_weight: number;
+};
+
+export type Overview = {
+  orbs: RerollData;
+  catalysts: RerollData;
+};
