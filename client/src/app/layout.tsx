@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-import { Roboto_Slab, Chakra_Petch } from "next/font/google";
+import { Chakra_Petch, Quicksand } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CenterContent } from "~/components/center-content";
@@ -8,7 +8,7 @@ import Footer from "./footer";
 import TopNav from "./navbar";
 import { env } from "~/env";
 
-const robotoSlab = Roboto_Slab({
+const quicksand = Quicksand({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${robotoSlab.className}`}>
+    <html lang="en" className={`${quicksand.className}`}>
       <body className="flex min-h-screen flex-col justify-between">
         <div className="min-h-screen">
           <TopNav logoFont={chakraPetch} />
