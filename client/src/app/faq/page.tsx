@@ -1,5 +1,10 @@
 import { type ReactNode } from "react";
 import BlueLink from "@components/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FAQ",
+};
 
 function Question({
   question,

@@ -10,7 +10,8 @@ const routeTitles: Record<string, string> = {
   "/faq": "Frequency Asked Questions",
   "/about": "About",
   "/harvest": "Harvest Rerolling",
-  "/harvest/delirium_orbs": "Delirium Orbs",
+  "/harvest/delirium_orbs": "Harvest Rerolling: Delirium Orbs",
+  "/harvest/catalysts": "Harvest Rerolling: Catalysts",
   "/table": "Table",
 };
 

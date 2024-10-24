@@ -1,6 +1,13 @@
 import { fetchData } from "@services/fetcher";
 import type { Overview } from "./types";
 import { RerollDataTable } from "./datatable";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Harvest",
+  description:
+    "Expected profit from rerolling currency items using Horticrafting",
+};
 
 export default async function Page() {
   const overview = await fetchData<Overview>("harvest/overview");

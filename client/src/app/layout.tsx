@@ -6,6 +6,7 @@ import { CenterContent } from "~/components/center-content";
 import PageTitle from "@components/page-title";
 import Footer from "./footer";
 import TopNav from "./navbar";
+import { env } from "~/env";
 
 const robotoSlab = Roboto_Slab({
   weight: "400",
@@ -20,8 +21,14 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata = {
-  title: "Path of Exile Profit Calculator",
+  title: {
+    template: "poe-profits | %s",
+    default: "poe-profits",
+  },
+  description:
+    "poe-profits helps you understand the profitability of various Path of Exile mechanics",
   icons: [{ rel: "favicon", url: "/favicon.ico" }],
+  metadataBase: new URL(env.SITE_URL),
 };
 
 export default function RootLayout({
