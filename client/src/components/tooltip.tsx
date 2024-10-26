@@ -25,14 +25,17 @@ export default function Tooltip({ children, icon }: TooltipProps): JSX.Element {
       const triggerRect = trigger.getBoundingClientRect();
 
       let left = triggerRect.x + triggerRect.width + 4;
-
       if (
         left + tooltipRect.width > viewportWidth &&
         triggerRect.x - tooltipRect.width - 4 < 0
       ) {
         tooltip.style.left = "10%";
-        tooltip.style.width = "80%";
-        tooltip.style.textWrap = "wrap";
+        if (tooltipRect.width > viewportWidth * 0.75) {
+          tooltip.style.width = "80%";
+          tooltip.style.textWrap = "wrap";
+        }
+        // Move tooltip above the trigger when it is wide.
+        tooltip.style.top = `${triggerRect.y - tooltipRect.height - 4}px`;
         return;
       }
 
@@ -41,7 +44,6 @@ export default function Tooltip({ children, icon }: TooltipProps): JSX.Element {
       }
 
       tooltip.style.left = `${left}px`;
-
       // Center the tooltip vertically
       const heightDifference = (tooltipRect.height - triggerRect.height) / 2;
       tooltip.style.top = `${triggerRect.y - heightDifference}px`;
@@ -79,7 +81,7 @@ export default function Tooltip({ children, icon }: TooltipProps): JSX.Element {
       <div
         ref={tooltipRef}
         // pointer-events-none otherwise the tooltip might block the mouse events
-        className="tooltip pointer-events-none fixed flex flex-row gap-2 rounded bg-accent-1 p-1 font-normal shadow-lg"
+        className="tooltip pointer-events-none fixed flex flex-row gap-2 rounded border border-accent-2 bg-accent-1 p-1 font-normal shadow-lg"
       >
         {children}
       </div>
