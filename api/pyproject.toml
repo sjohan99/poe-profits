@@ -12,6 +12,7 @@ requests = "^2.32.3"
 cachetools = "^5.5.0"
 msgspec = "^0.18.6"
 pydantic-settings = "^2.5.2"
+scipy = "^1.14.1"
 
 [tool.poetry.dev-dependencies]
 black = "^24.4.2"
@@ -36,4 +37,3 @@ build-backend = "poetry.core.masonry.api"
 line-length = 100
 
 [tool.pytest.ini_options]
-pythonpath = "."
