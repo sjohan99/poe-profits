@@ -54,13 +54,20 @@ function createItemName(item: Item): string {
 
 export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
   const [rows, setRows] = useState(bossInfoToRows(boss));
-  const sum = useMemo(() => {
-    const sum = rows.reduce((acc, row) => acc + row.value, 0);
+  const profit = useMemo(() => {
+    let profit = 0;
+    let revenue = 0;
     for (const row of rows) {
-      if (row.value > 0) row.share = row.value / sum;
+      if (row.type === "drop") {
+        revenue += row.value;
+      }
+      profit += row.value;
+    }
+    for (const row of rows) {
+      if (row.type === "drop") row.share = row.value / revenue;
     }
 
-    return sum;
+    return profit;
   }, [rows]);
 
   function changePrice(
@@ -94,7 +101,7 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
       droprate: "",
       value: (
         <div className="inline-flex items-center gap-2 font-bold">
-          <p>{Math.round(sum)}</p>
+          <p>{Math.round(profit)}</p>
           <ChaosOrb />
         </div>
       ),
@@ -170,7 +177,7 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
       key: "share",
       sortable: true,
       formatter: (item) =>
-        item.droprate ? ((item.value / sum) * 100).toFixed(2) + "%" : "N/A",
+        item.share ? (item.share * 100).toFixed(2) + "%" : "N/A",
     },
   ];
 
