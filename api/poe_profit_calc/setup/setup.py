@@ -2,12 +2,13 @@ import logging
 import sys
 
 from fastapi import Depends, FastAPI
+from poe_profit_calc.globals import League
 from poe_profit_calc.fetcher import FileFetcher, HttpFetcher
 from poe_profit_calc.prices import Pricer
 from poe_profit_calc.setup.logger import LoggingFormatter
 from poe_profit_calc.setup.ratelimiting import RateLimiter
 from poe_profit_calc.setup.settings import Settings, get_settings
-from poe_profit_calc.sources import ENDPOINT_MAPPING, FILE_PATH_MAPPING
+from poe_profit_calc.sources import FILE_PATH_MAPPING, make_endpoint_mapping
 
 from threading import Lock
 
@@ -32,7 +33,7 @@ class SingletonMeta(type):
 class App(metaclass=SingletonMeta):
 
     app: FastAPI
-    price_fetcher: Pricer
+    price_fetchers: dict[League, Pricer]
     settings: Settings
 
     def __init__(self):
@@ -43,13 +44,15 @@ class App(metaclass=SingletonMeta):
 
         if _settings.ENV == "prod":
             logging.info("Using HTTP fetcher")
-            _price_fetcher = Pricer(
-                fetcher=HttpFetcher(),
-                source_mapping=ENDPOINT_MAPPING,
-            )
+            fetcher = HttpFetcher()
+            _price_fetchers = {
+                league: Pricer(fetcher=fetcher, source_mapping=make_endpoint_mapping(league))
+                for league in League
+            }
         else:
             logging.info("Using file fetcher")
-            _price_fetcher = Pricer(fetcher=FileFetcher(), source_mapping=FILE_PATH_MAPPING)
+            pricer = Pricer(fetcher=FileFetcher(), source_mapping=FILE_PATH_MAPPING)
+            _price_fetchers = {league: pricer for league in League}
 
         rate_limiter = RateLimiter(
             requests_limit=_settings.REQUEST_LIMIT_PER_MINUTE, time_window=60, limit_globally=True
@@ -57,7 +60,7 @@ class App(metaclass=SingletonMeta):
 
         _app = FastAPI(dependencies=[Depends(rate_limiter)])
         App.app = _app
-        App.price_fetcher = _price_fetcher
+        App.price_fetchers = _price_fetchers
         App.settings = _settings
 
         logging.info(f"Initialized app in {_settings.ENV} mode")

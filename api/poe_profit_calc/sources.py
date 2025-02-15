@@ -1,5 +1,5 @@
 from enum import Enum
-from poe_profit_calc.globals import BASE_NINJA_URL, LEAGUE
+from poe_profit_calc.globals import BASE_NINJA_URL, League
 
 
 class PoeNinjaSource(Enum):
@@ -32,20 +32,23 @@ SOURCE_TO_FIELDS = {
     PoeNinjaSource.DELIRIUM_ORB: {"name": "name", "price": "chaosValue"},
 }
 
-ENDPOINT_MAPPING = {
-    PoeNinjaSource.CURRENCY: f"{BASE_NINJA_URL}currencyoverview?league={LEAGUE}&type=Currency",
-    PoeNinjaSource.UNIQUE_ARMOUR: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=UniqueArmour",
-    PoeNinjaSource.UNIQUE_JEWEL: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=UniqueJewel",
-    PoeNinjaSource.INVITATION: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=Invitation",
-    PoeNinjaSource.FRAGMENT: f"{BASE_NINJA_URL}currencyoverview?league={LEAGUE}&type=Fragment",
-    PoeNinjaSource.UNIQUE_ACCESSORY: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=UniqueAccessory",
-    PoeNinjaSource.UNIQUE_FLASK: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=UniqueFlask",
-    PoeNinjaSource.UNIQUE_WEAPON: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=UniqueWeapon",
-    PoeNinjaSource.DIVINATION_CARD: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=DivinationCard",
-    PoeNinjaSource.SKILL_GEM: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=SkillGem",
-    PoeNinjaSource.UNIQUE_MAP: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=UniqueMap",
-    PoeNinjaSource.DELIRIUM_ORB: f"{BASE_NINJA_URL}itemoverview?league={LEAGUE}&type=DeliriumOrb",
-}
+
+def make_endpoint_mapping(league: League):
+    return {
+        PoeNinjaSource.CURRENCY: f"{BASE_NINJA_URL}currencyoverview?league={league.value}&type=Currency",
+        PoeNinjaSource.UNIQUE_ARMOUR: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueArmour",
+        PoeNinjaSource.UNIQUE_JEWEL: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueJewel",
+        PoeNinjaSource.INVITATION: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=Invitation",
+        PoeNinjaSource.FRAGMENT: f"{BASE_NINJA_URL}currencyoverview?league={league.value}&type=Fragment",
+        PoeNinjaSource.UNIQUE_ACCESSORY: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueAccessory",
+        PoeNinjaSource.UNIQUE_FLASK: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueFlask",
+        PoeNinjaSource.UNIQUE_WEAPON: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueWeapon",
+        PoeNinjaSource.DIVINATION_CARD: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=DivinationCard",
+        PoeNinjaSource.SKILL_GEM: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=SkillGem",
+        PoeNinjaSource.UNIQUE_MAP: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueMap",
+        PoeNinjaSource.DELIRIUM_ORB: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=DeliriumOrb",
+    }
+
 
 FILE_PATH_MAPPING = {
     PoeNinjaSource.CURRENCY: "static/currencyoverview_currency.json",

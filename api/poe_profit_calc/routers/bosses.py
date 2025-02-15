@@ -9,7 +9,7 @@ router = APIRouter(
     prefix="/bosses",
 )
 
-price_fetcher = App.get_instance().price_fetcher
+price_fetcher = App.get_instance().price_fetchers
 
 
 class BossId(str, Enum):
