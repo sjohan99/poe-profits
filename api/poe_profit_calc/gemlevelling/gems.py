@@ -114,7 +114,7 @@ def get_max_level_xp(gem: str) -> Tuple[int, int]:
         gem.replace("'", ""), 2_000_000_000
     )  # 2b safe default (approx woke gem xp)
     if xp == 2_000_000_000 and gem not in IGNORE_GEMS:
-        logging.warning(f"Could not find max xp for {gem}, setting xp to 2 billion")
+        logging.info(f"Could not find max xp for {gem}, setting xp to 2 billion")
     if gem in EXCEPTIONAL_GEMS:
         return 3, xp
     if gem.startswith("Awakened"):
@@ -180,7 +180,11 @@ def create_profitability_report(gems: set[Gem]) -> list[GemProfit]:
         if profitability := calculate_profitability(k, v):
             report_data.append(profitability)
         else:
-            logging.warning(f"Could not calculate profitability for {k}")
+            logging.info(f"Could not calculate profitability for {k}")
+    if len(report_data) < len(gem_groups) / 2:
+        logging.warning(
+            f"Could not calculate profitability for {len(report_data)} gems out of {len(gem_groups)}"
+        )
     return report_data
 
 

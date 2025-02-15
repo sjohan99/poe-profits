@@ -1,6 +1,8 @@
 from enum import Enum
+from typing import Set, Tuple
 from cachetools import TTLCache, cached
 from poe_profit_calc.bossing.bosses import *
+from poe_profit_calc.globals import League
 from poe_profit_calc.setup.setup import App
 from pydantic import BaseModel
 from fastapi import APIRouter
@@ -9,7 +11,7 @@ router = APIRouter(
     prefix="/bosses",
 )
 
-price_fetcher = App.get_instance().price_fetcher
+price_fetchers = App.get_instance().price_fetchers
 
 
 class BossId(str, Enum):
@@ -92,15 +94,21 @@ class BossData(BaseModel):
     entrance_items: list[EntranceCost]
 
     @staticmethod
-    def from_boss_id(boss_id: BossId):
+    def from_boss_id(boss_id: BossId, items: set[Item]):
+        drops = {item for item in items if item in BOSS_ID_TO_BOSS[boss_id].drops}
+        entrance_items = set()
+        for item in items:
+            if item in BOSS_ID_TO_BOSS[boss_id].entrance_items:
+                quantity = BOSS_ID_TO_BOSS[boss_id].entrance_items[item]
+                entrance_items.add((item, quantity))
         id, boss = boss_id.value, BOSS_ID_TO_BOSS[boss_id]
+
         return BossData(
             name=boss.name,
             id=boss_id,
-            drops=[Drop.from_item(item) for item in boss.drops],
+            drops=[Drop.from_item(item) for item in drops],
             entrance_items=[
-                EntranceCost.from_item(item, quantity)
-                for item, quantity in boss.entrance_items.items()
+                EntranceCost.from_item(item, quantity) for item, quantity in entrance_items
             ],
         )
 
@@ -114,39 +122,48 @@ class BossSummary(BaseModel):
 
 
 @router.get("/boss/{boss_id}")
-def get_boss_data(boss_id: BossId) -> BossData:
+def get_boss_data(boss_id: BossId, league: League) -> BossData:
     boss_data = BOSS_ID_TO_BOSS[boss_id]
-    price_fetcher.price_items(boss_data.items())
-    return BossData.from_boss_id(boss_id)
+    items = price_fetchers[league].price_items(boss_data.items())
+    return BossData.from_boss_id(boss_id, items)
 
 
 @router.get("/all")
 @cached(cache=TTLCache(maxsize=128, ttl=1800))
-def get_bosses() -> list[BossData]:
+def get_bosses(league: League) -> list[BossData]:
     all_item_sets = [boss.items() for boss in BOSS_ID_TO_BOSS.values()]
     all_items = set.union(*all_item_sets)
-    price_fetcher.price_items(all_items)
-    return [BossData.from_boss_id(boss) for boss in BOSS_ID_TO_BOSS.keys()]
+    priced_items = price_fetchers[league].price_items(all_items)
+    return [BossData.from_boss_id(boss, priced_items) for boss in BOSS_ID_TO_BOSS.keys()]
 
 
 @router.get("/summary")
 @cached(cache=TTLCache(maxsize=128, ttl=1800))
-def get_summary() -> list[BossSummary]:
+def get_summary(league: League) -> list[BossSummary]:
     summaries: list[BossSummary] = []
     all_item_sets = [boss.items() for boss in BOSS_ID_TO_BOSS.values()]
     all_items = set.union(*all_item_sets)
-    price_fetcher.price_items(all_items)
+    priced_items = price_fetchers[league].price_items(all_items)
     for boss_id, boss in BOSS_ID_TO_BOSS.items():
+        drops = {item for item in priced_items if item in boss.drops}
+        entrance_items: Set[Tuple[Item, int]] = set()
+        for item in priced_items:
+            if item in boss.entrance_items:
+                quantity = boss.entrance_items[item]
+                entrance_items.add((item, quantity))
+
         value = 0
-        value += sum(item.price * item.droprate for item in boss.drops)
-        value -= sum(item.price * quantity for item, quantity in boss.entrance_items.items())
+        value += sum(item.price * item.droprate for item in drops)
+        value -= sum(item.price * quantity for item, quantity in entrance_items)
+
+        img = None if not entrance_items else entrance_items.pop()[0].img
         summaries.append(
             BossSummary(
                 name=boss.name,
                 id=boss_id,
                 value=value,
                 reliable=all(item.reliable for item in boss.items()),
-                img=boss.get_img(),
+                img=img,
             )
         )
     summaries.sort(key=lambda x: x.value, reverse=True)
