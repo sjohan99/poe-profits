@@ -641,7 +641,7 @@ AwakenedBlasphemySupport = Item(
 Indigon = Item(
     "Indigon",
     "Indigon",
-    0.4,
+    0.04,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_ARMOUR, "Indigon"),
 )
 
