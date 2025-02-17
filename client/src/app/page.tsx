@@ -1,5 +1,3 @@
-import Page from "./boss/page";
-
 export default function HomePage() {
   return (
     <main>
@@ -19,7 +17,6 @@ export default function HomePage() {
           The landing page is still a WIP. In the meantime I&apos;m showing this
           table below as an example.
         </p>
-        <Page />
       </div>
     </main>
   );
