@@ -17,6 +17,13 @@ class PoeNinjaSource(Enum):
     DELIRIUM_ORB = "DeliriumOrb"
 
 
+LEAGUE_TO_NINJA = {
+    League.SETTLERS: "Settlers",
+    League.SETTLERS_HC: "Hardcore+Settlers",
+    League.STANDARD: "Standard",
+    League.STANDARD_HC: "Hardcore",
+}
+
 SOURCE_TO_FIELDS = {
     PoeNinjaSource.CURRENCY: {"name": "currencyTypeName", "price": "chaosEquivalent"},
     PoeNinjaSource.FRAGMENT: {"name": "currencyTypeName", "price": "chaosEquivalent"},
@@ -34,19 +41,20 @@ SOURCE_TO_FIELDS = {
 
 
 def make_endpoint_mapping(league: League):
+    ninja_league = LEAGUE_TO_NINJA[league]
     return {
-        PoeNinjaSource.CURRENCY: f"{BASE_NINJA_URL}currencyoverview?league={league.value}&type=Currency",
-        PoeNinjaSource.UNIQUE_ARMOUR: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueArmour",
-        PoeNinjaSource.UNIQUE_JEWEL: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueJewel",
-        PoeNinjaSource.INVITATION: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=Invitation",
-        PoeNinjaSource.FRAGMENT: f"{BASE_NINJA_URL}currencyoverview?league={league.value}&type=Fragment",
-        PoeNinjaSource.UNIQUE_ACCESSORY: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueAccessory",
-        PoeNinjaSource.UNIQUE_FLASK: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueFlask",
-        PoeNinjaSource.UNIQUE_WEAPON: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueWeapon",
-        PoeNinjaSource.DIVINATION_CARD: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=DivinationCard",
-        PoeNinjaSource.SKILL_GEM: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=SkillGem",
-        PoeNinjaSource.UNIQUE_MAP: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=UniqueMap",
-        PoeNinjaSource.DELIRIUM_ORB: f"{BASE_NINJA_URL}itemoverview?league={league.value}&type=DeliriumOrb",
+        PoeNinjaSource.CURRENCY: f"{BASE_NINJA_URL}currencyoverview?league={ninja_league}&type=Currency",
+        PoeNinjaSource.UNIQUE_ARMOUR: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueArmour",
+        PoeNinjaSource.UNIQUE_JEWEL: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueJewel",
+        PoeNinjaSource.INVITATION: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=Invitation",
+        PoeNinjaSource.FRAGMENT: f"{BASE_NINJA_URL}currencyoverview?league={ninja_league}&type=Fragment",
+        PoeNinjaSource.UNIQUE_ACCESSORY: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueAccessory",
+        PoeNinjaSource.UNIQUE_FLASK: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueFlask",
+        PoeNinjaSource.UNIQUE_WEAPON: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueWeapon",
+        PoeNinjaSource.DIVINATION_CARD: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=DivinationCard",
+        PoeNinjaSource.SKILL_GEM: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=SkillGem",
+        PoeNinjaSource.UNIQUE_MAP: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueMap",
+        PoeNinjaSource.DELIRIUM_ORB: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=DeliriumOrb",
     }
 
 
