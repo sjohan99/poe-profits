@@ -60,13 +60,13 @@ class Drop(BaseModel):
     img: str | None
 
     @staticmethod
-    def from_item(item: Item):
+    def from_item(item: Item, league: League):
         return Drop(
             name=item.name,
             price=item.price,
             droprate=item.droprate,
             reliable=item.reliable,
-            trade_link=item.trade_link,
+            trade_link=item.trade_link.get_link(league) if item.trade_link else None,
             img=item.img,
         )
 
@@ -94,7 +94,7 @@ class BossData(BaseModel):
     entrance_items: list[EntranceCost]
 
     @staticmethod
-    def from_boss_id(boss_id: BossId, items: set[Item]):
+    def from_boss_id(boss_id: BossId, items: set[Item], league: League):
         drops = {item for item in items if item in BOSS_ID_TO_BOSS[boss_id].drops}
         entrance_items = set()
         for item in items:
@@ -106,7 +106,7 @@ class BossData(BaseModel):
         return BossData(
             name=boss.name,
             id=boss_id,
-            drops=[Drop.from_item(item) for item in drops],
+            drops=[Drop.from_item(item, league) for item in drops],
             entrance_items=[
                 EntranceCost.from_item(item, quantity) for item, quantity in entrance_items
             ],
@@ -125,7 +125,7 @@ class BossSummary(BaseModel):
 def get_boss_data(boss_id: BossId, league: League) -> BossData:
     boss_data = BOSS_ID_TO_BOSS[boss_id]
     items = price_fetchers[league].price_items(boss_data.items())
-    return BossData.from_boss_id(boss_id, items)
+    return BossData.from_boss_id(boss_id, items, league)
 
 
 @router.get("/all")
@@ -134,7 +134,7 @@ def get_bosses(league: League) -> list[BossData]:
     all_item_sets = [boss.items() for boss in BOSS_ID_TO_BOSS.values()]
     all_items = set.union(*all_item_sets)
     priced_items = price_fetchers[league].price_items(all_items)
-    return [BossData.from_boss_id(boss, priced_items) for boss in BOSS_ID_TO_BOSS.keys()]
+    return [BossData.from_boss_id(boss, priced_items, league) for boss in BOSS_ID_TO_BOSS.keys()]
 
 
 @router.get("/summary")
