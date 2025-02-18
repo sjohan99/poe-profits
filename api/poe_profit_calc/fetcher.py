@@ -22,7 +22,12 @@ class HttpFetcher:
 
     @cached(cache=TTLCache(maxsize=8196, ttl=1800))
     def fetch_data(self, url, format: Format = Format.JSON):
-        response = self.session.get(url)
+        try:
+            response = self.session.get(url)
+        except Exception as e:
+            raise FetchError(
+                f"HttpFetcher: Failed to fetch data from {url} with message: {str(e)}"
+            ) from e
         try:
             response.raise_for_status()
         except requests.RequestException as e:

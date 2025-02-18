@@ -6,6 +6,7 @@ export type CacheOpts = { revalidate: Seconds };
 
 export async function fetchData<T>(
   endpoint: string,
+  league: string | undefined = undefined,
   cache_opts: CacheOpts = { revalidate: 0 },
 ): Promise<T> {
   const API_BASE_URL = env.NEXT_PUBLIC_API_HOST;
@@ -14,7 +15,11 @@ export async function fetchData<T>(
     env.NEXT_PUBLIC_CACHE_FETCH_SECONDS,
   );
   cache_opts = { revalidate: cache_seconds };
-  const res = await fetch(`${API_BASE_URL}/${endpoint}`, {
+  let url = `${API_BASE_URL}/${endpoint}`;
+  if (league) {
+    url = `${url}?league=${league}`;
+  }
+  const res = await fetch(url, {
     next: cache_opts,
   });
   if (!res.ok) {

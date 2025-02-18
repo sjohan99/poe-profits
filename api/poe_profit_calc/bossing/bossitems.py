@@ -1,6 +1,6 @@
 from poe_profit_calc.items import Item, PoeNinjaMatcher
 from poe_profit_calc.sources import PoeNinjaSource
-from poe_profit_calc.tradelink import create_trade_link
+from poe_profit_calc.tradelink import TradeLink
 
 
 CurioOfPotential = Item(
@@ -100,7 +100,7 @@ TwoModWatcherEye = Item(
     0.35,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Watcher's Eye"),
     reliable=False,
-    trade_link=create_trade_link("Watcher's Eye", "Prismatic Jewel", identified=False, max_ilvl=85),
+    trade_link=TradeLink("Watcher's Eye", "Prismatic Jewel", identified=False, max_ilvl=85),
 )
 
 EchoesOfCreation = Item(
@@ -144,7 +144,7 @@ ForbiddenFlesh = Item(
     0.05,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flesh"),
     reliable=False,
-    trade_link=create_trade_link("Forbidden Flesh", "Cobalt Jewel", identified=False, max_ilvl=86),
+    trade_link=TradeLink("Forbidden Flesh", "Cobalt Jewel", identified=False, max_ilvl=86),
 )
 
 AwakenedLightningPenetrationSupport = Item(
@@ -188,7 +188,7 @@ ForbiddenFlame = Item(
     0.05,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flame"),
     reliable=False,
-    trade_link=create_trade_link("Forbidden Flame", "Crimson Jewel", identified=False, max_ilvl=86),
+    trade_link=TradeLink("Forbidden Flame", "Crimson Jewel", identified=False, max_ilvl=86),
 )
 
 Cortex = Item(
@@ -218,7 +218,7 @@ ForbiddenFleshUber = Item(
     0.05,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flesh"),
     reliable=False,
-    trade_link=create_trade_link("Forbidden Flesh", "Cobalt Jewel", identified=False, min_ilvl=87),
+    trade_link=TradeLink("Forbidden Flesh", "Cobalt Jewel", identified=False, min_ilvl=87),
 )
 
 AwakenedMultistrikeSupport = Item(
@@ -507,7 +507,7 @@ ThreeModWatcherEye = Item(
     0.35,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Watcher's Eye"),
     reliable=False,
-    trade_link=create_trade_link("Watcher's Eye", "Prismatic Jewel", identified=False, min_ilvl=86),
+    trade_link=TradeLink("Watcher's Eye", "Prismatic Jewel", identified=False, min_ilvl=86),
 )
 
 OrbOfDominanceShaper = Item(
@@ -579,7 +579,7 @@ ThreadOfHope = Item(
     0.2,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Thread of Hope"),
     reliable=False,
-    trade_link=create_trade_link("Thread of Hope", "Crimson Jewel", identified=False, max_ilvl=86),
+    trade_link=TradeLink("Thread of Hope", "Crimson Jewel", identified=False, max_ilvl=86),
 )
 
 EldritchExaltedOrb = Item(
@@ -826,7 +826,7 @@ ForbiddenFlameUber = Item(
     0.05,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flame"),
     reliable=False,
-    trade_link=create_trade_link("Forbidden Flame", "Crimson Jewel", identified=False, min_ilvl=87),
+    trade_link=TradeLink("Forbidden Flame", "Crimson Jewel", identified=False, min_ilvl=87),
 )
 
 AwakenedUnboundAilmentsSupport = Item(
@@ -1024,7 +1024,7 @@ MeldingOfTheFlesh = Item(
     0.02,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Melding of the Flesh"),
     reliable=False,
-    trade_link=create_trade_link("Melding of the Flesh", "Cobalt Jewel", identified=False),
+    trade_link=TradeLink("Melding of the Flesh", "Cobalt Jewel", identified=False),
 )
 
 InextricableFate = Item(
@@ -1124,7 +1124,7 @@ SublimeVision = Item(
     0.025,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Sublime Vision"),
     reliable=False,
-    trade_link=create_trade_link("Sublime Vision", "Prismatic Jewel", identified=False),
+    trade_link=TradeLink("Sublime Vision", "Prismatic Jewel", identified=False),
 )
 
 FragmentOfTheHydra = Item(

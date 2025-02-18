@@ -3,6 +3,7 @@ import ProfitInfo from "../profit-info";
 import type { RerollData } from "../types";
 import { RerollDataTable } from "../datatable";
 import type { Metadata } from "next";
+import LeagueSelector from "../../league-selector";
 
 export const metadata: Metadata = {
   title: "Harvest: Delirium Orbs",
@@ -10,11 +11,15 @@ export const metadata: Metadata = {
     "Expected profit from rerolling currency items using Horticrafting",
 };
 
-export default async function Page() {
-  const rerollData = await fetchData<RerollData>("harvest/orbs");
+export default async function Page({ params }: { params: { league: string } }) {
+  const rerollData = await fetchData<RerollData>("harvest/orbs", params.league);
 
   return (
     <>
+      <LeagueSelector
+        league={params.league}
+        route="harvest/delirium_orbs"
+      ></LeagueSelector>
       <ProfitInfo></ProfitInfo>
       <RerollDataTable
         rerollData={rerollData}

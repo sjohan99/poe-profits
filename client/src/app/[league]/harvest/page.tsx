@@ -2,6 +2,7 @@ import { fetchData } from "@services/fetcher";
 import type { Overview } from "./types";
 import { RerollDataTable } from "./datatable";
 import type { Metadata } from "next";
+import LeagueSelector from "../league-selector";
 
 export const metadata: Metadata = {
   title: "Harvest",
@@ -9,11 +10,12 @@ export const metadata: Metadata = {
     "Expected profit from rerolling currency items using Horticrafting",
 };
 
-export default async function Page() {
-  const overview = await fetchData<Overview>("harvest/overview");
+export default async function Page({ params }: { params: { league: string } }) {
+  const overview = await fetchData<Overview>("harvest/overview", params.league);
 
   return (
     <>
+      <LeagueSelector league={params.league} route="harvest"></LeagueSelector>
       <div className="flex max-w-3xl flex-col gap-2 pb-2">
         <p>
           The tables below show what the expected profit from rerolling a single

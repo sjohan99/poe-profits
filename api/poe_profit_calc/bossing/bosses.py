@@ -17,9 +17,6 @@ class Boss:
     entrance_items: dict[Item, int]
     drops: set[Item]
 
-    def get_img(self):
-        return next(iter(self.entrance_items)).img
-
     def items(self):
         return self.drops.union(set(self.entrance_items))
 

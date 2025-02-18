@@ -1,8 +1,40 @@
+from dataclasses import dataclass
 import logging
 from time import time
+from copy import deepcopy
+from typing import Tuple
 from poe_profit_calc.items import Item
 from poe_profit_calc.fetcher import Fetcher, FetchError, Format
 from poe_profit_calc.sources import PoeNinjaSource
+
+
+@dataclass
+class Entry:
+    time: float
+    cached_item: Item
+
+
+class ItemCache:
+    def __init__(self, cache_time_seconds=1800):
+        self.cache_time_seconds = cache_time_seconds
+        self.items: dict[Item, Entry] = {}
+
+    def get(self, item: Item) -> Item | None:
+        t = time()
+        if item not in self.items:
+            return None
+        if abs(self.items[item].time - t) < self.cache_time_seconds:
+            return self.items[item].cached_item
+        else:
+            self.items.pop(item)
+
+    def add(self, item: Item) -> None:
+        self.items[item] = Entry(time(), item)
+
+    def add_all(self, items: set[Item]) -> None:
+        t = time()
+        for item in items:
+            self.items[item] = Entry(t, item)
 
 
 class Pricer:
@@ -16,20 +48,25 @@ class Pricer:
         self.source_mapping = source_mapping
         self.cache_time_seconds = cache_time_seconds
         self.item_last_fetch: dict[Item, float] = {}
+        self.cache = ItemCache(cache_time_seconds)
 
-    def price_items(self, items: set[Item]) -> None:
-        t = time()
+    def price_items(self, items: set[Item]) -> set[Item]:
+        priced_items = set()
         items_to_fetch = set()
         for item in items:
-            if item not in self.item_last_fetch:
-                items_to_fetch.add(item)
-                self.item_last_fetch[item] = t
-            elif abs(self.item_last_fetch[item] - t) > self.cache_time_seconds:
-                items_to_fetch.add(item)
-                self.item_last_fetch[item] = t
-        fetch_and_price(items_to_fetch, self.fetcher, self.source_mapping)
+            cached_item = self.cache.get(item)
+            if not cached_item:
+                item_copy = deepcopy(item)
+                items_to_fetch.add(item_copy)
+            else:
+                priced_items.add(cached_item)
 
-    def get_raw_endpoint(self, source: PoeNinjaSource, format: Format = Format.JSON) -> bytes:
+        fetch_and_price(items_to_fetch, self.fetcher, self.source_mapping)
+        self.cache.add_all(items_to_fetch)
+        priced_items.update(items_to_fetch)
+        return priced_items
+
+    def get_raw_endpoint(self, source: PoeNinjaSource) -> bytes:
         return self.fetcher.fetch_data(self.source_mapping[source], Format.BYTES)
 
 

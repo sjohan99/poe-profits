@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CenterContent } from "~/components/center-content";
 import PageTitle from "@components/page-title";
 import Footer from "./footer";
-import TopNav from "./navbar";
+import TopNav from "@components/navbar/navbar";
 import { env } from "~/env";
 
 const quicksand = Quicksand({

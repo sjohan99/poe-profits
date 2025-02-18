@@ -7,7 +7,13 @@ import Link from "next/link";
 import ChaosOrb from "~/components/currency";
 import Tooltip from "~/components/tooltip";
 
-export default function SummaryDataTable({ bosses }: { bosses: Boss[] }) {
+export default function SummaryDataTable({
+  bosses,
+  league,
+}: {
+  bosses: Boss[];
+  league: string;
+}) {
   const columns: Column<Boss>[] = [
     {
       header: "Boss",
@@ -17,7 +23,7 @@ export default function SummaryDataTable({ bosses }: { bosses: Boss[] }) {
       formatter: (boss) => (
         <div className="inline-flex items-center gap-2">
           <ItemImage icon={boss.img} alt={boss.name + " image"}></ItemImage>
-          <Link href={`/boss/${boss.id}`} className="hover:underline">
+          <Link href={`/${league}/boss/${boss.id}`} className="hover:underline">
             {boss.name}
           </Link>
           {boss.reliable ? null : (

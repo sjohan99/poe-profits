@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from poe_profit_calc.sources import SOURCE_TO_FIELDS, PoeNinjaSource
+from poe_profit_calc.tradelink import TradeLink
 from poe_profit_calc.utils import nested_get
 import logging
 
@@ -88,7 +89,7 @@ class Item:
     price: float = 0
     img: str | None = None
     reliable: bool = True
-    trade_link: str | None = None
+    trade_link: TradeLink | None = None
     metadata: dict = field(default_factory=dict)
 
     def __eq__(self, value: object) -> bool:
