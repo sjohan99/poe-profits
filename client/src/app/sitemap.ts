@@ -4,12 +4,8 @@ import { fetchData } from "~/services/fetcher";
 
 const URL = env.SITE_URL;
 
-type BossId = {
-  id: string;
-};
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const bossInfo = await fetchData<BossId[]>("bosses/summary");
+  const leauges = await fetchData<string[]>("metadata/leagues");
 
   return [
     {
@@ -22,31 +18,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${URL}/faq`,
     },
     {
-      url: `${URL}/about`,
-    },
-    {
-      url: `${URL}/gems`,
-    },
-    {
-      url: `${URL}/harvest`,
-    },
-    {
-      url: `${URL}/harvest/delirium_orbs`,
-    },
-    {
-      url: `${URL}/harvest/catalysts`,
-    },
-    {
       url: `${URL}/manifest.webmanifest`,
     },
     {
       url: `${URL}/sitemap.xml`,
     },
-    {
-      url: `${URL}/boss`,
-    },
-    ...bossInfo.map((boss) => ({
-      url: `${URL}/boss/${boss.id}`,
-    })),
+    ...leauges.flatMap((league) => [
+      {
+        url: `${URL}/${league}/boss`,
+      },
+      {
+        url: `${URL}/${league}/gems`,
+      },
+      {
+        url: `${URL}/${league}/harvest`,
+      },
+      {
+        url: `${URL}/${league}/harvest/delirium_orbs`,
+      },
+      {
+        url: `${URL}/${league}/harvest/catalysts`,
+      },
+    ]),
   ];
 }
