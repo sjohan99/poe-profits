@@ -22,6 +22,8 @@ LEAGUE_TO_NINJA = {
     League.SETTLERS_HC: "Hardcore+Settlers",
     League.STANDARD: "Standard",
     League.STANDARD_HC: "Hardcore",
+    League.PHRECIA: "Phrecia",
+    League.PHRECIA_HC: "Hardcore+Phrecia",
 }
 
 SOURCE_TO_FIELDS = {

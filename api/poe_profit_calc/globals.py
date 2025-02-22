@@ -6,6 +6,8 @@ LEAGUE = "Settlers"
 
 
 class League(Enum):
+    PHRECIA = "Phrecia"
+    PHRECIA_HC = "Phrecia-Hardcore"
     SETTLERS = "Settlers"
     SETTLERS_HC = f"Settlers-Hardcore"
     STANDARD = "Standard"
@@ -18,4 +20,6 @@ TRADE_URLS = {
     League.SETTLERS_HC: f"https://www.pathofexile.com/trade/search/{'Hardcore%20Settlers'}",
     League.STANDARD: f"https://www.pathofexile.com/trade/search/{'Standard'}",
     League.STANDARD_HC: f"https://www.pathofexile.com/trade/search/{'Hardcore'}",
+    League.PHRECIA: f"https://www.pathofexile.com/trade/search/{'Phrecia'}",
+    League.PHRECIA_HC: f"https://www.pathofexile.com/trade/search/{'Hardcore%20Phrecia'}",
 }
