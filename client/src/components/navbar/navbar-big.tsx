@@ -26,7 +26,11 @@ export default function TopNavBig({
 
         <div className="flex gap-x-10 -lg:hidden">
           {links.map((link) => (
-            <Link key={link.text} href={link.href}>
+            <Link
+              key={link.text}
+              href={link.href}
+              className="hover:text-secondary-2"
+            >
               {link.text}
             </Link>
           ))}
