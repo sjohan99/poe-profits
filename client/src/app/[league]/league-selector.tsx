@@ -15,8 +15,8 @@ export default async function LeagueSelector(params: {
           href={`/${availableLeague}/${params.route}`}
           className={
             params.league === availableLeague
-              ? "rounded border border-secondary-2 bg-accent-1 p-1 font-bold"
-              : "rounded bg-accent-1 p-1"
+              ? "pointer-events-none rounded border border-secondary-2 bg-accent-1 p-1 font-bold hover:cursor-default"
+              : "-m-0 rounded border-secondary-1 bg-accent-1 p-1 hover:-m-px hover:border hover:bg-accent-3"
           }
         >
           {availableLeague}
