@@ -113,7 +113,7 @@ EchoesOfCreation = Item(
 DissolutionOfTheFlesh = Item(
     "Dissolution of the Flesh",
     "DissolutionoftheFlesh",
-    0.33,
+    0.02,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Dissolution of the Flesh"),
 )
 
