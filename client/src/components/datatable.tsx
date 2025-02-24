@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo } from "react";
+import { useDebounce } from "react-use";
 
 export type Column<T> = {
   header: React.ReactNode;
@@ -24,6 +25,12 @@ export type TableProps<T> = {
   footer?: (rows: Row<T>[]) => { [K in keyof T]: React.ReactNode };
   initialSort?: Sorting<T>;
   pagination?: Pagination;
+  search?: Search<T>;
+};
+
+export type Search<T> = {
+  placeholderText: string;
+  searchFn: (search: string, rows: Row<T>[]) => Row<T>[];
 };
 
 export type Pagination = {
@@ -39,7 +46,7 @@ export type Sorting<T> = {
 };
 
 export function Table<T>(props: TableProps<T>) {
-  const { columns, rows, footer, initialSort, pagination } = props;
+  const { columns, rows, footer, initialSort, pagination, search } = props;
 
   const pageSize = pagination?.rowsPerPage ?? rows.length;
   const [data, setData] = React.useState(rows);
@@ -99,7 +106,15 @@ export function Table<T>(props: TableProps<T>) {
   }, [sort]);
 
   return (
-    <div className="">
+    <div className="flex flex-col gap-2">
+      {search ? (
+        <SearchBar
+          placeholderText={search.placeholderText}
+          searchCallback={(searchInput) => {
+            setData(search.searchFn(searchInput, rows));
+          }}
+        />
+      ) : null}
       <div className="max-w-full overflow-x-auto rounded outline outline-1 outline-accent-1">
         <table className="responsive-text-s min-w-full bg-primary">
           <thead className="responsive-text-m">
@@ -182,7 +197,8 @@ export function Table<T>(props: TableProps<T>) {
         </table>
         {pagination ? (
           <p className="px-4 py-2 text-secondary-2">
-            Showing {pageSize * page} of {data.length} rows
+            Showing {Math.min(pageSize * page, data.length)} of {data.length}{" "}
+            rows
           </p>
         ) : null}
       </div>
@@ -219,5 +235,31 @@ function SortingIndicator({ direction }: { direction?: Direction | null }) {
     >
       {direction === "asc" ? asc : direction === "desc" ? desc : none}
     </svg>
+  );
+}
+
+function SearchBar(params: {
+  placeholderText: string;
+  searchCallback: (search: string) => void;
+}) {
+  const [search, setSearch] = React.useState("");
+
+  useDebounce(
+    () => {
+      params.searchCallback(search);
+    },
+    500,
+    [search],
+  );
+
+  return (
+    <input
+      type="text"
+      className="h-10 w-full rounded border border-accent-2 bg-transparent pl-2 placeholder-shown:border-opacity-50"
+      placeholder={params.placeholderText}
+      onChange={({ currentTarget }) => {
+        setSearch(currentTarget.value);
+      }}
+    />
   );
 }
