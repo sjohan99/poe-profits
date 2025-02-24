@@ -1,6 +1,6 @@
 "use client";
 
-import { type Column, Table } from "~/components/datatable";
+import { type Column, Row, Table } from "~/components/datatable";
 import { ItemImage } from "~/components/images";
 import ChaosOrb from "~/components/currency";
 import Tooltip from "~/components/tooltip";
@@ -36,6 +36,12 @@ function maybeChaosOrb(
     return <ChaosOrb />;
   }
   if (gem[field] !== null) return <ChaosOrb />;
+}
+
+function filterOnName(search: string, rows: Row<Gem>[]) {
+  return rows.filter((row) => {
+    return row.name.toLowerCase().includes(search.toLowerCase());
+  });
 }
 
 export default function GemTable({ gemData }: { gemData: Gem[] }) {
@@ -156,6 +162,7 @@ export default function GemTable({ gemData }: { gemData: Gem[] }) {
         columns={columns}
         rows={gems}
         pagination={{ rowsPerPage: 15, type: "expand" }}
+        search={{ placeholderText: "Search for a gem", searchFn: filterOnName }}
       />
     </div>
   );

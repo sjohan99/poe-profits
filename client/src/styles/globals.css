@@ -6,6 +6,10 @@ body {
   @apply bg-background text-secondary-1;
 }
 
+input {
+  @apply focus:border-secondary-2 focus:outline-none;
+}
+
 .tooltip {
   @apply invisible;
 }
