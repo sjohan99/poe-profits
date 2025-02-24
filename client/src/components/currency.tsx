@@ -7,6 +7,7 @@ export default function ChaosOrb({ className }: { className?: string }) {
       width={32}
       height={32}
       alt="Chaos Orb"
+      unoptimized
       className={`h-8 w-8 object-contain ${className}`}
     ></Image>
   );

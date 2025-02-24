@@ -19,6 +19,7 @@ export function ItemImage(props: { icon: string | null; alt: string }) {
       width={32}
       height={32}
       alt={alt}
+      unoptimized
       className="h-8 w-8 object-contain"
     ></Image>
   );
