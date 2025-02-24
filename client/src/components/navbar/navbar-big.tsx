@@ -29,6 +29,7 @@ export default function TopNavBig({
             <Link
               key={link.text}
               href={link.href}
+              prefetch={true}
               className="hover:text-secondary-2"
             >
               {link.text}

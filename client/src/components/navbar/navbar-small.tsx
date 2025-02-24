@@ -83,7 +83,7 @@ export default function TopNavSmall({
       <div>
         <div className="flex flex-col items-center justify-end gap-4 pt-3 text-xl font-semibold">
           {links.map((link) => (
-            <Link key={link.text} href={link.href}>
+            <Link key={link.text} href={link.href} prefetch={true}>
               {link.text}
             </Link>
           ))}

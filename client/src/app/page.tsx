@@ -25,7 +25,11 @@ export default async function HomePage() {
 
         <span className="p-2"></span>
 
-        <Link href={`/${league}/boss`} className="hover:underline">
+        <Link
+          href={`/${league}/boss`}
+          prefetch={true}
+          className="hover:underline"
+        >
           <h2>BOSSING</h2>
           <Image
             src="/landing/bossing.png"
@@ -36,7 +40,11 @@ export default async function HomePage() {
           />
         </Link>
 
-        <Link href={`/${league}/gems`} className="hover:underline">
+        <Link
+          href={`/${league}/gems`}
+          prefetch={true}
+          className="hover:underline"
+        >
           <h2>GEM LEVELLING</h2>
           <Image
             src="/landing/gems.png"
