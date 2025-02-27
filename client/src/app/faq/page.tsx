@@ -33,6 +33,20 @@ function Question({
   );
 }
 
+function PoeNinjaLink() {
+  return (
+    <a
+      href="https://poe.ninja"
+      target="_blank"
+      rel="noreferrer noopener"
+      className="truncate text-link hover:underline"
+      title="poe.ninja"
+    >
+      poe.ninja
+    </a>
+  );
+}
+
 export default function Page() {
   return (
     <main className="flex max-w-3xl flex-col gap-10">
@@ -83,17 +97,8 @@ export default function Page() {
       </Question>
       <Question question='Why are some bosses and items marked with "unreliable prices?"'>
         <p>
-          All prices for this project are pulled from{" "}
-          <a
-            href="https://poe.ninja"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="truncate text-link hover:underline"
-            title="poe.ninja"
-          >
-            poe.ninja
-          </a>
-          . Some items are not priced correctly due to them not being priced as
+          All prices for this project are pulled from <PoeNinjaLink />. Some
+          items are not priced correctly due to them not being priced as
           unidentified (i.e. Sublime Vision) and/or where there are multiple
           versions of the same item (i.e. Watcher&apos;s eye).
         </p>
@@ -103,6 +108,18 @@ export default function Page() {
           I&apos;ve marked all such items as unreliable and added a trade-link
           to the item and possibility to (locally) update the price of the items
           by editing the price in the price column.
+        </p>
+      </Question>
+      <Question question="X item has the wrong price!">
+        <p>
+          Currently all item prices are fetched from pulled form{" "}
+          <PoeNinjaLink /> so if those prices are wrong then the prices on this
+          site will be as well.
+        </p>
+        <p>
+          With the addition of Faustus (Currency Exchange) some item prices will
+          generally be slightly off since items traded on the Currency Exchange
+          is not publicly available.
         </p>
       </Question>
     </main>
