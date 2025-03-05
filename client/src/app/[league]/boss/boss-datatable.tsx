@@ -1,25 +1,13 @@
 "use client";
 
 import { type Column, type Row, Table } from "~/components/datatable";
-import type { DetailedBossInfo } from "./types";
+import type { DetailedBossInfo, Item } from "./types";
 import { ItemImage } from "~/components/images";
 import ChaosOrb from "~/components/currency";
 import Tooltip from "~/components/tooltip";
 import { type ChangeEvent, useMemo, useState } from "react";
 import TextInput from "~/components/text-input";
-
-type Item = {
-  name: string;
-  price: number;
-  droprate: number | null;
-  value: number;
-  reliable: boolean;
-  trade_link: string | null;
-  img: string | null;
-  type: "drop" | "entrance";
-  share?: number;
-  quantity?: number;
-};
+import CalculateProbability from "./calculate-probability";
 
 function bossInfoToRows(bossInfo: DetailedBossInfo): Item[] {
   const rows: Item[] = [];
@@ -202,17 +190,21 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-row items-center gap-2">
-        <p className="flex min-w-max">Omit items below</p>
-        <div className="max-w-14">
-          <TextInput
-            textPosition="center"
-            inputCallback={omitBelow}
-            debounceMs={500}
-            restriction={"number"}
-          ></TextInput>
+      <CalculateProbability items={visibleRows} />
+      <div className="flex flex-col gap-2">
+        <h3>Filters:</h3>
+        <div className="flex flex-row items-center gap-2">
+          <p className="flex min-w-max">Omit items below</p>
+          <div className="max-w-14">
+            <TextInput
+              textPosition="center"
+              inputCallback={omitBelow}
+              debounceMs={500}
+              restriction={"number"}
+            ></TextInput>
+          </div>
+          <ChaosOrb />
         </div>
-        <ChaosOrb />
       </div>
       <Table
         key={cutoff}
