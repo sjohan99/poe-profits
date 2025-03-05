@@ -6,6 +6,7 @@ import { ItemImage } from "~/components/images";
 import ChaosOrb from "~/components/currency";
 import Tooltip from "~/components/tooltip";
 import { type ChangeEvent, useMemo, useState } from "react";
+import TextInput from "~/components/text-input";
 
 type Item = {
   name: string;
@@ -53,22 +54,40 @@ function createItemName(item: Item): string {
 }
 
 export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
-  const [rows, setRows] = useState(bossInfoToRows(boss));
+  const rows = bossInfoToRows(boss);
+
+  const [visibleRows, setVisibleRows] = useState(rows);
+  const [cutoff, setCutoff] = useState(0);
+
   const profit = useMemo(() => {
     let profit = 0;
     let revenue = 0;
-    for (const row of rows) {
+    for (const row of visibleRows) {
       if (row.type === "drop") {
         revenue += row.value;
       }
       profit += row.value;
     }
-    for (const row of rows) {
+    for (const row of visibleRows) {
       if (row.type === "drop") row.share = row.value / revenue;
     }
 
     return profit;
-  }, [rows]);
+  }, [visibleRows]);
+
+  function omitBelow(amount: string) {
+    if (amount === "") {
+      setVisibleRows(rows);
+      setCutoff(0);
+    } else {
+      const cutoff = parseInt(amount);
+      const itemsAboveCutoff = rows.filter(
+        (row) => row.type === "entrance" || row.price > cutoff,
+      );
+      setVisibleRows([...itemsAboveCutoff]);
+      setCutoff(cutoff);
+    }
+  }
 
   function changePrice(
     event: ChangeEvent<HTMLInputElement>,
@@ -90,7 +109,7 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
 
     row.price = customPrice;
 
-    setRows(data);
+    setVisibleRows(data);
     return [...data];
   }
 
@@ -182,11 +201,26 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
   ];
 
   return (
-    <Table
-      columns={columns}
-      rows={rows}
-      initialSort={{ column: "value", direction: "desc" }}
-      footer={total}
-    />
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-row items-center gap-2">
+        <p className="flex min-w-max">Omit items below</p>
+        <div className="max-w-14">
+          <TextInput
+            textPosition="center"
+            inputCallback={omitBelow}
+            debounceMs={500}
+            restriction={"number"}
+          ></TextInput>
+        </div>
+        <ChaosOrb />
+      </div>
+      <Table
+        key={cutoff}
+        columns={columns}
+        rows={visibleRows}
+        initialSort={{ column: "value", direction: "desc" }}
+        footer={total}
+      />
+    </div>
   );
 }
