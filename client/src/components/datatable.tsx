@@ -2,6 +2,7 @@
 
 import React, { useMemo } from "react";
 import { useDebounce } from "react-use";
+import TextInput from "./text-input";
 
 export type Column<T> = {
   header: React.ReactNode;
@@ -108,11 +109,12 @@ export function Table<T>(props: TableProps<T>) {
   return (
     <div className="flex flex-col gap-2">
       {search ? (
-        <SearchBar
+        <TextInput
           placeholderText={search.placeholderText}
-          searchCallback={(searchInput) => {
+          inputCallback={(searchInput) => {
             setData(search.searchFn(searchInput, rows));
           }}
+          debounceMs={333}
         />
       ) : null}
       <div className="max-w-full overflow-x-auto rounded outline outline-1 outline-accent-1">
@@ -235,31 +237,5 @@ function SortingIndicator({ direction }: { direction?: Direction | null }) {
     >
       {direction === "asc" ? asc : direction === "desc" ? desc : none}
     </svg>
-  );
-}
-
-function SearchBar(params: {
-  placeholderText: string;
-  searchCallback: (search: string) => void;
-}) {
-  const [search, setSearch] = React.useState("");
-
-  useDebounce(
-    () => {
-      params.searchCallback(search);
-    },
-    500,
-    [search],
-  );
-
-  return (
-    <input
-      type="text"
-      className="h-10 w-full rounded border border-accent-2 bg-transparent pl-2 placeholder-shown:border-opacity-50"
-      placeholder={params.placeholderText}
-      onChange={({ currentTarget }) => {
-        setSearch(currentTarget.value);
-      }}
-    />
   );
 }
