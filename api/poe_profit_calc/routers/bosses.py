@@ -89,6 +89,7 @@ class EntranceCost(BaseModel):
 
 class BossData(BaseModel):
     name: str
+    short_name: str
     id: BossId
     drops: list[Drop]
     entrance_items: list[EntranceCost]
@@ -105,6 +106,7 @@ class BossData(BaseModel):
 
         return BossData(
             name=boss.name,
+            short_name=boss.short_name,
             id=boss_id,
             drops=[Drop.from_item(item, league) for item in drops],
             entrance_items=[
@@ -115,6 +117,7 @@ class BossData(BaseModel):
 
 class BossSummary(BaseModel):
     name: str
+    short_name: str
     id: BossId
     value: float
     reliable: bool
@@ -160,6 +163,7 @@ def get_summary(league: League) -> list[BossSummary]:
         summaries.append(
             BossSummary(
                 name=boss.name,
+                short_name=boss.short_name,
                 id=boss_id,
                 value=value,
                 reliable=all(item.reliable for item in boss.items()),

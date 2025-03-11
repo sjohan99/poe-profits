@@ -14,6 +14,7 @@ class Boss:
     """
 
     name: str
+    short_name: str
     entrance_items: dict[Item, int]
     drops: set[Item]
 
@@ -23,6 +24,7 @@ class Boss:
 
 TheSearingExarch = Boss(
     name="The Searing Exarch",
+    short_name="Exarch",
     entrance_items={IncandescentInvitation: 1},
     drops={
         Dawnbreaker,
@@ -39,6 +41,7 @@ TheSearingExarch = Boss(
 
 TheSearingExarchUber = Boss(
     name="The Searing Exarch (Uber)",
+    short_name="Exarch (Uber)",
     entrance_items={BlazingFragment: 5},
     drops={
         TheAnnihilatingLight,
@@ -58,6 +61,7 @@ TheSearingExarchUber = Boss(
 
 TheEaterOfWorlds = Boss(
     name="The Eater of Worlds",
+    short_name="Eater",
     entrance_items={ScreamingInvitation: 1},
     drops={
         TheGluttonousTide,
@@ -74,6 +78,7 @@ TheEaterOfWorlds = Boss(
 
 TheEaterOfWorldsUber = Boss(
     name="The Eater of Worlds (Uber)",
+    short_name="Eater (Uber)",
     entrance_items={DevouringFragment: 5},
     drops={
         Nimis,
@@ -92,6 +97,7 @@ TheEaterOfWorldsUber = Boss(
 
 TheShaper = Boss(
     name="The Shaper",
+    short_name="Shaper",
     entrance_items={
         FragmentOfTheHydra: 1,
         FragmentOfTheMinotaur: 1,
@@ -112,6 +118,7 @@ TheShaper = Boss(
 
 TheShaperUber = Boss(
     name="The Shaper (Uber)",
+    short_name="Shaper (Uber)",
     entrance_items={
         CosmicFragment: 5,
     },
@@ -131,6 +138,7 @@ TheShaperUber = Boss(
 
 TheElder = Boss(
     name="The Elder",
+    short_name="Elder",
     entrance_items={
         FragmentOfPurification: 1,
         FragmentOfConstriction: 1,
@@ -154,6 +162,7 @@ TheElder = Boss(
 
 TheElderUber = Boss(
     name="The Elder (Uber)",
+    short_name="Elder (Uber)",
     entrance_items={
         FragmentOfKnowledge: 1,
         FragmentOfTerror: 1,
@@ -176,6 +185,7 @@ TheElderUber = Boss(
 
 TheElderUberUber = Boss(
     name="The Elder (Uber Uber)",
+    short_name="Elder (Uber Uber)",
     entrance_items={
         DecayingFragment: 5,
     },
@@ -199,6 +209,7 @@ TheElderUberUber = Boss(
 
 Venarius = Boss(
     name="Venarius",
+    short_name="Venarius",
     entrance_items={
         Cortex: 1,
     },
@@ -214,6 +225,7 @@ Venarius = Boss(
 
 VenariusUber = Boss(
     name="Venarius (Uber)",
+    short_name="Venarius (Uber)",
     entrance_items={
         SynthesisingFragment: 5,
     },
@@ -231,6 +243,7 @@ VenariusUber = Boss(
 
 Sirus = Boss(
     name="Sirus, Awakener of Worlds",
+    short_name="Sirus",
     entrance_items={
         DroxsCrest: 1,
         VeritaniasCrest: 1,
@@ -251,6 +264,7 @@ Sirus = Boss(
 
 SirusUber = Boss(
     name="Sirus, Awakener of Worlds (Uber)",
+    short_name="Sirus (Uber)",
     entrance_items={
         AwakeningFragment: 5,
     },
@@ -268,6 +282,7 @@ SirusUber = Boss(
 
 TheMaven = Boss(
     name="The Maven",
+    short_name="Maven",
     entrance_items={
         TheMavensWrit: 1,
     },
@@ -320,6 +335,7 @@ TheMaven = Boss(
 
 TheMavenUber = Boss(
     name="The Maven (Uber)",
+    short_name="Maven (Uber)",
     entrance_items={
         RealityFragment: 5,
     },
