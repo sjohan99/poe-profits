@@ -24,7 +24,8 @@ export default function SummaryDataTable({
         <div className="inline-flex items-center gap-2">
           <ItemImage icon={boss.img} alt={boss.name + " image"}></ItemImage>
           <Link href={`/${league}/boss/${boss.id}`} className="hover:underline">
-            {boss.name}
+            <p className="-sm:hidden">{boss.name}</p>
+            <p className="sm:hidden">{boss.short_name}</p>
           </Link>
           {boss.reliable ? null : (
             <Tooltip icon="info">

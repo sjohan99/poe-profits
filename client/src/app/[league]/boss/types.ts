@@ -17,6 +17,7 @@ type EntranceItem = {
 export type DetailedBossInfo = {
   id: string;
   name: string;
+  short_name: string;
   drops: Drop[];
   entrance_items: EntranceItem[];
 };
@@ -36,6 +37,7 @@ export type Item = {
 
 export type Boss = {
   name: string;
+  short_name: string;
   id: string;
   value: number;
   reliable: boolean;
