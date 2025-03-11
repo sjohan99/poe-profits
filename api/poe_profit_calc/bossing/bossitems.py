@@ -576,7 +576,7 @@ ThreadOfHopeMassive = Item(
 ThreadOfHope = Item(
     "Thread of Hope",
     "ThreadofHope",
-    0.2,
+    0.02,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Thread of Hope"),
     reliable=False,
     trade_link=TradeLink("Thread of Hope", "Crimson Jewel", identified=False, max_ilvl=86),
