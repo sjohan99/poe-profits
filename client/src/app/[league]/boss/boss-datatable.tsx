@@ -103,7 +103,7 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
 
   function total() {
     return {
-      name: <p className="font-bold">Total</p>,
+      name: <p className="font-bold">Average profit per kill</p>,
       price: "",
       droprate: "",
       value: (
