@@ -5,7 +5,7 @@ from copy import deepcopy
 from typing import Tuple
 from poe_profit_calc.items import Item
 from poe_profit_calc.fetcher import Fetcher, FetchError, Format
-from poe_profit_calc.sources import PoeNinjaSource
+from poe_profit_calc.sources import PoeNinjaSource, PoeWatchSource, Source
 
 
 @dataclass
@@ -41,7 +41,7 @@ class Pricer:
     def __init__(
         self,
         fetcher: Fetcher,
-        source_mapping: dict[PoeNinjaSource, str],
+        source_mapping: dict[Source, str],
         cache_time_seconds=1800,
     ):
         self.fetcher = fetcher
@@ -74,24 +74,29 @@ def fetch_and_price(items: set[Item], fetcher: Fetcher, source_mapping) -> None:
     groups = group_by_source(items, source_mapping)
 
     for data_source, item_group in groups.items():
+        source, url = data_source
         try:
-            data = fetcher.fetch_data(data_source)
+            data = fetcher.fetch_data(url)
         except FetchError as e:
-            logging.warning(f"Failed to fetch data from {data_source} with message: {str(e)}")
+            logging.error(f"Failed to fetch data from {url} with message: {str(e)}")
             data = {}
-        extract_prices(data, item_group)
+
+        if source in PoeNinjaSource:
+            extract_prices(data, item_group)
+        if source in PoeWatchSource:
+            extract_prices_poewatch(data, item_group)
 
 
 def group_by_source(
-    items: set[Item], source_mapping: dict[PoeNinjaSource, str]
-) -> dict[str, set[Item]]:
+    items: set[Item], source_mapping: dict[Source, str]
+) -> dict[tuple[Source, str], set[Item]]:
     groups = {}
     for item in items:
         source = source_mapping[item.matcher.source]
-        if source not in groups:
-            groups[source] = {item}
+        if (item.matcher.source, source) not in groups:
+            groups[(item.matcher.source, source)] = {item}
         else:
-            groups[source].add(item)
+            groups[(item.matcher.source, source)].add(item)
     return groups
 
 
@@ -124,3 +129,16 @@ def extract_currency_imgs(items: set[Item], currency_details: dict) -> None:
             if item.match_currency_details(currency_detail):
                 to_remove.add(item)
         unprocessed_items.difference_update(to_remove)
+
+
+def extract_prices_poewatch(data, items: set[Item]) -> None:
+    matched_item_data = []
+    for item_data in data:
+        for item in items:
+            if item.matcher.try_match(item_data) != None:
+                matched_item_data.append(item_data)
+
+    matched_item_data.sort(key=lambda item: -item["itemLevel"])
+    for item_data in matched_item_data:
+        for item in items:
+            item.match(item_data)

@@ -1,3 +1,4 @@
+from collections import Counter
 from enum import Enum
 from typing import Set, Tuple
 from cachetools import TTLCache, cached
@@ -58,6 +59,7 @@ class Drop(BaseModel):
     reliable: bool
     trade_link: str | None
     img: str | None
+    found: bool
 
     @staticmethod
     def from_item(item: Item, league: League):
@@ -68,6 +70,7 @@ class Drop(BaseModel):
             reliable=item.reliable,
             trade_link=item.trade_link.get_link(league) if item.trade_link else None,
             img=item.img,
+            found=item.found,
         )
 
 
@@ -76,6 +79,7 @@ class EntranceCost(BaseModel):
     price: float
     quantity: int
     img: str | None
+    found: bool
 
     @staticmethod
     def from_item(item: Item, quantity: int):
@@ -84,6 +88,7 @@ class EntranceCost(BaseModel):
             price=item.price,
             quantity=quantity,
             img=item.img,
+            found=item.found,
         )
 
 
@@ -122,6 +127,7 @@ class BossSummary(BaseModel):
     value: float
     reliable: bool
     img: str | None
+    n_items_not_found: int
 
 
 @router.get("/boss/{boss_id}")
@@ -159,6 +165,16 @@ def get_summary(league: League) -> list[BossSummary]:
         value += sum(item.price * item.droprate for item in drops)
         value -= sum(item.price * quantity for item, quantity in entrance_items)
 
+        boss_items = drops.union({entrance_item[0] for entrance_item in entrance_items})
+        reliable = all(item.reliable for item in boss_items)
+
+        # Exclude keys because they are almost never priced
+        item_counter = Counter(
+            item.found
+            for item in (boss_item for boss_item in boss_items if " Key" not in boss_item.name)
+        )
+        not_found_count = item_counter[False]
+
         img = None if not entrance_items else entrance_items.pop()[0].img
         summaries.append(
             BossSummary(
@@ -166,8 +182,9 @@ def get_summary(league: League) -> list[BossSummary]:
                 short_name=boss.short_name,
                 id=boss_id,
                 value=value,
-                reliable=all(item.reliable for item in boss.items()),
+                reliable=reliable,
                 img=img,
+                n_items_not_found=not_found_count,
             )
         )
     summaries.sort(key=lambda x: x.value, reverse=True)

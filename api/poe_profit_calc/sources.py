@@ -1,5 +1,5 @@
 from enum import Enum
-from poe_profit_calc.globals import BASE_NINJA_URL, League
+from poe_profit_calc.globals import BASE_NINJA_URL, BASE_POE_WATCH_URL, League
 
 
 class PoeNinjaSource(Enum):
@@ -17,7 +17,22 @@ class PoeNinjaSource(Enum):
     DELIRIUM_ORB = "DeliriumOrb"
 
 
+class PoeWatchSource(Enum):
+    UNIQUE_JEWEL = "jewel"
+
+
+Source = PoeNinjaSource | PoeWatchSource
+
 LEAGUE_TO_NINJA = {
+    League.SETTLERS: "Settlers",
+    League.SETTLERS_HC: "Hardcore+Settlers",
+    League.STANDARD: "Standard",
+    League.STANDARD_HC: "Hardcore",
+    League.PHRECIA: "Phrecia",
+    League.PHRECIA_HC: "Hardcore+Phrecia",
+}
+
+LEAGUE_TO_POE_WATCH = {
     League.SETTLERS: "Settlers",
     League.SETTLERS_HC: "Hardcore+Settlers",
     League.STANDARD: "Standard",
@@ -44,6 +59,7 @@ SOURCE_TO_FIELDS = {
 
 def make_endpoint_mapping(league: League):
     ninja_league = LEAGUE_TO_NINJA[league]
+    poe_watch_league = LEAGUE_TO_POE_WATCH[league]
     return {
         PoeNinjaSource.CURRENCY: f"{BASE_NINJA_URL}currencyoverview?league={ninja_league}&type=Currency",
         PoeNinjaSource.UNIQUE_ARMOUR: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueArmour",
@@ -57,6 +73,7 @@ def make_endpoint_mapping(league: League):
         PoeNinjaSource.SKILL_GEM: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=SkillGem",
         PoeNinjaSource.UNIQUE_MAP: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=UniqueMap",
         PoeNinjaSource.DELIRIUM_ORB: f"{BASE_NINJA_URL}itemoverview?league={ninja_league}&type=DeliriumOrb",
+        PoeWatchSource.UNIQUE_JEWEL: f"{BASE_POE_WATCH_URL}get?category=jewel&league={poe_watch_league}",
     }
 
 
@@ -73,4 +90,5 @@ FILE_PATH_MAPPING = {
     PoeNinjaSource.SKILL_GEM: "static/itemoverview_skillgem.json",
     PoeNinjaSource.UNIQUE_MAP: "static/itemoverview_uniquemap.json",
     PoeNinjaSource.DELIRIUM_ORB: "static/itemoverview_deliriumorb.json",
+    PoeWatchSource.UNIQUE_JEWEL: "static/poewatch/jewel.json",
 }

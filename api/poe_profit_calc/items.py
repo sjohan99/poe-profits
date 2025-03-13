@@ -1,14 +1,33 @@
 from dataclasses import dataclass, field
-from poe_profit_calc.sources import SOURCE_TO_FIELDS, PoeNinjaSource
+from poe_profit_calc.sources import SOURCE_TO_FIELDS, PoeNinjaSource, PoeWatchSource
 from poe_profit_calc.tradelink import TradeLink
 from poe_profit_calc.utils import nested_get
 import logging
+
+LOW_CONFIDENCE_LISTING_THRESHOLD = 20
 
 
 @dataclass
 class MatchResult:
     price: float
     img: str
+    low_confidence: bool = False
+
+
+@dataclass
+class PoeWatchMatcher:
+    source: PoeWatchSource
+    name: str
+    ilvl: int
+
+    def try_match(self, item: dict) -> MatchResult | None:
+        if item.get("name") == self.name and item.get("itemLevel", -1) >= self.ilvl:
+            return MatchResult(
+                price=item.get("mean", -1),
+                img=item.get("icon", ""),
+                low_confidence=item.get("lowConfidence", False),
+            )
+        return None
 
 
 @dataclass
@@ -56,7 +75,16 @@ class PoeNinjaMatcher:
                 price = -1
         except KeyError:
             price = -1
-        return MatchResult(price, item.get("icon", ""))
+
+        listings = item.get("listingCount", None)
+        if listings is None:
+            listings = item.get("receive", {}).get("listing_count", 0)
+
+        return MatchResult(
+            price=price,
+            img=item.get("icon", ""),
+            low_confidence=listings < LOW_CONFIDENCE_LISTING_THRESHOLD,
+        )
 
     def try_match_currency_details(self, item: dict) -> str | None:
         if item.get("name") == self.name:
@@ -85,12 +113,13 @@ class Item:
     name: str
     unique_name: str
     droprate: float
-    matcher: PoeNinjaMatcher
+    matcher: PoeNinjaMatcher | PoeWatchMatcher
     price: float = 0
     img: str | None = None
     reliable: bool = True
     trade_link: TradeLink | None = None
     metadata: dict = field(default_factory=dict)
+    found: bool = False
 
     def __eq__(self, value: object) -> bool:
         if isinstance(value, Item):
@@ -105,10 +134,14 @@ class Item:
         if res is not None:
             self.img = res.img
             self.price = res.price
+            self.reliable = not res.low_confidence
+            self.found = True
             return True
         return False
 
     def match_currency_details(self, item: dict) -> bool:
+        if isinstance(self.matcher, PoeWatchMatcher):
+            return False
         if (img := self.matcher.try_match_currency_details(item)) is not None:
             self.img = img
             return True

@@ -2,6 +2,7 @@ from enum import Enum
 
 
 BASE_NINJA_URL = "https://poe.ninja/api/data/"
+BASE_POE_WATCH_URL = "https://api.poe.watch/"
 LEAGUE = "Settlers"
 
 

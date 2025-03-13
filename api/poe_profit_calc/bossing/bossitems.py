@@ -1,5 +1,5 @@
-from poe_profit_calc.items import Item, PoeNinjaMatcher
-from poe_profit_calc.sources import PoeNinjaSource
+from poe_profit_calc.items import Item, PoeNinjaMatcher, PoeWatchMatcher
+from poe_profit_calc.sources import PoeNinjaSource, PoeWatchSource
 from poe_profit_calc.tradelink import TradeLink
 
 
@@ -98,8 +98,7 @@ TwoModWatcherEye = Item(
     "Watcher's Eye",
     "WatchersEye",
     0.35,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Watcher's Eye"),
-    reliable=False,
+    PoeWatchMatcher(PoeWatchSource.UNIQUE_JEWEL, "Unidentified Watcher's Eye 85", ilvl=85),
     trade_link=TradeLink("Watcher's Eye", "Prismatic Jewel", identified=False, max_ilvl=85),
 )
 
@@ -142,8 +141,7 @@ ForbiddenFlesh = Item(
     "Forbidden Flesh",
     "ForbiddenFlesh",
     0.05,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flesh"),
-    reliable=False,
+    PoeWatchMatcher(PoeWatchSource.UNIQUE_JEWEL, "Unidentified Forbidden Flesh", ilvl=86),
     trade_link=TradeLink("Forbidden Flesh", "Cobalt Jewel", identified=False, max_ilvl=86),
 )
 
@@ -186,8 +184,7 @@ ForbiddenFlame = Item(
     "Forbidden Flame",
     "ForbiddenFlame",
     0.05,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flame"),
-    reliable=False,
+    PoeWatchMatcher(PoeWatchSource.UNIQUE_JEWEL, "Unidentified Forbidden Flame", ilvl=86),
     trade_link=TradeLink("Forbidden Flame", "Crimson Jewel", identified=False, max_ilvl=86),
 )
 
@@ -216,8 +213,7 @@ ForbiddenFleshUber = Item(
     "Forbidden Flesh",
     "ForbiddenFleshUber",
     0.05,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flesh"),
-    reliable=False,
+    PoeWatchMatcher(PoeWatchSource.UNIQUE_JEWEL, "Unidentified Forbidden Flesh", ilvl=87),
     trade_link=TradeLink("Forbidden Flesh", "Cobalt Jewel", identified=False, min_ilvl=87),
 )
 
@@ -505,8 +501,7 @@ ThreeModWatcherEye = Item(
     "Watcher's Eye",
     "WatchersEyeUber",
     0.35,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Watcher's Eye"),
-    reliable=False,
+    PoeWatchMatcher(PoeWatchSource.UNIQUE_JEWEL, "Unidentified Watcher's Eye 86+", ilvl=86),
     trade_link=TradeLink("Watcher's Eye", "Prismatic Jewel", identified=False, min_ilvl=86),
 )
 
@@ -570,15 +565,18 @@ ThreadOfHopeMassive = Item(
     "Thread of Hope",
     "ThreadofHopeMassive",
     0.55,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Thread of Hope"),
+    PoeWatchMatcher(
+        source=PoeWatchSource.UNIQUE_JEWEL, name="Unidentified Thread of Hope", ilvl=87
+    ),
 )
 
 ThreadOfHope = Item(
     "Thread of Hope",
     "ThreadofHope",
     0.02,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Thread of Hope"),
-    reliable=False,
+    PoeWatchMatcher(
+        source=PoeWatchSource.UNIQUE_JEWEL, name="Unidentified Thread of Hope", ilvl=86
+    ),
     trade_link=TradeLink("Thread of Hope", "Crimson Jewel", identified=False, max_ilvl=86),
 )
 
@@ -824,8 +822,7 @@ ForbiddenFlameUber = Item(
     "Forbidden Flame",
     "ForbiddenFlameUber",
     0.05,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Forbidden Flame"),
-    reliable=False,
+    PoeWatchMatcher(PoeWatchSource.UNIQUE_JEWEL, "Unidentified Forbidden Flame", ilvl=87),
     trade_link=TradeLink("Forbidden Flame", "Crimson Jewel", identified=False, min_ilvl=87),
 )
 
@@ -1023,7 +1020,6 @@ MeldingOfTheFlesh = Item(
     "MeldingoftheFlesh",
     0.02,
     PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Melding of the Flesh"),
-    reliable=False,
     trade_link=TradeLink("Melding of the Flesh", "Cobalt Jewel", identified=False),
 )
 
@@ -1122,8 +1118,7 @@ SublimeVision = Item(
     "Sublime Vision",
     "SublimeVision",
     0.025,
-    PoeNinjaMatcher(PoeNinjaSource.UNIQUE_JEWEL, "Sublime Vision"),
-    reliable=False,
+    PoeWatchMatcher(PoeWatchSource.UNIQUE_JEWEL, "Unidentified Sublime Vision", ilvl=87),
     trade_link=TradeLink("Sublime Vision", "Prismatic Jewel", identified=False),
 )
 
