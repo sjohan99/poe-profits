@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { useDebounce } from "react-use";
 import TextInput from "./text-input";
 
 export type Column<T> = {
@@ -91,8 +90,8 @@ export function Table<T>(props: TableProps<T>) {
           const y = b[sorting];
 
           // Sort nulls to the end
-          if (!x) return -1 * direction;
-          if (!y) return 1 * direction;
+          if (x === null) return -1 * direction;
+          if (y === null) return 1 * direction;
 
           if (x < y) {
             return -1 * direction;
