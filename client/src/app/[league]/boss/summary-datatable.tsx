@@ -27,11 +27,11 @@ export default function SummaryDataTable({
             <p className="-sm:hidden">{boss.name}</p>
             <p className="sm:hidden">{boss.short_name}</p>
           </Link>
-          {boss.reliable ? null : (
+          <div className={boss.n_items_not_found === 0 ? "hidden" : ""}>
             <Tooltip icon="info">
-              <p>Boss contains items with unreliable prices</p>
+              <p>{boss.n_items_not_found} items missing price data</p>
             </Tooltip>
-          )}
+          </div>
         </div>
       ),
     },

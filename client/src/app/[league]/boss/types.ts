@@ -5,6 +5,7 @@ type Drop = {
   reliable: boolean;
   trade_link: string | null;
   img: string | null;
+  found: boolean;
 };
 
 type EntranceItem = {
@@ -12,6 +13,7 @@ type EntranceItem = {
   price: number;
   quantity: number;
   img: string | null;
+  found: boolean;
 };
 
 export type DetailedBossInfo = {
@@ -33,6 +35,7 @@ export type Item = {
   type: "drop" | "entrance";
   share?: number;
   quantity?: number;
+  found: boolean;
 };
 
 export type Boss = {
@@ -42,6 +45,7 @@ export type Boss = {
   value: number;
   reliable: boolean;
   img: string | null;
+  n_items_not_found: number;
 };
 
 export type DoneMessage = {

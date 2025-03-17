@@ -30,6 +30,7 @@ function bossInfoToRows(bossInfo: DetailedBossInfo): Item[] {
       img: item.img,
       type: "entrance",
       quantity: item.quantity,
+      found: item.found,
     });
   }
   return rows;
@@ -117,6 +118,7 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
       img: "",
       type: "",
       quantity: "",
+      found: "",
     };
   }
 
@@ -128,25 +130,19 @@ export default function BossDataTable({ boss }: { boss: DetailedBossInfo }) {
       sortable: true,
       formatter: (item) => (
         <div className="inline-flex items-center gap-2">
-          <ItemImage icon={item.img} alt={item.name + " image"}></ItemImage>
-          {!item.reliable && item.trade_link ? (
-            <>
-              <a
-                href={item.trade_link}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="truncate text-link hover:underline"
-                title={item.name}
-              >
-                {createItemName(item)}
-              </a>
-              <Tooltip icon="info">
-                <p>Item price is unreliable</p>
-              </Tooltip>
-            </>
+          {!item.found ? (
+            <Tooltip icon="warning">
+              <p>No data available</p>
+            </Tooltip>
           ) : (
-            <p>{createItemName(item)}</p>
+            <ItemImage icon={item.img} alt={item.name + " image"}></ItemImage>
           )}
+          <p>{createItemName(item)}</p>
+          {!item.reliable ? (
+            <Tooltip icon="info">
+              <p>Low confidence price</p>
+            </Tooltip>
+          ) : null}
         </div>
       ),
     },
