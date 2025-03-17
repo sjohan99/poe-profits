@@ -47,6 +47,20 @@ function PoeNinjaLink() {
   );
 }
 
+function PoeWatchLink() {
+  return (
+    <a
+      href="https://poe.watch"
+      target="_blank"
+      rel="noreferrer noopener"
+      className="truncate text-link hover:underline"
+      title="poe.watch"
+    >
+      poe.watch
+    </a>
+  );
+}
+
 export default function Page() {
   return (
     <main className="flex max-w-3xl flex-col gap-10">
@@ -63,7 +77,7 @@ export default function Page() {
           I use the drop rates listed on the{" "}
           <BlueLink href="https://www.poewiki.net/" text="wiki"></BlueLink>.
           These might not be 100% accurate but they are the best I could find.
-          If you think they are wrong, feel free to open an issue on{" "}
+          If you think they are wrong, feel free to open an issue on
           <BlueLink
             href="https://github.com/sjohan99/poe-profits/issues"
             text="Github"
@@ -95,26 +109,11 @@ export default function Page() {
           compared to a normal / transfigured gem.
         </p>
       </Question>
-      <Question question='Why are some bosses and items marked with "unreliable prices?"'>
-        <p>
-          All prices for this project are pulled from <PoeNinjaLink />. Some
-          items are not priced correctly due to them not being priced as
-          unidentified (i.e. Sublime Vision) and/or where there are multiple
-          versions of the same item (i.e. Watcher&apos;s eye).
-        </p>
-        <p>
-          This can lead to wildly inaccurate prices. As of writing Sublime
-          Vision is priced as 130c when it is actually 14000c. To combat this
-          I&apos;ve marked all such items as unreliable and added a trade-link
-          to the item and possibility to (locally) update the price of the items
-          by editing the price in the price column.
-        </p>
-      </Question>
       <Question question="X item has the wrong price!">
         <p>
-          Currently all item prices are fetched from pulled form{" "}
-          <PoeNinjaLink /> so if those prices are wrong then the prices on this
-          site will be as well.
+          Currently all item prices are fetched from pulled from{" "}
+          <PoeNinjaLink /> and <PoeWatchLink /> so if those prices are wrong
+          then the prices on this site will be as well.
         </p>
         <p>
           With the addition of Faustus (Currency Exchange) some item prices will

@@ -29,6 +29,7 @@ If you want to contribute to the project, you are more than welcome to do so but
 
 Thanks to
 
+- [poe.watch](https://poe.watch/) for providing price data. **Big thanks to [Mxrk](https://github.com/Mxrk) for updating the poe.watch API according to my specific needs!**
 - [poe.ninja](https://poe.ninja/) for providing price data
 - [poegems.com](https://poegems.com/) for providing a list of all gems
 - [poewiki.net](https://www.poewiki.net/) for providing drop rate and gem data

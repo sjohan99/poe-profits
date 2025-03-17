@@ -21,6 +21,11 @@ export default function Page() {
         <p>This site is made possible by:</p>
         <ul className="list-inside list-disc">
           <li>
+            <BlueLink href="https://poe.watch/" text="poe.watch"></BlueLink> for
+            providing price data. Big thanks to poe.watch creator Mark for
+            specifically updating the API according to my needs!
+          </li>
+          <li>
             <BlueLink href="https://poe.ninja/" text="poe.ninja"></BlueLink> for
             providing price data
           </li>
