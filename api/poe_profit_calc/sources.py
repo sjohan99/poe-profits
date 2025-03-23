@@ -27,7 +27,6 @@ LEAGUE_TO_NINJA = {
     League.SETTLERS: "Settlers",
     League.SETTLERS_HC: "Hardcore+Settlers",
     League.STANDARD: "Standard",
-    League.STANDARD_HC: "Hardcore",
     League.PHRECIA: "Phrecia",
     League.PHRECIA_HC: "Hardcore+Phrecia",
 }
@@ -36,7 +35,6 @@ LEAGUE_TO_POE_WATCH = {
     League.SETTLERS: "Settlers",
     League.SETTLERS_HC: "Hardcore+Settlers",
     League.STANDARD: "Standard",
-    League.STANDARD_HC: "Hardcore",
     League.PHRECIA: "Phrecia",
     League.PHRECIA_HC: "Hardcore+Phrecia",
 }
