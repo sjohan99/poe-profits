@@ -36,7 +36,15 @@ class HttpFetcher:
             ) from e
         if format == Format.BYTES:
             return response.content
-        return response.json()
+        try:
+            json = response.json()
+            if json is None:
+                raise FetchError(f"HttpFetcher: Request to {url} responded with null-body")
+            return json
+        except requests.exceptions.JSONDecodeError as e:
+            raise FetchError(
+                f"HttpFetcher: Failed to decode JSON from {url} with message: {str(e)}"
+            ) from e
 
 
 class FileFetcher:
