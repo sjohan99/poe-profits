@@ -68,7 +68,7 @@ class Drop(BaseModel):
             price=item.price,
             droprate=item.droprate,
             reliable=item.reliable,
-            trade_link=item.trade_link.get_link(league) if item.trade_link else None,
+            trade_link=None,  # TODO: remove this attribute
             img=item.img,
             found=item.found,
         )
@@ -134,6 +134,7 @@ class BossSummary(BaseModel):
 def get_boss_data(boss_id: BossId, league: League) -> BossData:
     boss_data = BOSS_ID_TO_BOSS[boss_id]
     items = price_fetchers[league].price_items(boss_data.items())
+    print(items)
     return BossData.from_boss_id(boss_id, items, league)
 
 
@@ -174,8 +175,8 @@ def get_summary(league: League) -> list[BossSummary]:
             for item in (boss_item for boss_item in boss_items if " Key" not in boss_item.name)
         )
         not_found_count = item_counter[False]
-
-        img = None if not entrance_items else entrance_items.pop()[0].img
+        sorted_entrance_items = sorted(entrance_items, key=lambda x: x[0].name)
+        img = None if not entrance_items else sorted_entrance_items[0][0].img
         summaries.append(
             BossSummary(
                 name=boss.name,

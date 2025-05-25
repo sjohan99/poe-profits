@@ -51,7 +51,8 @@ class App(metaclass=SingletonMeta):
             }
         else:
             logging.info("Using file fetcher")
-            pricer = Pricer(fetcher=FileFetcher(), source_mapping=FILE_PATH_MAPPING)
+            path_prefix = _settings.LOCAL_FILE_PREFIX
+            pricer = Pricer(fetcher=FileFetcher(path_prefix), source_mapping=FILE_PATH_MAPPING)
             _price_fetchers = {league: pricer for league in League}
 
         rate_limiter = RateLimiter(

@@ -48,9 +48,12 @@ class HttpFetcher:
 
 
 class FileFetcher:
+    def __init__(self, path_prefix: str = ""):
+        self._path_prefix = pathlib.Path(path_prefix)
+
     @cached(cache=LRUCache(maxsize=256))
     def fetch_data(self, path, format: Format = Format.JSON):
-        file = pathlib.Path(path)
+        file = self._path_prefix.joinpath(path)
         try:
             if format == Format.BYTES:
                 with open(file, "rb") as f:

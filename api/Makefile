@@ -7,4 +7,10 @@ run-prod:
 	cd poe_profit_calc && export POE_PROFIT_CALC_RUN_MODE=prod && fastapi dev main.py
 
 test:
-	poetry run pytest
+	poetry run pytest tests
+
+test-create-snapshots:
+	export POE_PROFIT_CALC_RUN_MODE=test && poetry run pytest snapshots --snapshot-update
+
+test-snapshots:
+	export POE_PROFIT_CALC_RUN_MODE=test && poetry run pytest -vv snapshots

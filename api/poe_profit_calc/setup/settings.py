@@ -8,6 +8,7 @@ class Settings(BaseSettings):
         env_file="./../.env.dev", env_prefix="POE_PROFIT_CALC_", case_sensitive=False
     )
     REQUEST_LIMIT_PER_MINUTE: int
+    LOCAL_FILE_PREFIX: str = ""
     ENV: str
 
 
@@ -32,11 +33,21 @@ class ProductionSettings(Settings):
     ENV: str = "prod"
 
 
+class TestSettings(Settings):
+    model_config = SettingsConfigDict(
+        env_file="./.env.local", env_prefix="POE_PROFIT_CALC_", case_sensitive=False
+    )
+    LOCAL_FILE_PREFIX: str = "poe_profit_calc"
+    ENV: str = "test"
+
+
 def get_settings():
     _env = os.getenv("POE_PROFIT_CALC_RUN_MODE", "local")
     if _env == "local":
         return LocalSettings()  # type: ignore
     elif _env == "dev":
         return DevSettings()  # type: ignore
+    elif _env == "test":
+        return TestSettings()  # type: ignore
     else:
         return ProductionSettings()  # type: ignore
