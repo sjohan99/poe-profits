@@ -58,7 +58,7 @@ class App(metaclass=SingletonMeta):
             path_prefix = _settings.LOCAL_FILE_PREFIX
             pricer = Pricer(fetcher=FileFetcher(path_prefix), source_mapping=FILE_PATH_MAPPING)
             _price_fetchers = {league: pricer for league in League}
-            _client = LocalClient()
+            _client = LocalClient(path_prefix)
 
         rate_limiter = RateLimiter(
             requests_limit=_settings.REQUEST_LIMIT_PER_MINUTE, time_window=60, limit_globally=True

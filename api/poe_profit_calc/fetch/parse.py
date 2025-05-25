@@ -49,9 +49,19 @@ class PoeNinjaCurrencyOverview(msgspec.Struct):
     currency_details: list[PoeNinjaCurrencyDetails] = msgspec.field(name="currencyDetails")
 
     def __post_init__(self):
+        """
+        Poe Ninja does not include the icon in the item data, but rather in the currency details.
+        It seems like the detailsId for each item should map 1 to 1 with the detailsId in the currency details.
+        However, on rare occasions, the detailsId is not present in the item data, in which case we try
+        to match the names instead.
+        """
         detail_id_to_img = {item.details_id: item.icon for item in self.currency_details}
+        name_to_img = {item.name: item.icon for item in self.currency_details}
         for line in self.lines:
-            line.icon = detail_id_to_img.get(line.details_id)
+            icon = detail_id_to_img.get(line.details_id)
+            if icon is None:
+                icon = name_to_img.get(line.name)
+            line.icon = icon
 
 
 # poewatch returns a json array as the root, rather than an object

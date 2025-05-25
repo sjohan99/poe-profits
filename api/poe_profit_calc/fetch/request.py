@@ -43,7 +43,6 @@ class PoeNinjaClient:
         League.SETTLERS: "Settlers",
         League.SETTLERS_HC: "Hardcore+Settlers",
         League.STANDARD: "Standard",
-        League.STANDARD_HC: "Hardcore",
         League.PHRECIA: "Phrecia",
         League.PHRECIA_HC: "Hardcore+Phrecia",
     }
@@ -106,7 +105,6 @@ class PoeWatchClient:
         League.SETTLERS: "Settlers",
         League.SETTLERS_HC: "Hardcore+Settlers",
         League.STANDARD: "Standard",
-        League.STANDARD_HC: "Hardcore",
         League.PHRECIA: "Phrecia",
         League.PHRECIA_HC: "Hardcore+Phrecia",
     }
@@ -223,8 +221,9 @@ class LocalClient(Client):
         PoeWatchEndpoint.UNIQUE_JEWEL: "static/poewatch/jewel.json",
     }
 
-    def __init__(self):
+    def __init__(self, path_prefix: str = ""):
         super().__init__(client=None)
+        self._path_prefix = path_prefix
 
     async def request_endpoints(
         self,
@@ -235,6 +234,7 @@ class LocalClient(Client):
         for endpoint in endpoints:
             path = self.file_paths.get(endpoint)
             if path:
+                path = f"{self._path_prefix}/{path}" if self._path_prefix else path
                 try:
                     with open(path, "rb") as f:
                         result[endpoint] = f.read()
@@ -253,6 +253,7 @@ class LocalClient(Client):
         logging.warning(f"LocalClient is used, no actual request will be made for {endpoint.name}.")
         path = self.file_paths.get(endpoint)
         if path:
+            path = f"{self._path_prefix}/{path}" if self._path_prefix else path
             try:
                 with open(path, "rb") as f:
                     return f.read()
