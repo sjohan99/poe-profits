@@ -180,10 +180,10 @@ def create_profitability_report(gems: set[Gem]) -> list[GemProfit]:
         if profitability := calculate_profitability(k, v):
             report_data.append(profitability)
         else:
-            logging.info(f"Could not calculate profitability for {k}")
+            logging.debug(f"Could not calculate profitability for {k}")
     if len(report_data) < len(gem_groups) / 2:
         logging.warning(
-            f"Could not calculate profitability for {len(report_data)} gems out of {len(gem_groups)}"
+            f"Could only calculate profitability for {len(report_data)} gems out of {len(gem_groups)}"
         )
     return report_data
 
