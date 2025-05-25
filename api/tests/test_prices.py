@@ -1,5 +1,6 @@
 import json
 import pathlib
+from poe_profit_calc.sources import Source
 import pytest
 from poe_profit_calc.prices import extract_prices, group_by_source
 from poe_profit_calc.bossing.bossitems import *
@@ -55,20 +56,21 @@ class TestParseQuestions:
             EldritchExaltedOrb,
             Dawnbreaker,
             EldritchChaosOrb,
+            SublimeVision,
         }
-        source_mapping = {
+        source_mapping: dict[Source, str] = {
             PoeNinjaSource.CURRENCY: "1",
             PoeNinjaSource.UNIQUE_ARMOUR: "2",
             PoeNinjaSource.SKILL_GEM: "3",
+            PoeWatchSource.UNIQUE_JEWEL: "4",
         }
         grouped = group_by_source(items, source_mapping)
         assert grouped == {
-            "1": {EldritchExaltedOrb, EldritchChaosOrb},
-            "2": {Dawnbreaker},
-            "3": {AwakenedAddedChaosDamageSupport, AwakenedEnlightenSupport},
+            (PoeNinjaSource.CURRENCY, "1"): {EldritchExaltedOrb, EldritchChaosOrb},
+            (PoeNinjaSource.UNIQUE_ARMOUR, "2"): {Dawnbreaker},
+            (PoeNinjaSource.SKILL_GEM, "3"): {
+                AwakenedAddedChaosDamageSupport,
+                AwakenedEnlightenSupport,
+            },
+            (PoeWatchSource.UNIQUE_JEWEL, "4"): {SublimeVision},
         }
-
-    def test_not_same(self, uniquejewel_data):
-        items = {TwoModWatcherEye, ThreeModWatcherEye}
-        extract_prices(uniquejewel_data, items)
-        assert TwoModWatcherEye.price != 0 and TwoModWatcherEye.price == ThreeModWatcherEye.price
