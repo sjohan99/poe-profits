@@ -86,5 +86,6 @@ def initialize_logging(settings: Settings):
         handler.setFormatter(logFormatter)
     logging.basicConfig(level=logging.INFO, handlers=logging_handlers)
 
-    if settings.ENV == "local" or settings.ENV == "dev":
-        logging.getLogger("hishel.controller").setLevel(logging.DEBUG)
+    # Suppress httpx info logs, they are too verbose, since they log every request we make
+    # to third-party APIs, despite them being cached.
+    logging.getLogger("httpx").setLevel(logging.WARNING)
