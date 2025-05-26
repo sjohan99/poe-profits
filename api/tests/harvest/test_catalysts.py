@@ -18,11 +18,13 @@ class TestParseQuestions:
                 "Prismatic Catalyst",
                 9.75,
                 "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL1ByaXNtYXRpY0NhdGFseXN0IiwidyI6MSwiaCI6MSwic2NhbGUiOjF9XQ/5e51d41a0e/PrismaticCatalyst.png",
+                details_id="prismatic-catalyst",
             ),
             Catalyst(
                 "Fertile Catalyst",
                 6.54,
                 "https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ2F0YWx5c3RzL0ZlcnRpbGVDYXRhbHlzdCIsInciOjEsImgiOjEsInNjYWxlIjoxfV0/4b4ca5d929/FertileCatalyst.png",
+                details_id="fertile-catalyst",
             ),
         ]
 

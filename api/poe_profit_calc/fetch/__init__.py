@@ -11,5 +11,6 @@ from poe_profit_calc.fetch.parse import (
     PoeNinjaItemOverview,
     PoeWatchJewelOverview,
     PoeNinjaItem,
+    PoeNinjaCurrency,
     create_parser,
 )

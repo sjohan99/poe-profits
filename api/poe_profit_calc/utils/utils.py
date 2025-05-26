@@ -1,5 +1,8 @@
 from functools import reduce
 import operator
+from typing import Iterable, Callable, TypeVar, Optional
+
+T = TypeVar("T")
 
 
 def nested_get(d: dict, keys: list):
@@ -32,3 +35,16 @@ def nested_set(d: dict, keys: list, value):
     for key in keys[:-1]:
         d = d.setdefault(key, {})
     d[keys[-1]] = value
+
+
+def find(iterable: Iterable[T], predicate: Callable[[T], bool]) -> Optional[T]:
+    """Find the first item in an iterable that matches a predicate.
+
+    Args:
+        iterable (Iterable): The iterable to search.
+        predicate (Callable): A function that takes an item and returns True if it matches.
+
+    Returns:
+        The first item that matches the predicate, or None if no match is found.
+    """
+    return next((item for item in iterable if predicate(item)), None)
