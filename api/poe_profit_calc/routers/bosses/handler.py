@@ -1,14 +1,16 @@
 from dataclasses import dataclass
 from typing import Iterable
 from poe_profit_calc.bossing.bossitems import BossItem
-from poe_profit_calc.fetch import (
+from poe_profit_calc.vendor.request import (
     PoeNinjaEndpoint,
     PoeWatchEndpoint,
+    PoeEndpoint,
+)
+from poe_profit_calc.vendor.parse import (
     PoeNinjaCurrencyOverview,
     PoeNinjaItemOverview,
     PoeWatchJewelOverview,
     PoeNinjaItem,
-    PoeEndpoint,
     create_parser,
 )
 

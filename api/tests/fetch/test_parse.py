@@ -1,8 +1,8 @@
-from poe_profit_calc.fetch.parse import (
-    parse_into_type,
+from poe_profit_calc.vendor.parse import (
     PoeNinjaCurrencyOverview,
     PoeNinjaItemOverview,
     PoeWatchJewelOverview,
+    create_parser,
 )
 import pathlib
 import pytest
@@ -29,19 +29,19 @@ class TestFetch:
             return f.read()
 
     def test_parse_poe_ninja_item_overview(self, poeninja_uniquearmour_data):
-        parsed = parse_into_type(poeninja_uniquearmour_data, PoeNinjaItemOverview)
+        parsed = create_parser(PoeNinjaItemOverview)(poeninja_uniquearmour_data)
         if parsed is None:
             assert False
         assert True
 
     def test_parse_poe_ninja_currency_overview(self, poeninja_currency_data):
-        parsed = parse_into_type(poeninja_currency_data, PoeNinjaCurrencyOverview)
+        parsed = create_parser(PoeNinjaCurrencyOverview)(poeninja_currency_data)
         if parsed is None:
             assert False
         assert True
 
     def test_parse_poe_watch_jewel_overview(self, poewatch_jewel_data):
-        parsed = parse_into_type(poewatch_jewel_data, PoeWatchJewelOverview)
+        parsed = create_parser(PoeWatchJewelOverview)(poewatch_jewel_data)
         if parsed is None:
             assert False
         assert True

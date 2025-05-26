@@ -22,29 +22,3 @@ orb_weights = {
     "Timeless Delirium Orb": 41,
     "Whispering Delirium Orb": 93,
 }
-
-
-class Orb(msgspec.Struct):
-    name: str
-    chaos_value: float = msgspec.field(name="chaosValue")
-    icon: str | None = None
-    reroll_weight: int = msgspec.field(default=0)
-
-    def __post_init__(self):
-        self.reroll_weight = orb_weights.get(self.name, 0)
-
-    def __hash__(self) -> int:
-        return hash(self.name)
-
-
-class OrbData(msgspec.Struct):
-    lines: set[Orb]
-
-
-def parse_orbs(json_b: bytes) -> set[Orb]:
-    try:
-        parsed = msgspec.json.decode(json_b, type=OrbData)
-        return parsed.lines
-    except msgspec.DecodeError as e:
-        logging.error(f"Failed to parse orbs: {e}")
-        return set()

@@ -1,5 +1,6 @@
-from .orbs import Orb, parse_orbs, PRIMAL_LIFEFORCE_PER_ORB_REROLL
-from .catalysts import Catalyst, parse_catalysts, VIVID_LIFEFORCE_PER_CATALYST_REROLL
+from poe_profit_calc.vendor.parse import Orb, Catalyst
+from .orbs import orb_weights, PRIMAL_LIFEFORCE_PER_ORB_REROLL
+from .catalysts import catalyst_weights, VIVID_LIFEFORCE_PER_CATALYST_REROLL
 
 RerollableItem = Orb | Catalyst
 

@@ -3,11 +3,11 @@ from enum import Enum
 from typing import Iterable
 from poe_profit_calc.bossing.bosses import *
 from poe_profit_calc.globals import League
-from poe_profit_calc.routers.bosses.handler import PricedBossItem, get_parser_and_matcher
+from .handler import PricedBossItem, get_parser_and_matcher
 from poe_profit_calc.setup.setup import App
 from pydantic import BaseModel
 from fastapi import APIRouter
-from poe_profit_calc.fetch import PoeEndpoint
+from poe_profit_calc.vendor.request import PoeEndpoint
 
 
 router = APIRouter(

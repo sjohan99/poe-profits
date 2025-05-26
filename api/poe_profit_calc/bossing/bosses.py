@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from poe_profit_calc.fetch import PoeWatchEndpoint, PoeNinjaEndpoint, PoeEndpoint
+from poe_profit_calc.vendor.request import PoeWatchEndpoint, PoeNinjaEndpoint, PoeEndpoint
 from poe_profit_calc.bossing.bossitems import BossItem, Matcher
 
 

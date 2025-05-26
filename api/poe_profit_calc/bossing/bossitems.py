@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from poe_profit_calc.fetch.request import PoeEndpoint
+from poe_profit_calc.vendor.request import PoeEndpoint
 from poe_profit_calc.items import Item, PoeNinjaMatcher, PoeWatchMatcher
 from poe_profit_calc.sources import PoeNinjaSource, PoeWatchSource
 from poe_profit_calc.tradelink import TradeLink

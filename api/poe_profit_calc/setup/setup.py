@@ -2,7 +2,6 @@ import logging
 import sys
 
 from fastapi import Depends, FastAPI
-from poe_profit_calc.fetch.request import LocalClient
 from poe_profit_calc.globals import League
 from poe_profit_calc.fetcher import FileFetcher, HttpFetcher
 from poe_profit_calc.prices import Pricer
@@ -10,7 +9,7 @@ from poe_profit_calc.setup.logger import LoggingFormatter
 from poe_profit_calc.setup.ratelimiting import RateLimiter
 from poe_profit_calc.setup.settings import Settings, get_settings
 from poe_profit_calc.sources import FILE_PATH_MAPPING, make_endpoint_mapping
-from poe_profit_calc.fetch import Client
+from poe_profit_calc.vendor.request import Client, LocalClient
 
 from threading import Lock
 

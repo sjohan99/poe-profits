@@ -1,17 +1,22 @@
 import logging
 from typing import Iterable
 from fastapi import APIRouter
-from poe_profit_calc.fetch import (
-    PoeNinjaEndpoint,
+from poe_profit_calc.vendor.request import PoeNinjaEndpoint
+from poe_profit_calc.vendor.parse import (
     PoeNinjaCurrencyOverview,
     PoeNinjaCurrency,
+    CatalystData,
+    Catalyst,
+    OrbData,
+    Orb,
     create_parser,
 )
+
 from poe_profit_calc.globals import League
 from poe_profit_calc.harvest import (
     calculate_profits,
-    parse_orbs,
-    parse_catalysts,
+    orb_weights,
+    catalyst_weights,
     PRIMAL_LIFEFORCE_PER_ORB_REROLL,
     VIVID_LIFEFORCE_PER_CATALYST_REROLL,
     RerollableItem,
@@ -29,6 +34,8 @@ router = APIRouter(
 )
 
 client = App.get_instance().client
+orb_parser = create_parser(OrbData)
+catalyst_parser = create_parser(CatalystData)
 
 
 class RerollItemData(BaseModel):
@@ -109,6 +116,24 @@ class HarvestOverview(BaseModel):
         )
 
 
+def get_weighted_orbs(orb_data: OrbData) -> set[Orb]:
+    orbs = set()
+    for orb in orb_data.lines:
+        if orb.name in orb_weights:
+            orb.reroll_weight = orb_weights[orb.name]
+            orbs.add(orb)
+    return orbs
+
+
+def get_weighted_catalysts(catalyst_data: CatalystData) -> set[Catalyst]:
+    catalysts = set()
+    for catalyst in catalyst_data.lines:
+        if catalyst.name in catalyst_weights:
+            catalyst.reroll_weight = catalyst_weights[catalyst.name]
+            catalysts.add(catalyst)
+    return catalysts
+
+
 def get_lifeforce_from_data(data: bytes, lifeforce_name: str, league: League) -> Lifeforce:
     primal_lifeforce_cost = create_parser(PoeNinjaCurrencyOverview)(data)
     if not primal_lifeforce_cost:
@@ -136,9 +161,16 @@ async def get_orb_summary(league: League) -> RerollSummary:
             Lifeforce.not_found(PRIMAL_LIFEFORCE_NAME),
             0,
         )
-    parsed_orb_data = parse_orbs(orb_data) if orb_data else set()
+    parsed_orb_data = orb_parser(orb_data)
+    if parsed_orb_data is None:
+        return RerollSummary.create(
+            [],
+            Lifeforce.not_found(PRIMAL_LIFEFORCE_NAME),
+            0,
+        )
+    orbs = get_weighted_orbs(parsed_orb_data)
     lifeforce = get_lifeforce_from_data(currency_data, PRIMAL_LIFEFORCE_NAME, league)
-    return RerollSummary.create(parsed_orb_data, lifeforce, PRIMAL_LIFEFORCE_PER_ORB_REROLL)
+    return RerollSummary.create(orbs, lifeforce, PRIMAL_LIFEFORCE_PER_ORB_REROLL)
 
 
 @router.get("/catalysts")
@@ -153,11 +185,16 @@ async def get_catalyst_summary(league: League) -> RerollSummary:
             Lifeforce.not_found(VIVID_LIFEFORCE_NAME),
             0,
         )
-    parsed_catalyst_data = parse_catalysts(raw_data)
+    parsed_catalyst_data = catalyst_parser(raw_data)
+    if parsed_catalyst_data is None:
+        return RerollSummary.create(
+            [],
+            Lifeforce.not_found(PRIMAL_LIFEFORCE_NAME),
+            0,
+        )
+    catalysts = get_weighted_catalysts(parsed_catalyst_data)
     lifeforce = get_lifeforce_from_data(raw_data, VIVID_LIFEFORCE_NAME, league)
-    return RerollSummary.create(
-        parsed_catalyst_data, lifeforce, VIVID_LIFEFORCE_PER_CATALYST_REROLL
-    )
+    return RerollSummary.create(catalysts, lifeforce, VIVID_LIFEFORCE_PER_CATALYST_REROLL)
 
 
 @router.get("/overview")
@@ -169,19 +206,32 @@ async def get_overview(league: League) -> HarvestOverview:
     currency_data = raw_data.get(PoeNinjaEndpoint.CURRENCY)
     if currency_data is None:
         return HarvestOverview.from_summaries(None, None)
+
     primal_lifeforce = get_lifeforce_from_data(currency_data, PRIMAL_LIFEFORCE_NAME, league)
     vivid_lifeforce = get_lifeforce_from_data(currency_data, VIVID_LIFEFORCE_NAME, league)
+
+    if (parsed_catalyst_data := catalyst_parser(currency_data)) is None:
+        logging.warning("Failed to parse catalyst data.")
+        return HarvestOverview.from_summaries(None, None)
     catalyst_summary = RerollSummary.create(
-        parse_catalysts(currency_data), vivid_lifeforce, VIVID_LIFEFORCE_PER_CATALYST_REROLL
+        get_weighted_catalysts(parsed_catalyst_data),
+        vivid_lifeforce,
+        VIVID_LIFEFORCE_PER_CATALYST_REROLL,
     )
+
     if orb_data is None:
         return HarvestOverview.from_summaries(
             None,
             catalyst_summary,
         )
+    parsed_orb_data = orb_parser(orb_data)
+    if (parsed_orb_data := orb_parser(orb_data)) is None:
+        logging.warning("Failed to parse orb data.")
+        return HarvestOverview.from_summaries(None, None)
+
     return HarvestOverview(
         orbs=RerollSummary.create(
-            parse_orbs(orb_data), primal_lifeforce, PRIMAL_LIFEFORCE_PER_ORB_REROLL
+            get_weighted_orbs(parsed_orb_data), primal_lifeforce, PRIMAL_LIFEFORCE_PER_ORB_REROLL
         ),
         catalysts=catalyst_summary,
     )

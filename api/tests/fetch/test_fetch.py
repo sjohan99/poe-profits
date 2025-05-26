@@ -1,5 +1,5 @@
 import asyncio
-from poe_profit_calc.fetch.request import Client, PoeNinjaEndpoint, PoeWatchEndpoint
+from poe_profit_calc.vendor.request.client import Client, PoeNinjaEndpoint, PoeWatchEndpoint
 from poe_profit_calc.globals import League
 import httpx
 import pytest
