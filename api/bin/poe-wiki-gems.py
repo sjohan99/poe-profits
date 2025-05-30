@@ -24,7 +24,7 @@ def setup_files():
 
 
 def create_gem_list():
-    url = f"https://poegems.com/json"
+    url = "https://poegems.com/json"
     response = requests.get(url)
     data = response.json()
     all_gems = {gem["name"] for gem in data}

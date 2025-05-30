@@ -1,20 +1,38 @@
 from collections import Counter, defaultdict
+from dataclasses import dataclass
 from enum import Enum
 from typing import Iterable
-from poe_profit_calc.bossing.bosses import *
-from poe_profit_calc.globals import League
-from .handler import PricedBossItem, get_parser_and_matcher
-from poe_profit_calc.setup.setup import App
+from poe_profit_calc.bossing import (
+    Boss,
+    BossItem,
+    Sirus,
+    SirusUber,
+    TheEaterOfWorlds,
+    TheEaterOfWorldsUber,
+    TheElder,
+    TheElderUber,
+    TheElderUberUber,
+    TheMaven,
+    TheMavenUber,
+    TheSearingExarch,
+    TheSearingExarchUber,
+    TheShaper,
+    TheShaperUber,
+    Venarius,
+    VenariusUber,
+)
 from pydantic import BaseModel
 from fastapi import APIRouter
+from poe_profit_calc.globals import League
+from poe_profit_calc.setup.setup import App
 from poe_profit_calc.vendor.request import PoeEndpoint
+from .handler import PricedBossItem, get_parser_and_matcher
 
 
 router = APIRouter(
     prefix="/bosses",
 )
 
-price_fetchers = App.get_instance().price_fetchers
 client = App.get_instance().client
 
 

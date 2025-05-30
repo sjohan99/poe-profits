@@ -1,5 +1,3 @@
-from functools import reduce
-import operator
 from typing import Iterable, Callable, TypeVar, Optional
 
 T = TypeVar("T")

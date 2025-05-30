@@ -95,5 +95,4 @@ class CatalystData(msgspec.Struct):
             icon = detail_id_to_img.get(line.details_id)
             if icon is None:
                 icon = name_to_img.get(line.name)
-            print(f"Setting icon for {line.name}: {icon}")
             line.icon = icon

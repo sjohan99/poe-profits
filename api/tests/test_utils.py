@@ -3,7 +3,7 @@ import pytest
 
 
 def approx(o1: Any, o2: Any) -> None:
-    assert type(o1) == type(o2)
+    assert type(o1) is type(o2)
 
     o1_keys = [v for v in dir(o1) if not v.startswith("__")]
     o2_keys = [v for v in dir(o2) if not v.startswith("__")]

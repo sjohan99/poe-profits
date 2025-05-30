@@ -1,6 +1,23 @@
 from dataclasses import dataclass
 from poe_profit_calc.vendor.request import PoeWatchEndpoint, PoeNinjaEndpoint, PoeEndpoint
-from poe_profit_calc.bossing.bossitems import BossItem, Matcher
+
+
+@dataclass
+class Matcher:
+    source: PoeEndpoint
+    name: str
+    ilvl: int | None = None
+
+
+@dataclass
+class BossItem:
+    name: str
+    unique_name: str
+    drop_chance: float
+    matcher: Matcher
+
+    def __hash__(self) -> int:
+        return hash(self.unique_name)
 
 
 @dataclass

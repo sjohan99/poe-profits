@@ -1,6 +1,6 @@
-from .client import Client, LocalClient
+from .client import Client as Client, LocalClient as LocalClient
 from .endpoints import (
-    PoeEndpoint,
-    PoeNinjaEndpoint,
-    PoeWatchEndpoint,
+    PoeEndpoint as PoeEndpoint,
+    PoeNinjaEndpoint as PoeNinjaEndpoint,
+    PoeWatchEndpoint as PoeWatchEndpoint,
 )

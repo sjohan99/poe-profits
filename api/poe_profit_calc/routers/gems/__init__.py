@@ -1,1 +1,1 @@
-from poe_profit_calc.routers.gems.router import router
+from poe_profit_calc.routers.gems.router import router as router

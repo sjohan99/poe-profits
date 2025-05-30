@@ -10,7 +10,7 @@ class League(Enum):
     PHRECIA = "Phrecia"
     PHRECIA_HC = "Phrecia-Hardcore"
     SETTLERS = "Settlers"
-    SETTLERS_HC = f"Settlers-Hardcore"
+    SETTLERS_HC = "Settlers-Hardcore"
     STANDARD = "Standard"
 
 

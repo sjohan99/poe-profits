@@ -4,8 +4,6 @@ import hishel
 import httpx
 from types import CoroutineType
 from typing import Iterable, Tuple
-from dataclasses import dataclass
-from enum import Enum
 from poe_profit_calc.globals import League
 from .endpoints import PoeEndpoint, PoeNinjaEndpoint, PoeWatchEndpoint
 from .poeninja import PoeNinjaClient

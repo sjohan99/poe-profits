@@ -1,6 +1,3 @@
-import msgspec
-import logging
-
 VIVID_LIFEFORCE_PER_CATALYST_REROLL = 30
 
 catalyst_weights = {

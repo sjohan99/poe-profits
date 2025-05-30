@@ -1,6 +1,3 @@
-import msgspec
-import logging
-
 PRIMAL_LIFEFORCE_PER_ORB_REROLL = 30
 
 orb_weights = {

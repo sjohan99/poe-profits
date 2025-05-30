@@ -2,15 +2,12 @@ from fastapi import APIRouter, HTTPException
 from poe_profit_calc.gemlevelling import GemProfit, GemType, create_profitability_report, parse
 from poe_profit_calc.globals import League
 from poe_profit_calc.setup.setup import App
-from poe_profit_calc.sources import PoeNinjaSource
 from poe_profit_calc.vendor.request import PoeNinjaEndpoint as pne
 from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/gems",
 )
-
-price_fetchers = App.get_instance().price_fetchers
 
 
 class GemData(BaseModel):
