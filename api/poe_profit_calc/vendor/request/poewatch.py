@@ -6,11 +6,7 @@ from .endpoints import PoeWatchEndpoint, RequestEndpoint
 class PoeWatchClient:
     POEWATCH_BASE_URL = "https://api.poe.watch"
     LEAGUE_TO_POE_WATCH = {
-        League.SETTLERS: "Settlers",
-        League.SETTLERS_HC: "Hardcore+Settlers",
         League.STANDARD: "Standard",
-        League.PHRECIA: "Phrecia",
-        League.PHRECIA_HC: "Hardcore+Phrecia",
     }
     POEWATCH_ENDPOINT_MAP = {
         PoeWatchEndpoint.UNIQUE_JEWEL: RequestEndpoint(

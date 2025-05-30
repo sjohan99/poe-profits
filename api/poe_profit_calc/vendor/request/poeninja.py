@@ -6,11 +6,7 @@ from .endpoints import PoeNinjaEndpoint, RequestEndpoint
 class PoeNinjaClient:
     POENINJA_BASE_URL = "https://poe.ninja/api/data"
     LEAGUE_TO_NINJA = {
-        League.SETTLERS: "Settlers",
-        League.SETTLERS_HC: "Hardcore+Settlers",
         League.STANDARD: "Standard",
-        League.PHRECIA: "Phrecia",
-        League.PHRECIA_HC: "Hardcore+Phrecia",
     }
     POENINJA_ENDPOINT_MAP = {
         PoeNinjaEndpoint.CURRENCY: RequestEndpoint(
