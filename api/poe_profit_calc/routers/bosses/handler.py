@@ -79,9 +79,7 @@ def poe_ninja_item_matcher(
             continue
 
         # If we already have an item with the same name, we keep the one with the lowest chaos value
-        if (
-            curr_item := name_to_item.get(item.name)
-        ) and curr_item.chaos_value > item.chaos_value:  # TODO swap to <
+        if (curr_item := name_to_item.get(item.name)) and curr_item.chaos_value < item.chaos_value:
             continue
         name_to_item[item.name] = item
 
