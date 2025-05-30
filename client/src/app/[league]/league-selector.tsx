@@ -22,6 +22,14 @@ export default async function LeagueSelector(params: {
           {availableLeague}
         </Link>
       ))}
+      {/* TODO: Remove after adding Siege of the Atlas */}
+      <div
+        className={
+          "-m-0 select-none rounded border-secondary-1 bg-accent-1 p-1 opacity-75"
+        }
+      >
+        {"Siege of the Atlas (Coming Soon)"}
+      </div>
     </div>
   );
 }
