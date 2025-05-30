@@ -1,16 +1,13 @@
-from cachetools import TTLCache, cached
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from poe_profit_calc.gemlevelling import GemProfit, GemType, create_profitability_report, parse
 from poe_profit_calc.globals import League
 from poe_profit_calc.setup.setup import App
-from poe_profit_calc.sources import PoeNinjaSource
+from poe_profit_calc.vendor.request import PoeNinjaEndpoint as pne
 from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/gems",
 )
-
-price_fetchers = App.get_instance().price_fetchers
 
 
 class GemData(BaseModel):
@@ -46,9 +43,15 @@ class GemData(BaseModel):
 
 
 @router.get("/summary")
-@cached(cache=TTLCache(maxsize=128, ttl=1800))
-def get_gem_summary(league: League) -> list[GemData]:
-    raw_data = price_fetchers[league].get_raw_endpoint(PoeNinjaSource.SKILL_GEM)
+async def get_gem_summary_async(league: League) -> list[GemData]:
+    raw_data = await App.get_instance().client.request_endpoint(
+        pne.SKILL_GEM,
+        league,
+    )
+    if raw_data is None:
+        raise HTTPException(
+            status_code=503, detail="Failed to fetch gem data: third-party resource unavailable."
+        )
     parsed_data = parse(raw_data)
     pr = create_profitability_report(parsed_data)
     result = [GemData.from_gem(gem) for gem in pr]

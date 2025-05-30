@@ -14,6 +14,7 @@ cachetools = "^5.5.0"
 msgspec = "^0.18.6"
 pydantic-settings = "^2.5.2"
 syrupy = "^4.9.1"
+hishel = "0.1.1"
 
 [tool.poetry.dev-dependencies]
 black = "^24.4.2"
