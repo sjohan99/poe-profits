@@ -11,7 +11,11 @@ from .poewatch import PoeWatchClient
 
 
 class Client:
-    def __init__(self, client: httpx.AsyncClient | hishel.AsyncCacheClient | None = None):
+    def __init__(
+        self,
+        client: httpx.AsyncClient | hishel.AsyncCacheClient | None = None,
+        default_headers: dict[str, str] | None = None,
+    ):
         if client is None:
             controller = hishel.Controller(
                 cacheable_methods=["GET"],
@@ -24,6 +28,7 @@ class Client:
         self._client = client
         self._poeninja = PoeNinjaClient(self._client)
         self._poewatch = PoeWatchClient(self._client)
+        self._default_headers = default_headers
 
     async def request_endpoints(
         self, endpoints: Iterable[PoeEndpoint], league: League
@@ -33,11 +38,21 @@ class Client:
             match endpoint:
                 case PoeWatchEndpoint():
                     requests.append(
-                        (endpoint, self._poewatch.create_request_coroutine(endpoint, league))
+                        (
+                            endpoint,
+                            self._poewatch.create_request_coroutine(
+                                endpoint, league, headers=self._default_headers
+                            ),
+                        )
                     )
                 case PoeNinjaEndpoint():
                     requests.append(
-                        (endpoint, self._poeninja.create_request_coroutine(endpoint, league))
+                        (
+                            endpoint,
+                            self._poeninja.create_request_coroutine(
+                                endpoint, league, headers=self._default_headers
+                            ),
+                        )
                     )
 
         return await self._make_requests(requests)
@@ -66,7 +81,7 @@ class Client:
             response: httpx.Response = await request
             response.raise_for_status()
         except httpx.HTTPError as e:
-            logging.error(f"Failed to fetch data from {e.request.url} with message: {str(e)}")
+            logging.warning(f"Failed to fetch data from {e.request.url} with message: {str(e)}")
             return None
         return response
 
@@ -78,14 +93,6 @@ class Client:
             *[self._make_request(request) for request in _requests]
         )
         response_data = [response.content if response else None for response in responses]
-        num_cached = sum(
-            1
-            for response in responses
-            if response is not None and response.extensions.get("from_cache") is True
-        )
-        logging.getLogger("hishel.controller").info(
-            f"Fetched {num_cached} out of {len(endpoints)} endpoints from cache."
-        )
         return dict(zip(endpoints, response_data))
 
 

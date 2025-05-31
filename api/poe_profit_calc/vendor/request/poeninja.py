@@ -49,13 +49,15 @@ class PoeNinjaClient:
 
     def __init__(self, client: httpx.AsyncClient):
         self.client = client
-        self.base_url = "https://poe.ninja/api/data"
 
     def create_request_coroutine(
-        self, poeninja_endpoint: PoeNinjaEndpoint, league: League, params=None
+        self, poeninja_endpoint: PoeNinjaEndpoint, league: League, params=None, headers=None
     ):
         extra_params = params or {}
+        headers = headers or {}
         endpoint = self.POENINJA_ENDPOINT_MAP[poeninja_endpoint]
         return self.client.get(
-            endpoint.url, params=endpoint.params | {"league": league.value} | extra_params
+            endpoint.url,
+            params=endpoint.params | {"league": league.value} | extra_params,
+            headers=headers,
         )

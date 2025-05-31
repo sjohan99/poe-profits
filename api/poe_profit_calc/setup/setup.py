@@ -41,7 +41,9 @@ class App(metaclass=SingletonMeta):
 
         if _settings.ENV == "prod":
             logging.info("Using HTTP Client")
-            _client = Client()
+            _client = Client(
+                default_headers={"User-Agent": "poe-profits.com (+https://poe-profits.com/)"}
+            )
         else:
             logging.info("Using Local File Client")
             path_prefix = _settings.LOCAL_FILE_PREFIX
