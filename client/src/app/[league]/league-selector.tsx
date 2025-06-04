@@ -28,7 +28,7 @@ export default async function LeagueSelector(params: {
           "-m-0 select-none rounded border-secondary-1 bg-accent-1 p-1 opacity-75"
         }
       >
-        {"Siege of the Atlas (Coming Soon)"}
+        {"Secrets of the Atlas (Coming Soon)"}
       </div>
     </div>
   );
