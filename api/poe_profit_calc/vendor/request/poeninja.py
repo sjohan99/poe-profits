@@ -7,6 +7,8 @@ class PoeNinjaClient:
     POENINJA_BASE_URL = "https://poe.ninja/api/data"
     LEAGUE_TO_NINJA = {
         League.STANDARD: "Standard",
+        League.MERCENARIES: "Mercenaries",
+        League.MERCENARIES_HC: "Hardcore Mercenaries",
     }
     POENINJA_ENDPOINT_MAP = {
         PoeNinjaEndpoint.CURRENCY: RequestEndpoint(
@@ -56,8 +58,9 @@ class PoeNinjaClient:
         extra_params = params or {}
         headers = headers or {}
         endpoint = self.POENINJA_ENDPOINT_MAP[poeninja_endpoint]
+        league_id = self.LEAGUE_TO_NINJA[league]
         return self.client.get(
             endpoint.url,
-            params=endpoint.params | {"league": league.value} | extra_params,
+            params=endpoint.params | {"league": league_id} | extra_params,
             headers=headers,
         )

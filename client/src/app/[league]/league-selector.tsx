@@ -6,6 +6,7 @@ export default async function LeagueSelector(params: {
   route: string;
 }) {
   const availableLeagues = await fetchData<string[]>("metadata/leagues");
+  const league = decodeURIComponent(params.league);
 
   return (
     <div className="mb-2 flex flex-col gap-y-1 text-center sm:flex-row sm:gap-x-2">
@@ -14,7 +15,7 @@ export default async function LeagueSelector(params: {
           key={availableLeague}
           href={`/${availableLeague}/${params.route}`}
           className={
-            params.league === availableLeague
+            league === availableLeague
               ? "pointer-events-none rounded border border-secondary-2 bg-accent-1 p-1 font-bold hover:cursor-default"
               : "-m-0 rounded border-secondary-1 bg-accent-1 p-1 hover:-m-px hover:border hover:bg-accent-3"
           }
@@ -22,14 +23,6 @@ export default async function LeagueSelector(params: {
           {availableLeague}
         </Link>
       ))}
-      {/* TODO: Remove after adding Siege of the Atlas */}
-      <div
-        className={
-          "-m-0 select-none rounded border-secondary-1 bg-accent-1 p-1 opacity-75"
-        }
-      >
-        {"Secrets of the Atlas (Coming Soon)"}
-      </div>
     </div>
   );
 }

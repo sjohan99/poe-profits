@@ -10,9 +10,20 @@ export default async function Layout({
   children: ReactNode;
 }) {
   const leagues = await fetchData<string[]>("metadata/leagues");
-  if (!leagues.includes(params.league)) {
+  if (!leagues.includes(decodeURIComponent(params.league))) {
     return <NotFound />;
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <div className="flex flex-col gap-2">
+        {params.league.toLowerCase().includes("mercenaries") && (
+          <h2 className="text-orange-500">
+            Early league! Prices may not yet be available or highly volatile
+          </h2>
+        )}
+        {children}
+      </div>
+    </>
+  );
 }
