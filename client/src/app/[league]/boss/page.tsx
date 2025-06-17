@@ -14,6 +14,12 @@ export default async function Page({ params }: { params: { league: string } }) {
 
   return (
     <>
+      {params.league.toLowerCase().includes("mercenaries") && (
+        <h2 className="text-orange-500">
+          <span className="text-orange-300">Searing Exarch</span> drop rates
+          have been updated this patch and are likely incorrect.
+        </h2>
+      )}
       <LeagueSelector league={params.league} route="boss"></LeagueSelector>
       <SummaryDataTable bosses={bosses} league={params.league} />
     </>

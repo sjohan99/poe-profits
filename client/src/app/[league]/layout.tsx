@@ -19,7 +19,7 @@ export default async function Layout({
       <div className="flex flex-col gap-2">
         {params.league.toLowerCase().includes("mercenaries") && (
           <h2 className="text-orange-500">
-            Early league! Prices may not yet be available or highly volatile
+            Early league! Prices may not yet be available or highly volatile.
           </h2>
         )}
         {children}
