@@ -999,37 +999,37 @@ TheMaven = Boss(
         BossItem(
             "Legacy of Fury",
             "LegacyofFury",
-            0.45,
+            0.33,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Legacy of Fury"),
         ),
         BossItem(
             "Graven's Secret",
             "GravensSecret",
-            0.16,
+            0.19,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Graven's Secret"),
         ),
         BossItem(
             "Arn's Anguish",
             "ArnsAnguish",
-            0.16,
+            0.19,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Arn's Anguish"),
         ),
         BossItem(
             "Olesya's Delight",
             "OlesyasDelight",
-            0.16,
+            0.19,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Olesya's Delight"),
         ),
         BossItem(
             "Doppelgänger Guise",
             "DoppelgängerGuise",
-            0.06,
+            0.07,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Doppelgänger Guise"),
         ),
         BossItem(
             "Echoforge",
             "Echoforge",
-            0.01,
+            0.03,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Echoforge"),
         ),
         BossItem(
@@ -1267,25 +1267,25 @@ TheMavenUber = Boss(
         BossItem(
             "Viridi's Veil",
             "ViridisVeil",
-            0.55,
+            0.42,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Viridi's Veil"),
         ),
         BossItem(
             "Impossible Escape",
             "ImpossibleEscape",
-            0.33,
+            0.42,
             Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "Impossible Escape"),
         ),
         BossItem(
             "Progenesis",
             "Progenesis",
-            0.11,
+            0.01,
             Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Progenesis"),
         ),
         BossItem(
             "Grace of the Goddess",
             "GraceoftheGoddess",
-            0.005,
+            0.15,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Grace of the Goddess"),
         ),
         BossItem(
