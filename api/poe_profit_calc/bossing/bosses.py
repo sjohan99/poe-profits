@@ -49,19 +49,19 @@ TheSearingExarch = Boss(
         BossItem(
             "Dawnbreaker",
             "Dawnbreaker",
-            0.33,
+            0.75,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Dawnbreaker"),
         ),
         BossItem(
             "Dawnstrider",
             "Dawnstrider",
-            0.65,
+            0.21,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Dawnstrider"),
         ),
         BossItem(
             "Dissolution of the Flesh",
             "DissolutionoftheFlesh",
-            0.02,
+            0.04,
             Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "Dissolution of the Flesh"),
         ),
         BossItem(
@@ -113,7 +113,7 @@ TheSearingExarchUber = Boss(
         BossItem(
             "The Annihilating Light",
             "TheAnnihilatingLight",
-            0.475,
+            0.41,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "The Annihilating Light"),
         ),
         BossItem(
@@ -125,13 +125,13 @@ TheSearingExarchUber = Boss(
         BossItem(
             "The Celestial Brace",
             "TheCelestialBrace",
-            0.25,
+            0.01,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "The Celestial Brace"),
         ),
         BossItem(
             "Crystallised Omniscience",
             "CrystallisedOmniscience",
-            0.025,
+            0.33,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Crystallised Omniscience"),
         ),
         BossItem(
