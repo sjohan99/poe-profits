@@ -21,6 +21,28 @@ export async function generateMetadata({
   };
 }
 
+function DroprateWarning({
+  league,
+  boss,
+}: {
+  league: string;
+  boss: DetailedBossInfo;
+}) {
+  if (!league.toLowerCase().includes("mercenaries")) return null;
+  if (
+    !["exarch", "maven"].some((name) => boss.name.toLowerCase().includes(name))
+  ) {
+    return null;
+  }
+  return (
+    <h2 className="text-orange-500">
+      <span className="text-orange-300">{boss.name}</span> drop rates have
+      changed in 3.26. Their drop rates are being estimated and may be
+      inaccurate.
+    </h2>
+  );
+}
+
 export default async function Page({
   params,
 }: {
@@ -36,6 +58,7 @@ export default async function Page({
     <>
       {boss ? (
         <>
+          <DroprateWarning league={params.league} boss={boss} />
           <LeagueSelector
             league={params.league}
             route={`boss/${params.id}`}
