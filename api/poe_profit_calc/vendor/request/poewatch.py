@@ -13,7 +13,10 @@ class PoeWatchClient:
     POEWATCH_ENDPOINT_MAP = {
         PoeWatchEndpoint.UNIQUE_JEWEL: RequestEndpoint(
             f"{POEWATCH_BASE_URL}/get", {"category": "jewel"}
-        )
+        ),
+        PoeWatchEndpoint.FRAGMENT: RequestEndpoint(
+            f"{POEWATCH_BASE_URL}/get", {"category": "fragment"}
+        ),
     }
 
     def __init__(self, client: httpx.AsyncClient):

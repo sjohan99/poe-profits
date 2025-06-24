@@ -17,4 +17,7 @@ from .bosses import (
     VenariusUber as VenariusUber,
     Sirus as Sirus,
     SirusUber as SirusUber,
+    IncarnationOfDread as IncarnationOfDread,
+    IncarnationOfFear as IncarnationOfFear,
+    IncarnationOfNeglect as IncarnationOfNeglect,
 )

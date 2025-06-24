@@ -10,6 +10,7 @@ from poe_profit_calc.vendor.parse import (
     PoeNinjaCurrencyOverview,
     PoeNinjaItemOverview,
     PoeWatchJewelOverview,
+    PoeWatchFragmentOverview,
     PoeNinjaItem,
     create_parser,
 )
@@ -174,6 +175,26 @@ def poe_watch_jewel_matcher(
     return priced_items
 
 
+def poe_watch_fragment_matcher(
+    data: PoeWatchFragmentOverview, items: Iterable[BossItem]
+) -> dict[BossItem, PricedBossItem]:
+    priced_items = {}
+    fragment_dict = {f.name: f for f in data}
+    for item in items:
+        fragment_data = fragment_dict.get(item.matcher.name)
+        if fragment_data:
+            priced_items[item] = PricedBossItem(
+                boss_item=item,
+                price=fragment_data.chaos_value,
+                reliable=not fragment_data.low_confidence,
+                img=fragment_data.icon,
+                found=True,
+            )
+        else:
+            priced_items[item] = PricedBossItem.not_found(item)
+    return priced_items
+
+
 def get_parser_and_matcher(ep: PoeEndpoint):
     match ep:
         case PoeNinjaEndpoint.CURRENCY:
@@ -215,6 +236,9 @@ def get_parser_and_matcher(ep: PoeEndpoint):
         case PoeWatchEndpoint.UNIQUE_JEWEL:
             parser = create_parser(PoeWatchJewelOverview)
             matcher = poe_watch_jewel_matcher
+        case PoeWatchEndpoint.FRAGMENT:
+            parser = create_parser(PoeWatchFragmentOverview)
+            matcher = poe_watch_fragment_matcher
         case _:
             raise ValueError(f"Unknown endpoint: {ep}")
     return parser, matcher

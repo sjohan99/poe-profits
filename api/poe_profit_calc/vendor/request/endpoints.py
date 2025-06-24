@@ -19,6 +19,7 @@ class PoeNinjaEndpoint(Enum):
 
 class PoeWatchEndpoint(Enum):
     UNIQUE_JEWEL = "jewel"
+    FRAGMENT = "fragment"
 
 
 PoeEndpoint = PoeNinjaEndpoint | PoeWatchEndpoint

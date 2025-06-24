@@ -20,6 +20,9 @@ from poe_profit_calc.bossing import (
     TheShaperUber,
     Venarius,
     VenariusUber,
+    IncarnationOfNeglect,
+    IncarnationOfFear,
+    IncarnationOfDread,
 )
 from pydantic import BaseModel
 from fastapi import APIRouter
@@ -52,6 +55,9 @@ class BossId(Enum):
     the_maven_uber = "the_maven_uber"
     venarius = "venarius"
     venarius_uber = "venarius_uber"
+    incarnation_of_dread = "incarnation_of_dread"
+    incarnation_of_fear = "incarnation_of_fear"
+    incarnation_of_neglect = "incarnation_of_neglect"
 
 
 BOSS_ID_TO_BOSS: dict[BossId, Boss] = {
@@ -70,6 +76,9 @@ BOSS_ID_TO_BOSS: dict[BossId, Boss] = {
     BossId.the_maven_uber: TheMavenUber,
     BossId.venarius: Venarius,
     BossId.venarius_uber: VenariusUber,
+    BossId.incarnation_of_dread: IncarnationOfDread,
+    BossId.incarnation_of_fear: IncarnationOfFear,
+    BossId.incarnation_of_neglect: IncarnationOfNeglect,
 }
 
 

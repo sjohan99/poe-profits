@@ -106,7 +106,7 @@ TheSearingExarchUber = Boss(
             "Blazing Fragment",
             "BlazingFragment",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Blazing Fragment"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Blazing Fragment"),
         ): 5
     },
     drops={
@@ -252,7 +252,7 @@ TheEaterOfWorldsUber = Boss(
             "Devouring Fragment",
             "DevouringFragment",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Devouring Fragment"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Devouring Fragment"),
         ): 5
     },
     drops={
@@ -328,25 +328,25 @@ TheShaper = Boss(
             "Fragment of the Hydra",
             "FragmentoftheHydra",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of the Hydra"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of the Hydra"),
         ): 1,
         BossItem(
             "Fragment of the Minotaur",
             "FragmentoftheMinotaur",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of the Minotaur"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of the Minotaur"),
         ): 1,
         BossItem(
             "Fragment of the Phoenix",
             "FragmentofthePhoenix",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of the Phoenix"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of the Phoenix"),
         ): 1,
         BossItem(
             "Fragment of the Chimera",
             "FragmentoftheChimera",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of the Chimera"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of the Chimera"),
         ): 1,
     },
     drops={
@@ -378,13 +378,13 @@ TheShaper = Boss(
             "Fragment of Knowledge",
             "FragmentofKnowledge",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Knowledge"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Knowledge"),
         ),
         BossItem(
             "Fragment of Shape",
             "FragmentofShape",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Shape"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Shape"),
         ),
         BossItem(
             "Orb of Dominance",
@@ -404,7 +404,7 @@ TheShaperUber = Boss(
             "Cosmic Fragment",
             "CosmicFragment",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Cosmic Fragment"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Cosmic Fragment"),
         ): 5,
     },
     drops={
@@ -448,13 +448,13 @@ TheShaperUber = Boss(
             "Fragment of Knowledge",
             "FragmentofKnowledge",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Knowledge"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Knowledge"),
         ),
         BossItem(
             "Fragment of Shape",
             "FragmentofShape",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Shape"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Shape"),
         ),
         BossItem(
             "Orb of Dominance",
@@ -474,25 +474,25 @@ TheElder = Boss(
             "Fragment of Purification",
             "FragmentofPurification",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Purification"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Purification"),
         ): 1,
         BossItem(
             "Fragment of Constriction",
             "FragmentofConstriction",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Constriction"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Constriction"),
         ): 1,
         BossItem(
             "Fragment of Enslavement",
             "FragmentofEnslavement",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Enslavement"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Enslavement"),
         ): 1,
         BossItem(
             "Fragment of Eradication",
             "FragmentofEradication",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Eradication"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Eradication"),
         ): 1,
     },
     drops={
@@ -500,13 +500,13 @@ TheElder = Boss(
             "Fragment of Terror",
             "FragmentofTerror",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Terror"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Terror"),
         ),
         BossItem(
             "Fragment of Emptiness",
             "FragmentofEmptiness",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Emptiness"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Emptiness"),
         ),
         BossItem(
             "Blasphemer's Grasp",
@@ -568,25 +568,25 @@ TheElderUber = Boss(
             "Fragment of Knowledge",
             "FragmentofKnowledge",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Knowledge"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Knowledge"),
         ): 1,
         BossItem(
             "Fragment of Terror",
             "FragmentofTerror",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Terror"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Terror"),
         ): 1,
         BossItem(
             "Fragment of Emptiness",
             "FragmentofEmptiness",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Emptiness"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Emptiness"),
         ): 1,
         BossItem(
             "Fragment of Shape",
             "FragmentofShape",
             0.5,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Fragment of Shape"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Fragment of Shape"),
         ): 1,
     },
     drops={
@@ -656,7 +656,7 @@ TheElderUberUber = Boss(
             "Decaying Fragment",
             "DecayingFragment",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Decaying Fragment"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Decaying Fragment"),
         ): 5,
     },
     drops={
@@ -796,7 +796,7 @@ VenariusUber = Boss(
             "Synthesising Fragment",
             "SynthesisingFragment",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Synthesising Fragment"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Synthesising Fragment"),
         ): 5,
     },
     drops={
@@ -854,25 +854,25 @@ Sirus = Boss(
             "Drox's Crest",
             "DroxsCrest",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Drox's Crest"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Drox's Crest"),
         ): 1,
         BossItem(
             "Veritania's Crest",
             "VeritaniasCrest",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Veritania's Crest"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Veritania's Crest"),
         ): 1,
         BossItem(
             "Baran's Crest",
             "BaransCrest",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Baran's Crest"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Baran's Crest"),
         ): 1,
         BossItem(
             "Al-Hezmin's Crest",
             "Al-HezminsCrest",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Al-Hezmin's Crest"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Al-Hezmin's Crest"),
         ): 1,
     },
     drops={
@@ -932,7 +932,7 @@ SirusUber = Boss(
             "Awakening Fragment",
             "AwakeningFragment",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Awakening Fragment"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Awakening Fragment"),
         ): 5,
     },
     drops={
@@ -992,7 +992,7 @@ TheMaven = Boss(
             "The Maven's Writ",
             "TheMavensWrit",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "The Maven's Writ"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "The Maven's Writ"),
         ): 1,
     },
     drops={
@@ -1260,7 +1260,7 @@ TheMavenUber = Boss(
             "Reality Fragment",
             "RealityFragment",
             0,
-            Matcher(PoeNinjaEndpoint.FRAGMENT, "Reality Fragment"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Reality Fragment"),
         ): 5,
     },
     drops={
@@ -1533,6 +1533,153 @@ TheMavenUber = Boss(
             "AwakenedEmpowerSupport",
             0.00166,
             Matcher(PoeNinjaEndpoint.SKILL_GEM, "Awakened Empower Support"),
+        ),
+    },
+)
+
+IncarnationOfNeglect = Boss(
+    name="Incarnation of Neglect",
+    short_name="Neglect",
+    entrance_items={
+        BossItem(
+            "Echo of Loneliness",
+            "EchoofLoneliness",
+            0,
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Echo of Loneliness"),
+        ): 1,
+    },
+    drops={
+        BossItem(
+            "Betrayal's Sting",
+            "BetrayalsSting",
+            0.55,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Betrayal's Sting"),
+        ),
+        BossItem(
+            "The Arkhon's Tools",
+            "TheArkhonsTools",
+            0.35,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "The Arkhon's Tools"),
+        ),
+        BossItem(
+            "Venarius' Astrolabe",
+            "VenariusAstrolabe",
+            0.07,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Venarius' Astrolabe"),
+        ),
+        BossItem(
+            "Bound by Destiny",
+            "BoundbyDestiny",
+            0.1,
+            Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
+        ),
+        BossItem(
+            "Orb of Remembrance",
+            "OrbofRemembrance",
+            0.3,
+            Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Remembrance"),
+        ),
+    },
+)
+
+IncarnationOfFear = Boss(
+    name="Incarnation of Fear",
+    short_name="Fear",
+    entrance_items={
+        BossItem(
+            "Echo of Trauma",
+            "EchoofTrauma",
+            0,
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Echo of Trauma"),
+        ): 1,
+    },
+    drops={
+        BossItem(
+            "Servant of Decay",
+            "ServantofDecay",
+            0.45,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Servant of Decay"),
+        ),
+        BossItem(
+            "Coiling Whisper",
+            "CoilingWhisper",
+            0.30,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Coiling Whisper"),
+        ),
+        BossItem(
+            "Enmity's Embrace",
+            "EnmitysEmbrace",
+            0.2,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Enmity's Embrace"),
+        ),
+        BossItem(
+            "Starcaller",
+            "Starcaller",
+            0.05,
+            Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Starcaller"),
+        ),
+        BossItem(
+            "Bound by Destiny",
+            "BoundbyDestiny",
+            0.1,
+            Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
+        ),
+        BossItem(
+            "Orb of Intention",
+            "OrbofIntention",
+            0.3,
+            Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Intention"),
+        ),
+    },
+)
+
+IncarnationOfDread = Boss(
+    name="Incarnation of Dread",
+    short_name="Dread",
+    entrance_items={
+        BossItem(
+            "Echo of Reverence",
+            "EchoofReverence",
+            0,
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Echo of Reverence"),
+        ): 1,
+    },
+    drops={
+        BossItem(
+            "Whispers of Infinity",
+            "WhispersofInfinity",
+            0.45,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Whispers of Infinity"),
+        ),
+        BossItem(
+            "The Dark Monarch",
+            "TheDarkMonarch",
+            0.35,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "The Dark Monarch"),
+        ),
+        BossItem(
+            "Seven Teachings",
+            "SevenTeachings",
+            0.15,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Seven Teachings"),
+        ),
+        BossItem(
+            "Wine of the Prophet",
+            "WineoftheProphet",
+            0.05,
+            Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Wine of the Prophet"),
+        ),
+        BossItem(
+            "Bound by Destiny",
+            "BoundbyDestiny",
+            0.1,
+            Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
+        ),
+        BossItem(
+            "Orb of Unravelling",
+            "Orbofunravelling",
+            0.3,
+            Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Unravelling"),
         ),
     },
 )

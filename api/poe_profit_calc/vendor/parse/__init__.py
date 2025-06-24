@@ -9,6 +9,9 @@ from .poeninja import (
     Orb as Orb,
 )
 
-from .poewatch import PoeWatchJewelOverview as PoeWatchJewelOverview
+from .poewatch import (
+    PoeWatchJewelOverview as PoeWatchJewelOverview,
+    PoeWatchFragmentOverview as PoeWatchFragmentOverview,
+)
 
 from .parse import create_parser as create_parser
