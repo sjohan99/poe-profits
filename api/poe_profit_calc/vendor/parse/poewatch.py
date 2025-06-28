@@ -21,3 +21,10 @@ class PoeWatchFragment(msgspec.Struct):
 
 
 PoeWatchFragmentOverview = list[PoeWatchFragment]
+
+
+class PoeWatchCurrency(msgspec.Struct):
+    name: str
+    chaos_value: float = msgspec.field(name="mean", default=-1)
+    icon: str | None = None
+    low_confidence: bool = msgspec.field(name="lowConfidence", default=True)

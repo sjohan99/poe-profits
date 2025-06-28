@@ -17,6 +17,9 @@ class PoeWatchClient:
         PoeWatchEndpoint.FRAGMENT: RequestEndpoint(
             f"{POEWATCH_BASE_URL}/get", {"category": "fragment"}
         ),
+        PoeWatchEndpoint.CURRENCY: RequestEndpoint(
+            f"{POEWATCH_BASE_URL}/get", {"category": "currency"}
+        ),
     }
 
     def __init__(self, client: httpx.AsyncClient):

@@ -195,6 +195,26 @@ def poe_watch_fragment_matcher(
     return priced_items
 
 
+def poe_watch_currency_matcher(
+    data: PoeWatchJewelOverview, items: Iterable[BossItem]
+) -> dict[BossItem, PricedBossItem]:
+    priced_items = {}
+    currency_dict = {c.name: c for c in data}
+    for item in items:
+        currency_data = currency_dict.get(item.matcher.name)
+        if currency_data:
+            priced_items[item] = PricedBossItem(
+                boss_item=item,
+                price=currency_data.chaos_value,
+                reliable=not currency_data.low_confidence,
+                img=currency_data.icon,
+                found=True,
+            )
+        else:
+            priced_items[item] = PricedBossItem.not_found(item)
+    return priced_items
+
+
 def get_parser_and_matcher(ep: PoeEndpoint):
     match ep:
         case PoeNinjaEndpoint.CURRENCY:
@@ -239,6 +259,9 @@ def get_parser_and_matcher(ep: PoeEndpoint):
         case PoeWatchEndpoint.FRAGMENT:
             parser = create_parser(PoeWatchFragmentOverview)
             matcher = poe_watch_fragment_matcher
+        case PoeWatchEndpoint.CURRENCY:
+            parser = create_parser(PoeWatchJewelOverview)
+            matcher = poe_watch_currency_matcher
         case _:
             raise ValueError(f"Unknown endpoint: {ep}")
     return parser, matcher

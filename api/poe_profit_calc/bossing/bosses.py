@@ -462,6 +462,12 @@ TheShaperUber = Boss(
             0.01,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
+        BossItem(
+            "Shaper's Exalted Orb",
+            "ShapersExaltedOrb",
+            0.15,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Shaper's Exalted Orb"),
+        ),
     },
 )
 
@@ -556,6 +562,12 @@ TheElder = Boss(
             0.35,
             Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified Watcher's Eye 85", ilvl=85),
         ),
+        BossItem(
+            "Elder's Exalted Orb",
+            "EldersExaltedOrb",
+            0.15,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Elder's Exalted Orb"),
+        ),
     },
 )
 
@@ -643,6 +655,18 @@ TheElderUber = Boss(
             "VoidoftheElements",
             0.04,
             Matcher(PoeNinjaEndpoint.DIVINATION_CARD, "Void of the Elements"),
+        ),
+        BossItem(
+            "Shaper's Exalted Orb",
+            "ShapersExaltedOrb",
+            0.15,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Shaper's Exalted Orb"),
+        ),
+        BossItem(
+            "Elder's Exalted Orb",
+            "EldersExaltedOrb",
+            0.15,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Elder's Exalted Orb"),
         ),
     },
 )
@@ -737,6 +761,18 @@ TheElderUberUber = Boss(
             "VoidoftheElements",
             0.04,
             Matcher(PoeNinjaEndpoint.DIVINATION_CARD, "Void of the Elements"),
+        ),
+        BossItem(
+            "Shaper's Exalted Orb",
+            "ShapersExaltedOrb",
+            0.15,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Shaper's Exalted Orb"),
+        ),
+        BossItem(
+            "Elder's Exalted Orb",
+            "EldersExaltedOrb",
+            0.15,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Elder's Exalted Orb"),
         ),
     },
 )
