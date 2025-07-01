@@ -1588,19 +1588,19 @@ IncarnationOfNeglect = Boss(
         BossItem(
             "Betrayal's Sting",
             "BetrayalsSting",
-            0.55,
+            0.50,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Betrayal's Sting"),
         ),
         BossItem(
             "The Arkhon's Tools",
             "TheArkhonsTools",
-            0.35,
+            0.38,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "The Arkhon's Tools"),
         ),
         BossItem(
             "Venarius' Astrolabe",
             "VenariusAstrolabe",
-            0.07,
+            0.1,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Venarius' Astrolabe"),
         ),
         BossItem(
@@ -1614,6 +1614,12 @@ IncarnationOfNeglect = Boss(
             "OrbofRemembrance",
             0.3,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Remembrance"),
+        ),
+        BossItem(
+            "Monochrome",
+            "Monochrome",
+            0.03,
+            Matcher(PoeNinjaEndpoint.DIVINATION_CARD, "Monochrome"),
         ),
     },
 )
@@ -1633,19 +1639,19 @@ IncarnationOfFear = Boss(
         BossItem(
             "Servant of Decay",
             "ServantofDecay",
-            0.45,
+            0.5,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Servant of Decay"),
         ),
         BossItem(
             "Coiling Whisper",
             "CoilingWhisper",
-            0.30,
+            0.35,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Coiling Whisper"),
         ),
         BossItem(
             "Enmity's Embrace",
             "EnmitysEmbrace",
-            0.2,
+            0.1,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Enmity's Embrace"),
         ),
         BossItem(
@@ -1663,7 +1669,7 @@ IncarnationOfFear = Boss(
         BossItem(
             "Orb of Intention",
             "OrbofIntention",
-            0.3,
+            0.5,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Intention"),
         ),
     },
@@ -1684,13 +1690,13 @@ IncarnationOfDread = Boss(
         BossItem(
             "Whispers of Infinity",
             "WhispersofInfinity",
-            0.45,
+            0.48,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Whispers of Infinity"),
         ),
         BossItem(
             "The Dark Monarch",
             "TheDarkMonarch",
-            0.35,
+            0.34,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "The Dark Monarch"),
         ),
         BossItem(
@@ -1702,7 +1708,7 @@ IncarnationOfDread = Boss(
         BossItem(
             "Wine of the Prophet",
             "WineoftheProphet",
-            0.05,
+            0.03,
             Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Wine of the Prophet"),
         ),
         BossItem(
@@ -1714,7 +1720,7 @@ IncarnationOfDread = Boss(
         BossItem(
             "Orb of Unravelling",
             "Orbofunravelling",
-            0.3,
+            0.35,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Unravelling"),
         ),
     },
