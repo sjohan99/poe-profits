@@ -389,7 +389,7 @@ TheShaper = Boss(
         BossItem(
             "Orb of Dominance",
             "OrbofDominanceShaper",
-            0.01,
+            0.05,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
     },
@@ -429,7 +429,7 @@ TheShaperUber = Boss(
         BossItem(
             "Starforge",
             "Starforge",
-            0.005,
+            0.01,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Starforge"),
         ),
         BossItem(
@@ -459,7 +459,7 @@ TheShaperUber = Boss(
         BossItem(
             "Orb of Dominance",
             "OrbofDominanceShaper",
-            0.01,
+            0.05,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
         BossItem(
