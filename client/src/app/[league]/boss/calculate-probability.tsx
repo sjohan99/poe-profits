@@ -94,7 +94,7 @@ export default function CalculateProbability(params: { items: Item[] }) {
           </div>
           <select
             className="h-10 w-28 rounded border border-accent-2 bg-transparent p-1"
-            value={10000}
+            value={simulations}
             onChange={(e) => setSimulations(parseInt(e.target.value))}
           >
             <option className="bg-accent-1" value={1000}>
@@ -103,7 +103,7 @@ export default function CalculateProbability(params: { items: Item[] }) {
             <option className="bg-accent-1" value={5000}>
               medium
             </option>
-            <option className="bg-accent-1" value={10000}>
+            <option className="bg-accent-1" value={10000} selected>
               high
             </option>
             <option className="bg-accent-1" value={25000}>
