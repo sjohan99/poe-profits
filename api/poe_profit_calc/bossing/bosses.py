@@ -1731,3 +1731,123 @@ IncarnationOfDread = Boss(
         ),
     },
 )
+
+CatarinaMasterOfUndeath = Boss(
+    name="Catarina, Master of Undeath",
+    short_name="Catarina",
+    entrance_items={
+        BossItem(
+            "Syndicate Medallion",
+            "SyndicateMedallion",
+            0,
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Syndicate Medallion"),
+        ): 1,
+    },
+    drops={
+        BossItem(
+            "Cinderswallow Urn",
+            "CinderswallowUrn",
+            0.32,
+            Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Cinderswallow Urn"),
+        ),
+        BossItem(
+            "Spinehail",
+            "Spinehail",
+            0.20,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Spinehail"),
+        ),
+        BossItem(
+            "The Devouring Diadem",
+            "TheDevouringDiadem",
+            0.15,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "The Devouring Diadem"),
+        ),
+        BossItem(
+            "Bitterbind Point",
+            "BitterbindPoint",
+            0.10,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Bitterbind Point"),
+        ),
+        BossItem(
+            "The Queen's Hunger",
+            "TheQueensHunger",
+            0.06,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "The Queen's Hunger"),
+        ),
+        BossItem(
+            "Cane of Kulemak",
+            "CaneofKulemak",
+            0.17,
+            Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Cane of Kulemak"),
+        ),
+        BossItem(
+            "Veiled Exalted Orb",
+            "VeiledExaltedOrb",
+            0.25,
+            Matcher(PoeNinjaEndpoint.CURRENCY, "Veiled Exalted Orb"),
+        ),
+        BossItem(
+            "Allflame Ember of Resplendence",
+            "AllflameEmberofResplendence",
+            0.60,
+            Matcher(PoeNinjaEndpoint.ALLFLAME_EMBERS, "Allflame Ember of Resplendence"),
+        ),
+        BossItem(
+            "Allflame Ember of Kulemak",
+            "AllflameEmberofKulemak",
+            0.60,
+            Matcher(PoeNinjaEndpoint.ALLFLAME_EMBERS, "Allflame Ember of Kulemak"),
+        ),
+        BossItem(
+            "Allflame Ember of Propagation",
+            "AllflameEmberofPropagation",
+            0.30,
+            Matcher(PoeNinjaEndpoint.ALLFLAME_EMBERS, "Allflame Ember of Propagation"),
+        ),
+        BossItem(
+            "Nook's Crown",
+            "NooksCrown",
+            0.0001,
+            Matcher(PoeNinjaEndpoint.DIVINATION_CARD, "Nook's Crown"),
+        ),
+    },
+)
+
+TheKingInTheMists = Boss(
+    name="The King in the Mists",
+    short_name="kinginthemists",
+    entrance_items={
+        BossItem(
+            "Crux of Nothingness",
+            "CruxofNothingness",
+            0,
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Crux of Nothingness"),
+        ): 1,
+    },
+    drops={
+        BossItem(
+            "Pragmatism",
+            "Pragmatism",
+            0.45,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Pragmatism"),
+        ),
+        BossItem(
+            "The Untouched Soul",
+            "TheUntouchedSoul",
+            0.35,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "The Untouched Soul"),
+        ),
+        BossItem(
+            "The Light of Meaning",
+            "TheLightofMeaning",
+            0.20,
+            Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "The Light of Meaning"),
+        ),
+        BossItem(
+            "The Burden of Shadows",
+            "TheBurdenofShadows",
+            0.01,
+            Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "The Burden of Shadows"),
+        ),
+    },
+)
