@@ -1818,10 +1818,10 @@ TheKingInTheMists = Boss(
     short_name="kinginthemists",
     entrance_items={
         BossItem(
-            "Crux of Nothingness",
-            "CruxofNothingness",
+            "An Audience With The King",
+            "AnAudienceWithTheKing",
             0,
-            Matcher(PoeWatchEndpoint.FRAGMENT, "Crux of Nothingness"),
+            Matcher(PoeWatchEndpoint.FRAGMENT, "An Audience With The King"),
         ): 1,
     },
     drops={
