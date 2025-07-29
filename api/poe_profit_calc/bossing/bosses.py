@@ -1807,7 +1807,7 @@ CatarinaMasterOfUndeath = Boss(
         BossItem(
             "Nook's Crown",
             "NooksCrown",
-            0.0001,
+            0.001,
             Matcher(PoeNinjaEndpoint.DIVINATION_CARD, "Nook's Crown"),
         ),
     },
@@ -1815,7 +1815,7 @@ CatarinaMasterOfUndeath = Boss(
 
 TheKingInTheMists = Boss(
     name="The King in the Mists",
-    short_name="kinginthemists",
+    short_name="King in the Mists",
     entrance_items={
         BossItem(
             "An Audience With The King",
@@ -1839,9 +1839,9 @@ TheKingInTheMists = Boss(
         ),
         BossItem(
             "The Light of Meaning",
-            "TheLightofMeaning",
+            "UnidentifiedTheLightofMeaning",
             0.20,
-            Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "The Light of Meaning"),
+            Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified The Light of Meaning"),
         ),
         BossItem(
             "The Burden of Shadows",
