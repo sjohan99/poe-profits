@@ -21,9 +21,25 @@ If you want to run the project locally, you can do so by following these steps:
 3. Navigate to the [client directory](/client/) and follow the instructions there
 4. Run the client and api simultaneously
 
-### Contributing
+## Contributing
 
 If you want to contribute to the project, you are more than welcome to do so but please open an issue first with your suggestion and we can discuss it further.
+
+### Updating drop rates
+
+If you think the boss item drop rates are incorrect you can either:
+
+- Notify me by [opening an issue](https://github.com/sjohan99/poe-profits/issues/new) and I will update them given that the data seems reliable.
+- Make a pull request with your changes. To update the drop rates you need to modify the [bosses.py](api/poe_profit_calc/bossing/bosses.py) file. The drop rates are specified as follows:
+
+```python
+BossItem(
+    "Item Name", # the name of the item
+    "Internal Item ID",
+    0.1, # <--- drop rate (0.1 = 10%) UPDATE THIS
+    Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Item Name"),
+)
+```
 
 ## Acknowledgements
 
