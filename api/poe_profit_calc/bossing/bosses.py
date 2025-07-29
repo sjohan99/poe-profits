@@ -359,13 +359,13 @@ TheShaper = Boss(
         BossItem(
             "Voidwalker",
             "Voidwalker",
-            0.33,
+            0.26,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Voidwalker"),
         ),
         BossItem(
             "Solstice Vigil",
             "SolsticeVigil",
-            0.1,
+            0.15,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Solstice Vigil"),
         ),
         BossItem(
