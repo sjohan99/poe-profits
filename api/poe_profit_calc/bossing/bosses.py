@@ -371,7 +371,7 @@ TheShaper = Boss(
         BossItem(
             "Dying Sun",
             "DyingSun",
-            0.01,
+            0.03,
             Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Dying Sun"),
         ),
         BossItem(
