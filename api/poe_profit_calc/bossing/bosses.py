@@ -417,31 +417,31 @@ TheShaperUber = Boss(
         BossItem(
             "Echoes of Creation",
             "EchoesofCreation",
-            0.46,
+            0.42,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Echoes of Creation"),
         ),
         BossItem(
             "The Tides of Time",
             "TheTidesofTime",
-            0.33,
+            0.22,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "The Tides of Time"),
         ),
         BossItem(
             "Entropic Devastation",
             "EntropicDevastation",
-            0.2,
+            0.34,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Entropic Devastation"),
         ),
         BossItem(
             "Starforge",
             "Starforge",
-            0.01,
+            0.02,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Starforge"),
         ),
         BossItem(
             "Sublime Vision",
             "SublimeVision",
-            0.025,
+            0.03,
             Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified Sublime Vision", ilvl=87),
         ),
         BossItem(
