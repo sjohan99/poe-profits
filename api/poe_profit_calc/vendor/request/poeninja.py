@@ -51,7 +51,7 @@ class PoeNinjaClient:
             f"{POENINJA_BASE_URL}/itemoverview", {"type": "AllflameEmber"}
         ),
     }
-    
+
     def __init__(self, client: httpx.AsyncClient):
         self.client = client
 
