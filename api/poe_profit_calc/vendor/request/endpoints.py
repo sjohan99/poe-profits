@@ -15,6 +15,7 @@ class PoeNinjaEndpoint(Enum):
     SKILL_GEM = "SkillGem"
     UNIQUE_MAP = "UniqueMap"
     DELIRIUM_ORB = "DeliriumOrb"
+    ALLFLAME_EMBERS = "AllflameEmbers"
 
 
 class PoeWatchEndpoint(Enum):

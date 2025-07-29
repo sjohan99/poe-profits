@@ -253,6 +253,9 @@ def get_parser_and_matcher(ep: PoeEndpoint):
         case PoeNinjaEndpoint.DELIRIUM_ORB:
             parser = create_parser(PoeNinjaItemOverview)
             matcher = poe_ninja_item_matcher
+        case PoeNinjaEndpoint.ALLFLAME_EMBERS:
+            parser = create_parser(PoeNinjaItemOverview)
+            matcher = poe_ninja_item_matcher
         case PoeWatchEndpoint.UNIQUE_JEWEL:
             parser = create_parser(PoeWatchJewelOverview)
             matcher = poe_watch_jewel_matcher

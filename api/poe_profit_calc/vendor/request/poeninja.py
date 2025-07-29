@@ -47,6 +47,9 @@ class PoeNinjaClient:
         PoeNinjaEndpoint.DELIRIUM_ORB: RequestEndpoint(
             f"{POENINJA_BASE_URL}/itemoverview", {"type": "DeliriumOrb"}
         ),
+        PoeNinjaEndpoint.ALLFLAME_EMBERS: RequestEndpoint(
+            f"{POENINJA_BASE_URL}/itemoverview", {"type": "AllflameEmber"}
+        ),
     }
 
     def __init__(self, client: httpx.AsyncClient):

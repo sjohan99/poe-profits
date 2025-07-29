@@ -20,4 +20,6 @@ from .bosses import (
     IncarnationOfDread as IncarnationOfDread,
     IncarnationOfFear as IncarnationOfFear,
     IncarnationOfNeglect as IncarnationOfNeglect,
+    CatarinaMasterOfUndeath as CatarinaMasterOfUndeath,
+    TheKingInTheMists as TheKingInTheMists,
 )
