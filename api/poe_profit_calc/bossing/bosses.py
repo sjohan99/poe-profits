@@ -392,6 +392,12 @@ TheShaper = Boss(
             0.05,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
+        BossItem(
+            "Shaper's Exalted Orb",
+            "ShapersExaltedOrb",
+            0.12,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Shaper's Exalted Orb"),
+        ),
     },
 )
 
@@ -465,7 +471,7 @@ TheShaperUber = Boss(
         BossItem(
             "Shaper's Exalted Orb",
             "ShapersExaltedOrb",
-            0.15,
+            0.12,
             Matcher(PoeWatchEndpoint.CURRENCY, "Shaper's Exalted Orb"),
         ),
     },
