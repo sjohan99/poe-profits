@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import LeagueSelector from "../league-selector";
 import { env } from "~/env";
 
+export const dynamic = "force-static";
 export const revalidate = env.ISR_REVALIDATE_SECONDS;
 
 export const metadata: Metadata = {

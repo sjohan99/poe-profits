@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "Expected profit from rerolling currency items using Horticrafting",
 };
 
+export const dynamic = "force-static";
 export const revalidate = env.ISR_REVALIDATE_SECONDS;
 
 export default async function Page({ params }: { params: { league: string } }) {
