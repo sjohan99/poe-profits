@@ -1309,25 +1309,25 @@ TheMavenUber = Boss(
         BossItem(
             "Viridi's Veil",
             "ViridisVeil",
-            0.42,
+            0.53,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Viridi's Veil"),
         ),
         BossItem(
             "Impossible Escape",
             "ImpossibleEscape",
-            0.42,
+            0.32,
             Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "Impossible Escape"),
         ),
         BossItem(
             "Progenesis",
             "Progenesis",
-            0.01,
+            0.3,
             Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Progenesis"),
         ),
         BossItem(
             "Grace of the Goddess",
             "GraceoftheGoddess",
-            0.15,
+            0.12,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Grace of the Goddess"),
         ),
         BossItem(
@@ -1345,7 +1345,7 @@ TheMavenUber = Boss(
         BossItem(
             "Orb of Conflict",
             "OrbofConflict",
-            0.35,
+            0.33,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Conflict"),
         ),
         BossItem(
