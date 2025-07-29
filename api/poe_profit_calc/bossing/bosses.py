@@ -1321,7 +1321,7 @@ TheMavenUber = Boss(
         BossItem(
             "Progenesis",
             "Progenesis",
-            0.3,
+            0.03,
             Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Progenesis"),
         ),
         BossItem(
