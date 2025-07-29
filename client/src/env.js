@@ -10,6 +10,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]),
     RATE_LIMIT_TOKEN_REFILL_RATE_MS: z.number({ coerce: true }),
     RATE_LIMIT_TOKEN_BUCKET_CAPACITY: z.number({ coerce: true }),
+    ISR_REVALIDATE_SECONDS: z.number({ coerce: true }),
     SITE_URL: z.string(),
   },
 
@@ -34,6 +35,7 @@ export const env = createEnv({
       process.env.RATE_LIMIT_TOKEN_REFILL_RATE_MS,
     RATE_LIMIT_TOKEN_BUCKET_CAPACITY:
       process.env.RATE_LIMIT_TOKEN_BUCKET_CAPACITY,
+    ISR_REVALIDATE_SECONDS: process.env.ISR_REVALIDATE_SECONDS,
     NEXT_PUBLIC_API_HOST: process.env.NEXT_PUBLIC_API_HOST,
     NEXT_PUBLIC_CACHE_FETCH_SECONDS:
       process.env.NEXT_PUBLIC_CACHE_FETCH_SECONDS,

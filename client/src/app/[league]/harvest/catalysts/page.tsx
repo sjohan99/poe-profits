@@ -4,6 +4,9 @@ import type { RerollData } from "../types";
 import { RerollDataTable } from "../datatable";
 import type { Metadata } from "next";
 import LeagueSelector from "../../league-selector";
+import { env } from "~/env";
+
+export const revalidate = env.ISR_REVALIDATE_SECONDS;
 
 export const metadata: Metadata = {
   title: "Harvest: Catalysts",

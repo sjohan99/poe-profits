@@ -3,6 +3,9 @@ import { type DetailedBossInfo } from "../types";
 import BossDataTable from "../boss-datatable";
 import type { Metadata } from "next";
 import LeagueSelector from "../../league-selector";
+import { env } from "~/env";
+
+export const revalidate = env.ISR_REVALIDATE_SECONDS;
 
 export async function generateMetadata({
   params,

@@ -3,12 +3,15 @@ import type { Overview } from "./types";
 import { RerollDataTable } from "./datatable";
 import type { Metadata } from "next";
 import LeagueSelector from "../league-selector";
+import { env } from "~/env";
 
 export const metadata: Metadata = {
   title: "Harvest",
   description:
     "Expected profit from rerolling currency items using Horticrafting",
 };
+
+export const revalidate = env.ISR_REVALIDATE_SECONDS;
 
 export default async function Page({ params }: { params: { league: string } }) {
   const overview = await fetchData<Overview>("harvest/overview", params.league);
