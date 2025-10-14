@@ -1866,3 +1866,54 @@ TheKingInTheMists = Boss(
         ),
     },
 )
+
+Oshabi = Boss(
+    name="Oshabi, Avatar of the Grove",
+    short_name="Oshabi",
+    entrance_items={
+        BossItem(
+            "Sacred Blossom",
+            "SacredBlossom",
+            0,
+            Matcher(PoeWatchEndpoint.FRAGMENT, "Sacred Blossom"),
+        ): 1,
+    },
+    drops={
+        BossItem(
+            "Sacred Crystallised Lifeforce",
+            "SacredCrystallisedLifeforce",
+            1,
+            Matcher(PoeWatchEndpoint.CURRENCY, "Sacred Crystallised Lifeforce"),
+        ),
+        BossItem(
+            "The Aspirant",
+            "TheAspirant",
+            0.1,
+            Matcher(PoeNinjaEndpoint.DIVINATION_CARD, "The Aspirant"),
+        ),
+        BossItem(
+            "Forbidden Shako",
+            "ForbiddenShako",
+            0.52,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Forbidden Shako"),
+        ),
+        BossItem(
+            "Law of the Wilds",
+            "LawoftheWilds",
+            0.2,
+            Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Law of the Wilds"),
+        ),
+        BossItem(
+            "Witchhunter's Judgment",
+            "WitchhuntersJudgment",
+            0.16,
+            Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Witchhunter's Judgment"),
+        ),
+        BossItem(
+            "Abhorrent Interrogation",
+            "AbhorrentInterrogation",
+            0.12,
+            Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Abhorrent Interrogation"),
+        ),
+    },
+)

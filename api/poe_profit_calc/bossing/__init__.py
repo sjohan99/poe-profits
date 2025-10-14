@@ -22,4 +22,5 @@ from .bosses import (
     IncarnationOfNeglect as IncarnationOfNeglect,
     CatarinaMasterOfUndeath as CatarinaMasterOfUndeath,
     TheKingInTheMists as TheKingInTheMists,
+    Oshabi as Oshabi,
 )
