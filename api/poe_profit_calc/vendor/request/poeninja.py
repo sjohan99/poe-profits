@@ -7,8 +7,8 @@ class PoeNinjaClient:
     POENINJA_BASE_URL = "https://poe.ninja/api/data"
     LEAGUE_TO_NINJA = {
         League.STANDARD: "Standard",
-        League.MERCENARIES: "Mercenaries",
-        League.MERCENARIES_HC: "Hardcore Mercenaries",
+        League.CURRENT_LEAGUE: "Keepers",
+        League.CURRENT_LEAGUE_HC: "Keepers Hardcore",
     }
     POENINJA_ENDPOINT_MAP = {
         PoeNinjaEndpoint.CURRENCY: RequestEndpoint(

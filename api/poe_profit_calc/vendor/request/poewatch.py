@@ -7,8 +7,8 @@ class PoeWatchClient:
     POEWATCH_BASE_URL = "https://api.poe.watch"
     LEAGUE_TO_POE_WATCH = {
         League.STANDARD: "Standard",
-        League.MERCENARIES: "Mercenaries",
-        League.MERCENARIES_HC: "Hardcore Mercenaries",
+        League.CURRENT_LEAGUE: "Keepers",
+        League.CURRENT_LEAGUE_HC: "Keepers Hardcore",
     }
     POEWATCH_ENDPOINT_MAP = {
         PoeWatchEndpoint.UNIQUE_JEWEL: RequestEndpoint(

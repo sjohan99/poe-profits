@@ -2,6 +2,6 @@ from enum import Enum
 
 
 class League(Enum):
-    MERCENARIES = "Mercenaries"
-    MERCENARIES_HC = "Mercenaries Hardcore"
+    CURRENT_LEAGUE = "Keepers"
+    CURRENT_LEAGUE_HC = "Keepers Hardcore"
     STANDARD = "Standard"
