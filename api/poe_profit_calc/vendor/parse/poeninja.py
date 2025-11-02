@@ -1,5 +1,7 @@
 import msgspec
 
+POE_CDN_BASE_URL = "https://web.poecdn.com"
+
 
 class PoeNinjaItem(msgspec.Struct):
     name: str
@@ -11,22 +13,17 @@ class PoeNinjaItem(msgspec.Struct):
     variant: str | None = None
 
 
-class Receive(msgspec.Struct):
-    value: float
-
-
 class PoeNinjaCurrency(msgspec.Struct):
-    name: str = msgspec.field(name="currencyTypeName")
-    details_id: str = msgspec.field(name="detailsId")
-    chaos_value: float = msgspec.field(name="chaosEquivalent")
-    receive: Receive
+    id: str
+    chaos_value: float = msgspec.field(name="primaryValue")
+    name: str | None = None
     icon: str | None = None
 
 
 class PoeNinjaCurrencyDetails(msgspec.Struct):
     name: str
-    details_id: str | None = msgspec.field(name="tradeId", default=None)
-    icon: str | None = None
+    id: str
+    icon: str | None = msgspec.field(name="image", default=None)
 
 
 class PoeNinjaItemOverview(msgspec.Struct):
@@ -35,64 +32,59 @@ class PoeNinjaItemOverview(msgspec.Struct):
 
 class PoeNinjaCurrencyOverview(msgspec.Struct):
     lines: list[PoeNinjaCurrency]
-    currency_details: list[PoeNinjaCurrencyDetails] = msgspec.field(name="currencyDetails")
+    currency_details: list[PoeNinjaCurrencyDetails] = msgspec.field(name="items")
 
     def __post_init__(self):
-        """
-        Poe Ninja does not include the icon in the item data, but rather in the currency details.
-        It seems like the detailsId for each item should map 1 to 1 with the detailsId in the currency details.
-        However, on rare occasions, the detailsId is not present in the item data, in which case we try
-        to match the names instead.
-        """
-        detail_id_to_img = {item.details_id: item.icon for item in self.currency_details}
-        name_to_img = {item.name: item.icon for item in self.currency_details}
+        id_to_details = {item.id: item for item in self.currency_details}
         for line in self.lines:
-            icon = detail_id_to_img.get(line.details_id)
-            if icon is None:
-                icon = name_to_img.get(line.name)
-            line.icon = icon
+            details = id_to_details.get(line.id)
+            if details:
+                line.name = details.name
+                line.icon = f"{POE_CDN_BASE_URL}{details.icon}"
 
 
 class Orb(msgspec.Struct):
-    name: str
-    chaos_value: float = msgspec.field(name="chaosValue")
+    id: str
+    chaos_value: float = msgspec.field(name="primaryValue")
+    name: str | None = None
     icon: str | None = None
     reroll_weight: int = msgspec.field(default=0)
 
     def __hash__(self) -> int:
-        return hash(self.name)
+        return hash(self.id)
 
 
 class OrbData(msgspec.Struct):
     lines: set[Orb]
+    currency_details: list[PoeNinjaCurrencyDetails] = msgspec.field(name="items")
+
+    def __post_init__(self):
+        id_to_details = {item.id: item for item in self.currency_details}
+        for line in self.lines:
+            details = id_to_details.get(line.id)
+            if details:
+                line.name = details.name
+                line.icon = f"{POE_CDN_BASE_URL}{details.icon}"
 
 
 class Catalyst(msgspec.Struct):
-    name: str = msgspec.field(name="currencyTypeName")
-    chaos_value: float = msgspec.field(name="chaosEquivalent")
+    id: str
+    chaos_value: float = msgspec.field(name="primaryValue")
+    name: str | None = None
     icon: str | None = None
-    details_id: str = msgspec.field(name="detailsId", default="")
-    reroll_weight: int = msgspec.field(default=0)
 
     def __hash__(self) -> int:
-        return hash(self.name)
+        return hash(self.id)
 
 
 class CatalystData(msgspec.Struct):
     lines: set[Catalyst]
-    currency_details: list[PoeNinjaCurrencyDetails] = msgspec.field(name="currencyDetails")
+    currency_details: list[PoeNinjaCurrencyDetails] = msgspec.field(name="items")
 
     def __post_init__(self):
-        """
-        Poe Ninja does not include the icon in the item data, but rather in the currency details.
-        It seems like the detailsId for each item should map 1 to 1 with the detailsId in the currency details.
-        However, on rare occasions, the detailsId is not present in the item data, in which case we try
-        to match the names instead.
-        """
-        detail_id_to_img = {item.details_id: item.icon for item in self.currency_details}
-        name_to_img = {item.name: item.icon for item in self.currency_details}
+        id_to_details = {item.id: item for item in self.currency_details}
         for line in self.lines:
-            icon = detail_id_to_img.get(line.details_id)
-            if icon is None:
-                icon = name_to_img.get(line.name)
-            line.icon = icon
+            details = id_to_details.get(line.id)
+            if details:
+                line.name = details.name
+                line.icon = f"{POE_CDN_BASE_URL}{details.icon}"

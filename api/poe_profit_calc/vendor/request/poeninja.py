@@ -4,7 +4,8 @@ from .endpoints import PoeNinjaEndpoint, RequestEndpoint
 
 
 class PoeNinjaClient:
-    POENINJA_BASE_URL = "https://poe.ninja/api/data"
+    POENINJA_STASH_URL = "https://poe.ninja/poe1/api/economy/stash/current/item/overview"
+    POENINJA_EXCHANGE_URL = "https://poe.ninja/poe1/api/economy/exchange/current/overview"
     LEAGUE_TO_NINJA = {
         League.STANDARD: "Standard",
         League.CURRENT_LEAGUE: "Keepers",
@@ -12,43 +13,41 @@ class PoeNinjaClient:
     }
     POENINJA_ENDPOINT_MAP = {
         PoeNinjaEndpoint.CURRENCY: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/currencyoverview", {"type": "Currency"}
+            f"{POENINJA_EXCHANGE_URL}", {"type": "Currency"}
         ),
         PoeNinjaEndpoint.UNIQUE_ARMOUR: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "UniqueArmour"}
+            f"{POENINJA_STASH_URL}", {"type": "UniqueArmour"}
         ),
         PoeNinjaEndpoint.UNIQUE_JEWEL: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "UniqueJewel"}
+            f"{POENINJA_STASH_URL}", {"type": "UniqueJewel"}
         ),
         PoeNinjaEndpoint.INVITATION: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "Invitation"}
+            f"{POENINJA_STASH_URL}", {"type": "Invitation"}
         ),
         PoeNinjaEndpoint.FRAGMENT: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/currencyoverview", {"type": "Fragment"}
+            f"{POENINJA_EXCHANGE_URL}", {"type": "Fragment"}
         ),
         PoeNinjaEndpoint.UNIQUE_ACCESSORY: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "UniqueAccessory"}
+            f"{POENINJA_STASH_URL}", {"type": "UniqueAccessory"}
         ),
         PoeNinjaEndpoint.UNIQUE_FLASK: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "UniqueFlask"}
+            f"{POENINJA_STASH_URL}", {"type": "UniqueFlask"}
         ),
         PoeNinjaEndpoint.UNIQUE_WEAPON: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "UniqueWeapon"}
+            f"{POENINJA_STASH_URL}", {"type": "UniqueWeapon"}
         ),
         PoeNinjaEndpoint.DIVINATION_CARD: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "DivinationCard"}
+            f"{POENINJA_EXCHANGE_URL}", {"type": "DivinationCard"}
         ),
-        PoeNinjaEndpoint.SKILL_GEM: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "SkillGem"}
-        ),
+        PoeNinjaEndpoint.SKILL_GEM: RequestEndpoint(f"{POENINJA_STASH_URL}", {"type": "SkillGem"}),
         PoeNinjaEndpoint.UNIQUE_MAP: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "UniqueMap"}
+            f"{POENINJA_STASH_URL}", {"type": "UniqueMap"}
         ),
         PoeNinjaEndpoint.DELIRIUM_ORB: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "DeliriumOrb"}
+            f"{POENINJA_EXCHANGE_URL}", {"type": "DeliriumOrb"}
         ),
         PoeNinjaEndpoint.ALLFLAME_EMBERS: RequestEndpoint(
-            f"{POENINJA_BASE_URL}/itemoverview", {"type": "AllflameEmber"}
+            f"{POENINJA_EXCHANGE_URL}", {"type": "AllflameEmber"}
         ),
     }
 

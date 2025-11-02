@@ -242,8 +242,8 @@ def get_parser_and_matcher(ep: PoeEndpoint):
             parser = create_parser(PoeNinjaItemOverview)
             matcher = poe_ninja_item_matcher
         case PoeNinjaEndpoint.DIVINATION_CARD:
-            parser = create_parser(PoeNinjaItemOverview)
-            matcher = poe_ninja_item_matcher
+            parser = create_parser(PoeNinjaCurrencyOverview)
+            matcher = poe_ninja_currency_matcher
         case PoeNinjaEndpoint.SKILL_GEM:
             parser = create_parser(PoeNinjaItemOverview)
             matcher = poe_ninja_skill_gem_matcher
@@ -251,11 +251,11 @@ def get_parser_and_matcher(ep: PoeEndpoint):
             parser = create_parser(PoeNinjaItemOverview)
             matcher = poe_ninja_item_matcher
         case PoeNinjaEndpoint.DELIRIUM_ORB:
-            parser = create_parser(PoeNinjaItemOverview)
-            matcher = poe_ninja_item_matcher
+            parser = create_parser(PoeNinjaCurrencyOverview)
+            matcher = poe_ninja_currency_matcher
         case PoeNinjaEndpoint.ALLFLAME_EMBERS:
-            parser = create_parser(PoeNinjaItemOverview)
-            matcher = poe_ninja_item_matcher
+            parser = create_parser(PoeNinjaCurrencyOverview)
+            matcher = poe_ninja_currency_matcher
         case PoeWatchEndpoint.UNIQUE_JEWEL:
             parser = create_parser(PoeWatchJewelOverview)
             matcher = poe_watch_jewel_matcher
