@@ -1628,7 +1628,7 @@ IncarnationOfNeglect = Boss(
             "Bound by Destiny",
             "BoundbyDestiny",
             0.085,
-            Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
+            Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
         ),
         BossItem(
             "Orb of Remembrance",
@@ -1685,7 +1685,7 @@ IncarnationOfFear = Boss(
             "Bound by Destiny",
             "BoundbyDestiny",
             0.085,
-            Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
+            Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
         ),
         BossItem(
             "Orb of Intention",
@@ -1736,7 +1736,7 @@ IncarnationOfDread = Boss(
             "Bound by Destiny",
             "BoundbyDestiny",
             0.085,
-            Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
+            Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "Bound By Destiny"),
         ),
         BossItem(
             "Orb of Unravelling",
