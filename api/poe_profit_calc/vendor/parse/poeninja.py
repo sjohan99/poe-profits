@@ -46,7 +46,7 @@ class PoeNinjaCurrencyOverview(msgspec.Struct):
 class Orb(msgspec.Struct):
     id: str
     chaos_value: float = msgspec.field(name="primaryValue")
-    name: str | None = None
+    name: str = "Unknown"
     icon: str | None = None
     reroll_weight: int = msgspec.field(default=0)
 
@@ -70,8 +70,9 @@ class OrbData(msgspec.Struct):
 class Catalyst(msgspec.Struct):
     id: str
     chaos_value: float = msgspec.field(name="primaryValue")
-    name: str | None = None
+    name: str = "Unknown"
     icon: str | None = None
+    reroll_weight: int = msgspec.field(default=0)
 
     def __hash__(self) -> int:
         return hash(self.id)

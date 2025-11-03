@@ -66,8 +66,8 @@ class Lifeforce(BaseModel):
     @staticmethod
     def from_item(lifeforce: PoeNinjaCurrency):
         return Lifeforce(
-            name=lifeforce.name,
-            chaos_value=lifeforce.receive.value,
+            name=lifeforce.name if lifeforce.name else "Unknown",
+            chaos_value=lifeforce.chaos_value,
             icon=lifeforce.icon,
         )
 
