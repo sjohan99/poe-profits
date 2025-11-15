@@ -30,12 +30,7 @@ function DroprateWarning({ league }: { league: string }) {
   return (
     <div>
       <h2 className="text-orange-500">
-        New league warning: Drop rates may have changed and item prices are
-        volatile.
-      </h2>
-      <h2 className="text-orange-300">
-        Known issues: Incarnation bosses have not been updated for the new
-        Keepers league yet.
+        Note: Incarnation bosses are hidden due to insufficient droprate data.
       </h2>
     </div>
   );
