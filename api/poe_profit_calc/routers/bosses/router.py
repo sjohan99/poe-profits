@@ -58,9 +58,9 @@ class BossId(Enum):
     the_maven_uber = "the_maven_uber"
     venarius = "venarius"
     venarius_uber = "venarius_uber"
-    incarnation_of_dread = "incarnation_of_dread"
-    incarnation_of_fear = "incarnation_of_fear"
-    incarnation_of_neglect = "incarnation_of_neglect"
+    # incarnation_of_dread = "incarnation_of_dread"
+    # incarnation_of_fear = "incarnation_of_fear"
+    # incarnation_of_neglect = "incarnation_of_neglect"
     catarina_master_of_undeath = "catarina_master_of_undeath"
     the_king_in_the_mists = "the_king_in_the_mists"
     oshabi = "oshabi"
@@ -82,9 +82,9 @@ BOSS_ID_TO_BOSS: dict[BossId, Boss] = {
     BossId.the_maven_uber: TheMavenUber,
     BossId.venarius: Venarius,
     BossId.venarius_uber: VenariusUber,
-    BossId.incarnation_of_dread: IncarnationOfDread,
-    BossId.incarnation_of_fear: IncarnationOfFear,
-    BossId.incarnation_of_neglect: IncarnationOfNeglect,
+    # BossId.incarnation_of_dread: IncarnationOfDread,
+    # BossId.incarnation_of_fear: IncarnationOfFear,
+    # BossId.incarnation_of_neglect: IncarnationOfNeglect,
     BossId.catarina_master_of_undeath: CatarinaMasterOfUndeath,
     BossId.the_king_in_the_mists: TheKingInTheMists,
     BossId.oshabi: Oshabi,
