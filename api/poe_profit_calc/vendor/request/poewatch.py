@@ -8,7 +8,7 @@ class PoeWatchClient:
     LEAGUE_TO_POE_WATCH = {
         League.STANDARD: "Standard",
         League.CURRENT_LEAGUE: "Keepers",
-        League.CURRENT_LEAGUE_HC: "Keepers Hardcore",
+        League.CURRENT_LEAGUE_HC: "Hardcore Keepers",
     }
     POEWATCH_ENDPOINT_MAP = {
         PoeWatchEndpoint.UNIQUE_JEWEL: RequestEndpoint(
