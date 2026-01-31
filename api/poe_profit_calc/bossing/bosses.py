@@ -1050,25 +1050,25 @@ TheMaven = Boss(
         BossItem(
             "Legacy of Fury",
             "LegacyofFury",
-            0.33,
+            0.44,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Legacy of Fury"),
         ),
         BossItem(
             "Graven's Secret",
             "GravensSecret",
-            0.19,
+            0.16,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Graven's Secret"),
         ),
         BossItem(
             "Arn's Anguish",
             "ArnsAnguish",
-            0.19,
+            0.16,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Arn's Anguish"),
         ),
         BossItem(
             "Olesya's Delight",
             "OlesyasDelight",
-            0.19,
+            0.16,
             Matcher(PoeNinjaEndpoint.UNIQUE_ACCESSORY, "Olesya's Delight"),
         ),
         BossItem(
@@ -1080,7 +1080,7 @@ TheMaven = Boss(
         BossItem(
             "Echoforge",
             "Echoforge",
-            0.03,
+            0.01,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Echoforge"),
         ),
         BossItem(
@@ -1318,25 +1318,25 @@ TheMavenUber = Boss(
         BossItem(
             "Viridi's Veil",
             "ViridisVeil",
-            0.53,
+            0.52,
             Matcher(PoeNinjaEndpoint.UNIQUE_ARMOUR, "Viridi's Veil"),
         ),
         BossItem(
             "Impossible Escape",
             "ImpossibleEscape",
-            0.32,
+            0.33,
             Matcher(PoeNinjaEndpoint.UNIQUE_JEWEL, "Impossible Escape"),
         ),
         BossItem(
             "Progenesis",
             "Progenesis",
-            0.03,
+            0.02,
             Matcher(PoeNinjaEndpoint.UNIQUE_FLASK, "Progenesis"),
         ),
         BossItem(
             "Grace of the Goddess",
             "GraceoftheGoddess",
-            0.12,
+            0.13,
             Matcher(PoeNinjaEndpoint.UNIQUE_WEAPON, "Grace of the Goddess"),
         ),
         BossItem(
@@ -1570,19 +1570,19 @@ TheMavenUber = Boss(
         BossItem(
             "Awakened Enlighten Support",
             "AwakenedEnlightenSupport",
-            0.00166,
+            0.00083,
             Matcher(PoeNinjaEndpoint.SKILL_GEM, "Awakened Enlighten Support"),
         ),
         BossItem(
             "Awakened Enhance Support",
             "AwakenedEnhanceSupport",
-            0.00166,
+            0.00083,
             Matcher(PoeNinjaEndpoint.SKILL_GEM, "Awakened Enhance Support"),
         ),
         BossItem(
             "Awakened Empower Support",
             "AwakenedEmpowerSupport",
-            0.00166,
+            0.00083,
             Matcher(PoeNinjaEndpoint.SKILL_GEM, "Awakened Empower Support"),
         ),
     },
