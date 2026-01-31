@@ -450,7 +450,7 @@ TheShaperUber = Boss(
         BossItem(
             "Sublime Vision",
             "SublimeVision",
-            0.03,
+            0.02,
             Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified Sublime Vision", ilvl=87),
         ),
         BossItem(
@@ -474,7 +474,7 @@ TheShaperUber = Boss(
         BossItem(
             "Orb of Dominance",
             "OrbofDominanceShaper",
-            0.05,
+            0.03,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
         BossItem(
@@ -568,19 +568,19 @@ TheElder = Boss(
         BossItem(
             "Orb of Dominance",
             "OrbofDominanceElder",
-            0.05,
+            0.02,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
         BossItem(
             "Watcher's Eye",
             "WatchersEye",
-            0.35,
+            0.4,
             Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified Watcher's Eye 85", ilvl=85),
         ),
         BossItem(
             "Elder's Exalted Orb",
             "EldersExaltedOrb",
-            0.15,
+            0.1,
             Matcher(PoeWatchEndpoint.CURRENCY, "Elder's Exalted Orb"),
         ),
     },
@@ -650,7 +650,7 @@ TheElderUber = Boss(
         BossItem(
             "Watcher's Eye",
             "WatchersEyeUber",
-            0.35,
+            0.3,
             Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified Watcher's Eye 86+", ilvl=86),
         ),
         BossItem(
@@ -680,7 +680,7 @@ TheElderUber = Boss(
         BossItem(
             "Elder's Exalted Orb",
             "EldersExaltedOrb",
-            0.15,
+            0.1,
             Matcher(PoeWatchEndpoint.CURRENCY, "Elder's Exalted Orb"),
         ),
     },
@@ -732,7 +732,7 @@ TheElderUberUber = Boss(
         BossItem(
             "Sublime Vision",
             "SublimeVision",
-            0.025,
+            0.01,
             Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified Sublime Vision", ilvl=87),
         ),
         BossItem(
@@ -756,7 +756,7 @@ TheElderUberUber = Boss(
         BossItem(
             "Watcher's Eye",
             "WatchersEyeUber",
-            0.35,
+            0.3,
             Matcher(PoeWatchEndpoint.UNIQUE_JEWEL, "Unidentified Watcher's Eye 86+", ilvl=86),
         ),
         BossItem(
