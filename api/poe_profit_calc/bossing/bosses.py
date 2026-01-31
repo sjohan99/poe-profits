@@ -956,13 +956,13 @@ Sirus = Boss(
         BossItem(
             "Orb of Dominance",
             "OrbofDominanceSirus",
-            0.1,
+            0.05,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
         BossItem(
             "Awakener's Orb",
             "AwakenersOrb",
-            0.2,
+            0.15,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Awakener's Orb"),
         ),
         BossItem(
@@ -1016,13 +1016,13 @@ SirusUber = Boss(
         BossItem(
             "Orb of Dominance",
             "OrbofDominanceSirus",
-            0.1,
+            0.05,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Orb of Dominance"),
         ),
         BossItem(
             "Awakener's Orb",
             "AwakenersOrb",
-            0.2,
+            0.15,
             Matcher(PoeNinjaEndpoint.CURRENCY, "Awakener's Orb"),
         ),
         BossItem(
