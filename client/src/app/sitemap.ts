@@ -5,7 +5,7 @@ import { fetchData } from "~/services/fetcher";
 const URL = env.SITE_URL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const leauges = await fetchData<string[]>("metadata/leagues");
+  // const leauges = await fetchData<string[]>("metadata/leagues");
 
   return [
     {
@@ -23,22 +23,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${URL}/sitemap.xml`,
     },
-    ...leauges.flatMap((league) => [
-      {
-        url: `${URL}/${league}/boss`,
-      },
-      {
-        url: `${URL}/${league}/gems`,
-      },
-      {
-        url: `${URL}/${league}/harvest`,
-      },
-      {
-        url: `${URL}/${league}/harvest/delirium_orbs`,
-      },
-      {
-        url: `${URL}/${league}/harvest/catalysts`,
-      },
-    ]),
+    // ...leauges.flatMap((league) => [
+    //   {
+    //     url: `${URL}/${league}/boss`,
+    //   },
+    //   {
+    //     url: `${URL}/${league}/gems`,
+    //   },
+    //   {
+    //     url: `${URL}/${league}/harvest`,
+    //   },
+    //   {
+    //     url: `${URL}/${league}/harvest/delirium_orbs`,
+    //   },
+    //   {
+    //     url: `${URL}/${league}/harvest/catalysts`,
+    //   },
+    // ]),
   ];
 }

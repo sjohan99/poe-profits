@@ -39,10 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${quicksand.className}`}>
       <body className="flex min-h-screen flex-col justify-between">
-        <div className="min-h-screen">
+        <div className="">
           <TopNav logoFont={chakraPetch} />
-          <PageTitle />
-          <CenterContent background="bg-primary">{children}</CenterContent>
+          <CenterContent>{children}</CenterContent>
         </div>
         <div>
           <CenterContent skipPadX={true}>
@@ -53,7 +52,7 @@ export default function RootLayout({
           </CenterContent>
         </div>
         <Analytics></Analytics>
-        <SpeedInsights></SpeedInsights>
+        {/* <SpeedInsights></SpeedInsights> */}
       </body>
     </html>
   );
